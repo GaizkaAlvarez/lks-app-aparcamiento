@@ -23,6 +23,7 @@ MERGED from [androidx.compose.ui:ui-test-manifest:1.7.0] /home/gaizka/.gradle/ca
 MERGED from [androidx.activity:activity-ktx:1.8.2] /home/gaizka/.gradle/caches/8.13/transforms/caaf1fb00545e8ba5e2de49522a021d8/transformed/activity-ktx-1.8.2/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.activity:activity:1.8.2] /home/gaizka/.gradle/caches/8.13/transforms/b1e1b7a736dcaf76af5ba3176aaafe35/transformed/activity-1.8.2/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.activity:activity-compose:1.8.2] /home/gaizka/.gradle/caches/8.13/transforms/145f81d28ca74120b3b59bb30960f706/transformed/activity-compose-1.8.2/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-icons-extended-android:1.7.0] /home/gaizka/.gradle/caches/8.13/transforms/a9d9b25231d22a96f48ab91ff203558b/transformed/material-icons-extended-release/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.compose.material:material-icons-core-android:1.7.0] /home/gaizka/.gradle/caches/8.13/transforms/6319107257e824b1f0b44d5efaa49004/transformed/material-icons-core-release/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.compose.ui:ui-android:1.7.0] /home/gaizka/.gradle/caches/8.13/transforms/cdeeeffa919c2962c45b3272398a23a8/transformed/ui-release/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.autofill:autofill:1.0.0] /home/gaizka/.gradle/caches/8.13/transforms/f2a89321c4df152a736e93e835e6cd88/transformed/autofill-1.0.0/AndroidManifest.xml:17:1-24:12
@@ -161,6 +162,8 @@ MERGED from [androidx.activity:activity:1.8.2] /home/gaizka/.gradle/caches/8.13/
 MERGED from [androidx.activity:activity:1.8.2] /home/gaizka/.gradle/caches/8.13/transforms/b1e1b7a736dcaf76af5ba3176aaafe35/transformed/activity-1.8.2/AndroidManifest.xml:20:5-44
 MERGED from [androidx.activity:activity-compose:1.8.2] /home/gaizka/.gradle/caches/8.13/transforms/145f81d28ca74120b3b59bb30960f706/transformed/activity-compose-1.8.2/AndroidManifest.xml:5:5-44
 MERGED from [androidx.activity:activity-compose:1.8.2] /home/gaizka/.gradle/caches/8.13/transforms/145f81d28ca74120b3b59bb30960f706/transformed/activity-compose-1.8.2/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-extended-android:1.7.0] /home/gaizka/.gradle/caches/8.13/transforms/a9d9b25231d22a96f48ab91ff203558b/transformed/material-icons-extended-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-extended-android:1.7.0] /home/gaizka/.gradle/caches/8.13/transforms/a9d9b25231d22a96f48ab91ff203558b/transformed/material-icons-extended-release/AndroidManifest.xml:5:5-44
 MERGED from [androidx.compose.material:material-icons-core-android:1.7.0] /home/gaizka/.gradle/caches/8.13/transforms/6319107257e824b1f0b44d5efaa49004/transformed/material-icons-core-release/AndroidManifest.xml:5:5-44
 MERGED from [androidx.compose.material:material-icons-core-android:1.7.0] /home/gaizka/.gradle/caches/8.13/transforms/6319107257e824b1f0b44d5efaa49004/transformed/material-icons-core-release/AndroidManifest.xml:5:5-44
 MERGED from [androidx.compose.ui:ui-android:1.7.0] /home/gaizka/.gradle/caches/8.13/transforms/cdeeeffa919c2962c45b3272398a23a8/transformed/ui-release/AndroidManifest.xml:5:5-44

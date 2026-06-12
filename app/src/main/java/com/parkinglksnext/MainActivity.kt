@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     // Ahora detectará LoginScreen() automáticamente
-                    LoginScreen()
+                    NewReservationScreen()
                 }
             }
         }
