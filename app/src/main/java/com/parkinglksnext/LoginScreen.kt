@@ -1,5 +1,6 @@
-package com.parkinglksnext // Asegúrate de que no tenga ".ui.screens" al final
+package com.parkinglksnext
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -13,11 +14,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-// Este import es vital para que reconozca el logo_lks
-import com.parkinglksnext.R
+import com.google.firebase.auth.FirebaseAuth
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(
+    onNavigateToRegister: () -> Unit = {},
+    onNavigateToDashboard: () -> Unit = {}
+) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
@@ -63,7 +66,7 @@ fun LoginScreen() {
         )
 
         TextButton(
-            onClick = { /* Próximamente */ },
+            onClick = { /* Próximamente flujo ForgotPassword */ },
             modifier = Modifier.align(Alignment.End)
         ) {
             Text("¿Olvidaste tu contraseña?", color = MaterialTheme.colorScheme.primary)
@@ -72,19 +75,30 @@ fun LoginScreen() {
         Spacer(modifier = Modifier.height(30.dp))
 
         Button(
-            onClick = { /* Lógica de entrada */ },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(55.dp),
-            shape = RoundedCornerShape(8.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+            onClick = {
+                if (email.isNotBlank() && password.isNotBlank()) {
+                    // Código de la página 19 de la guía
+                    FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                Log.d(":::", "Inicio de sesión correcto")
+                                onNavigateToDashboard() // ¡Ahora sí existe!
+                            } else {
+                                Log.d(":::", "Error al iniciar sesión")
+                            }
+                        }
+                }
+            },
+            modifier = Modifier.fillMaxWidth().height(55.dp),
+            shape = RoundedCornerShape(12.dp)
         ) {
-            Text("Iniciar Sesión", color = Color.White, fontSize = 16.sp)
+            Text("Iniciar Sesión", fontWeight = FontWeight.Bold)
         }
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        TextButton(onClick = { /* Ir a registro */ }) {
+        // Conectamos el callback para ir a la pantalla de registro
+        TextButton(onClick = { onNavigateToRegister() }) {
             Text("¿No tienes cuenta? ", color = Color.Gray)
             Text("Regístrate aquí", color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold)
         }

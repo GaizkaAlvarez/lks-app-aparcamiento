@@ -2,11 +2,14 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+
+    alias(libs.plugins.google.services)
+    alias(libs.plugins.firebase.crashlytics)
 }
 
 android {
     namespace = "com.parkinglksnext"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.parkinglksnext"
@@ -59,4 +62,9 @@ dependencies {
 
     // Iconos de google
     implementation("androidx.compose.material:material-icons-extended")
+
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.auth)
 }

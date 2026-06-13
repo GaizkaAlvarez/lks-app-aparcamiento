@@ -1,5 +1,6 @@
 package com.parkinglksnext
 
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -23,12 +24,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.firebase.auth.FirebaseAuth
 
 @Composable
 fun RegisterScreen(
-    onNavigateToLogin: () -> Unit = {} // Lo dejamos vacío por ahora
+    onNavigateBack: () -> Unit = {} // Coincide perfectamente con el MainActivity
 ) {
-    // Variables solo para que la UI funcione y se actualice al escribir
     var nombre by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var matricula by remember { mutableStateOf("") }
@@ -38,11 +39,11 @@ fun RegisterScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .verticalScroll(rememberScrollState()) // Añadimos scroll para que quepa todo
+            .verticalScroll(rememberScrollState())
             .padding(horizontal = 24.dp, vertical = 24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // --- CABECERA: Volver al inicio (Como en tu Figma) ---
+        // --- CABECERA: Volver al inicio ---
         Row(
             modifier = Modifier.fillMaxWidth().padding(bottom = 24.dp),
             verticalAlignment = Alignment.CenterVertically
@@ -51,14 +52,14 @@ fun RegisterScreen(
                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                 contentDescription = "Volver",
                 tint = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.clickable { onNavigateToLogin() }
+                modifier = Modifier.clickable { onNavigateBack() }
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(
                 text = "Volver al inicio",
                 color = MaterialTheme.colorScheme.primary,
                 fontWeight = FontWeight.SemiBold,
-                modifier = Modifier.clickable { onNavigateToLogin() }
+                modifier = Modifier.clickable { onNavigateBack() }
             )
         }
 
@@ -78,13 +79,13 @@ fun RegisterScreen(
             Text(text = "Únete a LKS Next Parking", fontSize = 15.sp, color = Color.Gray, modifier = Modifier.padding(top = 4.dp))
         }
 
-        // --- CAMPOS DE TEXTO CON ICONOS ---
+        // --- CAMPOS DE TEXTO ---
         OutlinedTextField(
             value = nombre,
             onValueChange = { nombre = it },
             label = { Text("Nombre Completo") },
             placeholder = { Text("Juan Pérez") },
-            leadingIcon = { Icon(Icons.Outlined.Person, contentDescription = null) }, // Icono persona
+            leadingIcon = { Icon(Icons.Outlined.Person, contentDescription = null) },
             modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
             shape = RoundedCornerShape(12.dp)
         )
@@ -94,7 +95,7 @@ fun RegisterScreen(
             onValueChange = { email = it },
             label = { Text("Email") },
             placeholder = { Text("tu@email.com") },
-            leadingIcon = { Icon(Icons.Outlined.Email, contentDescription = null) }, // Icono email
+            leadingIcon = { Icon(Icons.Outlined.Email, contentDescription = null) },
             modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
             shape = RoundedCornerShape(12.dp)
         )
@@ -104,7 +105,7 @@ fun RegisterScreen(
             onValueChange = { matricula = it },
             label = { Text("Matrícula del Vehículo *") },
             placeholder = { Text("1234ABC") },
-            leadingIcon = { Icon(Icons.Outlined.DirectionsCar, contentDescription = null) }, // Icono coche
+            leadingIcon = { Icon(Icons.Outlined.DirectionsCar, contentDescription = null) },
             modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
             shape = RoundedCornerShape(12.dp)
         )
@@ -114,7 +115,7 @@ fun RegisterScreen(
             Text("Tipo de Vehículo", fontSize = 13.sp, color = Color.Gray, modifier = Modifier.padding(bottom = 8.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp) // Espacio entre botones
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 val opciones = listOf("Normal", "Eléctrico", "Moto")
                 opciones.forEach { tipo ->
@@ -129,7 +130,6 @@ fun RegisterScreen(
                             if (isSelected) MaterialTheme.colorScheme.primary else Color.LightGray
                         ),
                         colors = ButtonDefaults.outlinedButtonColors(
-                            // Un fondito muy suave si está seleccionado, para darle el toque Figma
                             containerColor = if (isSelected) MaterialTheme.colorScheme.primary.copy(alpha = 0.05f) else Color.Transparent,
                             contentColor = if (isSelected) MaterialTheme.colorScheme.primary else Color.Gray
                         )
@@ -146,7 +146,7 @@ fun RegisterScreen(
             onValueChange = { password = it },
             label = { Text("Contraseña") },
             placeholder = { Text("Mínimo 6 caracteres") },
-            leadingIcon = { Icon(Icons.Outlined.Lock, contentDescription = null) }, // Icono candado
+            leadingIcon = { Icon(Icons.Outlined.Lock, contentDescription = null) },
             visualTransformation = PasswordVisualTransformation(),
             modifier = Modifier.fillMaxWidth().padding(bottom = 24.dp),
             shape = RoundedCornerShape(12.dp)
@@ -154,12 +154,24 @@ fun RegisterScreen(
 
         // --- BOTÓN PRINCIPAL ---
         Button(
-            onClick = { /* PENDIENTE: Conectar con Firebase luego */ },
+            onClick = {
+                if (email.isNotBlank() && password.isNotBlank()) {
+                    // Código de la página 18 de la guía
+                    FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                Log.d(":::", "Usuario registrado correctamente en Firebase")
+                                onNavigateBack() // ¡Ahora sí existe!
+                            } else {
+                                Log.d(":::", "Error al registrar usuario")
+                            }
+                        }
+                }
+            },
             modifier = Modifier.fillMaxWidth().height(55.dp),
-            shape = RoundedCornerShape(8.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+            shape = RoundedCornerShape(12.dp)
         ) {
-            Text("Crear Cuenta", color = Color.White, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+            Text("Crear Cuenta", fontWeight = FontWeight.Bold)
         }
 
         Spacer(modifier = Modifier.height(24.dp))
@@ -171,7 +183,7 @@ fun RegisterScreen(
                 text = "Inicia sesión",
                 color = MaterialTheme.colorScheme.primary,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.clickable { onNavigateToLogin() }
+                modifier = Modifier.clickable { onNavigateBack() }
             )
         }
     }
