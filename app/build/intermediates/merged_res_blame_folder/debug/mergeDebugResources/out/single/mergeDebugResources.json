@@ -1,70 +1,70 @@
 [
     {
-        "merged": "com.parkinglksnext.app-debug-47:/xml_data_extraction_rules.xml.flat",
-        "source": "com.parkinglksnext.app-main-49:/xml/data_extraction_rules.xml"
+        "merged": "com.parkinglksnext.app-debug-71:/drawable_logo_lks.png.flat",
+        "source": "com.parkinglksnext.app-main-73:/drawable/logo_lks.png"
     },
     {
-        "merged": "com.parkinglksnext.app-debug-47:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.parkinglksnext.app-main-49:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "com.parkinglksnext.app-debug-71:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.parkinglksnext.app-main-73:/mipmap-mdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.parkinglksnext.app-debug-47:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "com.parkinglksnext.app-main-49:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "com.parkinglksnext.app-debug-71:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.parkinglksnext.app-main-73:/mipmap-xxxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.parkinglksnext.app-debug-47:/drawable_logo_lks.png.flat",
-        "source": "com.parkinglksnext.app-main-49:/drawable/logo_lks.png"
+        "merged": "com.parkinglksnext.app-debug-71:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.parkinglksnext.app-main-73:/mipmap-mdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.parkinglksnext.app-debug-47:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "com.parkinglksnext.app-main-49:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "com.parkinglksnext.app-debug-71:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.parkinglksnext.app-main-73:/mipmap-xxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.parkinglksnext.app-debug-47:/xml_backup_rules.xml.flat",
-        "source": "com.parkinglksnext.app-main-49:/xml/backup_rules.xml"
+        "merged": "com.parkinglksnext.app-debug-71:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.parkinglksnext.app-main-73:/mipmap-hdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.parkinglksnext.app-debug-47:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "com.parkinglksnext.app-main-49:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "com.parkinglksnext.app-debug-71:/xml_backup_rules.xml.flat",
+        "source": "com.parkinglksnext.app-main-73:/xml/backup_rules.xml"
     },
     {
-        "merged": "com.parkinglksnext.app-debug-47:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "com.parkinglksnext.app-main-49:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "com.parkinglksnext.app-debug-71:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.parkinglksnext.app-main-73:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "com.parkinglksnext.app-debug-47:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.parkinglksnext.app-main-49:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "com.parkinglksnext.app-debug-71:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.parkinglksnext.app-main-73:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.parkinglksnext.app-debug-47:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.parkinglksnext.app-main-49:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "com.parkinglksnext.app-debug-71:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.parkinglksnext.app-main-73:/mipmap-hdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.parkinglksnext.app-debug-47:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "com.parkinglksnext.app-main-49:/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "com.parkinglksnext.app-debug-71:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.parkinglksnext.app-main-73:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "com.parkinglksnext.app-debug-47:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "com.parkinglksnext.app-main-49:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "com.parkinglksnext.app-debug-71:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.parkinglksnext.app-main-73:/mipmap-xhdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.parkinglksnext.app-debug-47:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.parkinglksnext.app-main-49:/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "com.parkinglksnext.app-debug-71:/xml_data_extraction_rules.xml.flat",
+        "source": "com.parkinglksnext.app-main-73:/xml/data_extraction_rules.xml"
     },
     {
-        "merged": "com.parkinglksnext.app-debug-47:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "com.parkinglksnext.app-main-49:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "com.parkinglksnext.app-debug-71:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.parkinglksnext.app-main-73:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.parkinglksnext.app-debug-47:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "com.parkinglksnext.app-main-49:/drawable/ic_launcher_foreground.xml"
+        "merged": "com.parkinglksnext.app-debug-71:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.parkinglksnext.app-main-73:/drawable/ic_launcher_foreground.xml"
     },
     {
-        "merged": "com.parkinglksnext.app-debug-47:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "com.parkinglksnext.app-main-49:/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "com.parkinglksnext.app-debug-71:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.parkinglksnext.app-main-73:/mipmap-xhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.parkinglksnext.app-debug-47:/drawable_ic_launcher_background.xml.flat",
-        "source": "com.parkinglksnext.app-main-49:/drawable/ic_launcher_background.xml"
+        "merged": "com.parkinglksnext.app-debug-71:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.parkinglksnext.app-main-73:/drawable/ic_launcher_background.xml"
     }
 ]

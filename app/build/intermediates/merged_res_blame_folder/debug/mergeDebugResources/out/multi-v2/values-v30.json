@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.parkinglksnext.app-mergeDebugResources-45:/values-v30/values-v30.xml",
+            "outputFile": "com.parkinglksnext.app-mergeDebugResources-69:/values-v30/values-v30.xml",
             "map": [
                 {
-                    "source": "/home/gaizka/.gradle/caches/8.13/transforms/8e78493df7fda4d7a98d4864ec1c3e90/transformed/material3-release/res/values-v30/values-v30.xml",
+                    "source": "/home/gaizka/.gradle/caches/8.13/transforms/a356aba3156483eb68f4aae04b85b938/transformed/material3-release/res/values-v30/values-v30.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

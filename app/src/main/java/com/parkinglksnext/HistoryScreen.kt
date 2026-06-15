@@ -8,43 +8,30 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
-// Clase de datos auxiliar para simular el historial antes de conectar la BD
-data class ReservaPasada(
-    val id: String,
-    val fecha: String,
-    val horas: String,
-    val matricula: String,
-    val completada: Boolean
-)
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.parkinglksnext.viewmodel.HistoryViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HistoryScreen() {
-    // Simulamos un listado de datos históricos
-    val historialMock = remember {
-        listOf(
-            ReservaPasada("1", "Jueves, 4 de Junio", "08:00 - 17:00", "1234ABC", true),
-            ReservaPasada("2", "Martes, 2 de Junio", "09:30 - 14:00", "5678XYZ", true),
-            ReservaPasada("3", "Lunes, 25 de Mayo", "08:00 - 18:30", "1234ABC", true),
-            ReservaPasada("4", "Miércoles, 20 de Mayo", "07:00 - 15:00", "1234ABC", false) // Cancelada
-        )
-    }
+fun HistoryScreen(
+    viewModel: HistoryViewModel,
+    onOpenMenu: () -> Unit = {}
+) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
                 title = { Text("Historial", fontSize = 20.sp, fontWeight = FontWeight.Bold) },
                 navigationIcon = {
-                    IconButton(onClick = { /* Abrir menú lateral */ }) {
+                    IconButton(onClick = { onOpenMenu() }) {
                         Icon(Icons.Default.Menu, contentDescription = "Menú")
                     }
                 },
@@ -70,13 +57,57 @@ fun HistoryScreen() {
                 modifier = Modifier.padding(bottom = 16.dp)
             )
 
-            // LazyColumn es el equivalente pro al RecyclerView. Solo pinta lo que se ve.
-            LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(12.dp),
-                modifier = Modifier.fillMaxSize()
-            ) {
-                items(historialMock) { reserva ->
-                    TarjetaHistorial(reserva = reserva)
+            when {
+                uiState.isLoading -> {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
+                    }
+                }
+                uiState.error != null -> {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = uiState.error ?: "Error desconocido",
+                            color = MaterialTheme.colorScheme.error,
+                            fontSize = 16.sp
+                        )
+                    }
+                }
+                uiState.reservations.isEmpty() -> {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Text(
+                                text = "Sin historial",
+                                fontSize = 18.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color(0xFF0F2537)
+                            )
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Text(
+                                text = "Tus reservas pasadas aparecerán aquí",
+                                fontSize = 14.sp,
+                                color = Color.Gray
+                            )
+                        }
+                    }
+                }
+                else -> {
+                    LazyColumn(
+                        verticalArrangement = Arrangement.spacedBy(12.dp),
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        items(uiState.reservations, key = { it.id }) { reserva ->
+                            HistoryCard(reservation = reserva)
+                        }
+                    }
                 }
             }
         }
@@ -84,12 +115,13 @@ fun HistoryScreen() {
 }
 
 @Composable
-fun TarjetaHistorial(reserva: ReservaPasada) {
+private fun HistoryCard(reservation: Reservation) {
+    val completada = reservation.status == "completed"
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(
-            containerColor = Color(0xFFF8F9FA) // Gris suave corporativo
+            containerColor = Color(0xFFF8F9FA)
         ),
         border = CardDefaults.outlinedCardBorder()
     ) {
@@ -102,37 +134,36 @@ fun TarjetaHistorial(reserva: ReservaPasada) {
         ) {
             Column {
                 Text(
-                    text = reserva.fecha,
+                    text = reservation.date,
                     fontWeight = FontWeight.Bold,
                     fontSize = 16.sp,
                     color = Color(0xFF0F2537)
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "Horario: ${reserva.horas}",
+                    text = "Horario: ${reservation.startTime} - ${reservation.endTime}",
                     fontSize = 14.sp,
                     color = Color.Gray
                 )
                 Text(
-                    text = "Vehículo: ${reserva.matricula}",
+                    text = "Plaza ${reservation.spotNumber}",
                     fontSize = 14.sp,
-                    color = Color(0xFF1E3A8A), // Azul oscuro LKS
+                    color = Color(0xFF1E3A8A),
                     fontWeight = FontWeight.Medium
                 )
             }
 
-            // Etiqueta de Estado (Completada verde / Cancelada roja)
             Box(
                 modifier = Modifier
                     .background(
-                        color = if (reserva.completada) Color(0xFFE6F4EA) else Color(0xFFFCE8E6),
+                        color = if (completada) Color(0xFFE6F4EA) else Color(0xFFFCE8E6),
                         shape = RoundedCornerShape(6.dp)
                     )
                     .padding(horizontal = 10.dp, vertical = 6.dp)
             ) {
                 Text(
-                    text = if (reserva.completada) "Completada" else "Cancelada",
-                    color = if (reserva.completada) Color(0xFF137333) else Color(0xFFC5221F),
+                    text = if (completada) "Completada" else "Cancelada",
+                    color = if (completada) Color(0xFF137333) else Color(0xFFC5221F),
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Bold
                 )

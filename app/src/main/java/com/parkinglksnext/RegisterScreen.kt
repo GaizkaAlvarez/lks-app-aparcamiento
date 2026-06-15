@@ -1,6 +1,5 @@
 package com.parkinglksnext
 
-import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -24,17 +23,28 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.google.firebase.auth.FirebaseAuth
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.parkinglksnext.viewmodel.AuthViewModel
 
 @Composable
 fun RegisterScreen(
-    onNavigateBack: () -> Unit = {} // Coincide perfectamente con el MainActivity
+    viewModel: AuthViewModel,
+    onNavigateBack: () -> Unit = {}
 ) {
     var nombre by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var matricula by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var tipoVehiculo by remember { mutableStateOf("Normal") }
+
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    // Navigate back on successful registration (user is now authenticated, auth flow handles rest)
+    LaunchedEffect(uiState.registerSuccess) {
+        if (uiState.registerSuccess) {
+            onNavigateBack()
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -87,7 +97,8 @@ fun RegisterScreen(
             placeholder = { Text("Juan Pérez") },
             leadingIcon = { Icon(Icons.Outlined.Person, contentDescription = null) },
             modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
-            shape = RoundedCornerShape(12.dp)
+            shape = RoundedCornerShape(12.dp),
+            enabled = !uiState.isLoading
         )
 
         OutlinedTextField(
@@ -97,7 +108,8 @@ fun RegisterScreen(
             placeholder = { Text("tu@email.com") },
             leadingIcon = { Icon(Icons.Outlined.Email, contentDescription = null) },
             modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
-            shape = RoundedCornerShape(12.dp)
+            shape = RoundedCornerShape(12.dp),
+            enabled = !uiState.isLoading
         )
 
         OutlinedTextField(
@@ -107,7 +119,8 @@ fun RegisterScreen(
             placeholder = { Text("1234ABC") },
             leadingIcon = { Icon(Icons.Outlined.DirectionsCar, contentDescription = null) },
             modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
-            shape = RoundedCornerShape(12.dp)
+            shape = RoundedCornerShape(12.dp),
+            enabled = !uiState.isLoading
         )
 
         // --- SELECTOR DE TIPO DE VEHÍCULO ---
@@ -149,29 +162,61 @@ fun RegisterScreen(
             leadingIcon = { Icon(Icons.Outlined.Lock, contentDescription = null) },
             visualTransformation = PasswordVisualTransformation(),
             modifier = Modifier.fillMaxWidth().padding(bottom = 24.dp),
-            shape = RoundedCornerShape(12.dp)
+            shape = RoundedCornerShape(12.dp),
+            enabled = !uiState.isLoading
         )
+
+        // Error message
+        if (uiState.error != null) {
+            Text(
+                text = uiState.error ?: "",
+                color = MaterialTheme.colorScheme.error,
+                fontSize = 14.sp,
+                modifier = Modifier.padding(bottom = 12.dp)
+            )
+        }
 
         // --- BOTÓN PRINCIPAL ---
         Button(
             onClick = {
                 if (email.isNotBlank() && password.isNotBlank()) {
-                    // Código de la página 18 de la guía
-                    FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                Log.d(":::", "Usuario registrado correctamente en Firebase")
-                                onNavigateBack() // ¡Ahora sí existe!
-                            } else {
-                                Log.d(":::", "Error al registrar usuario")
-                            }
-                        }
+                    val vehicleType = when (tipoVehiculo) {
+                        "Eléctrico" -> "electric"
+                        "Moto" -> "motorcycle"
+                        else -> "normal"
+                    }
+                    val profile = UserProfile(
+                        firstName = nombre.split(" ").firstOrNull() ?: nombre,
+                        lastName = nombre.split(" ").drop(1).joinToString(" "),
+                        name = nombre,
+                        email = email,
+                        licensePlate = matricula,
+                        vehicleType = vehicleType,
+                        vehicles = listOf(
+                            Vehicle(
+                                id = "vehicle-1",
+                                licensePlate = matricula,
+                                type = vehicleType
+                            )
+                        ),
+                        notificationSettings = NotificationSettings()
+                    )
+                    viewModel.register(email, password, profile)
                 }
             },
             modifier = Modifier.fillMaxWidth().height(55.dp),
-            shape = RoundedCornerShape(12.dp)
+            shape = RoundedCornerShape(12.dp),
+            enabled = !uiState.isLoading
         ) {
-            Text("Crear Cuenta", fontWeight = FontWeight.Bold)
+            if (uiState.isLoading) {
+                CircularProgressIndicator(
+                    color = Color.White,
+                    modifier = Modifier.size(24.dp),
+                    strokeWidth = 2.dp
+                )
+            } else {
+                Text("Crear Cuenta", fontWeight = FontWeight.Bold)
+            }
         }
 
         Spacer(modifier = Modifier.height(24.dp))

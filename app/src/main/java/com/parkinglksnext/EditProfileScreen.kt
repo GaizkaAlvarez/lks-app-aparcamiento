@@ -1,6 +1,6 @@
 package com.parkinglksnext
 
-import androidx.compose.foundation.BorderStroke // 1. IMPORTACIÓN CORREGIDA
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -9,7 +9,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.CarRepair
-import androidx.compose.material.icons.filled.Delete // 2. ICONO DE PAPELERA CORREGIDO
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
@@ -20,8 +20,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.parkinglksnext.viewmodel.ProfileViewModel
 
-// Estructura de datos idéntica a tu tipo Vehicle de TypeScript
 data class VehiculoUI(
     val id: String,
     val matricula: String,
@@ -31,26 +32,45 @@ data class VehiculoUI(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EditProfileScreen(
+    viewModel: ProfileViewModel,
     onNavigateBack: () -> Unit = {}
 ) {
-    var nombre by remember { mutableStateOf("Gaizka") }
-    var apellidos by remember { mutableStateOf("Álvarez") }
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val profile = uiState.userProfile
 
-    // Notificaciones
-    var startReminder by remember { mutableStateOf(true) }
-    var expiringReminder by remember { mutableStateOf(true) }
+    // Initialize local state from profile
+    var nombre by remember(profile) { mutableStateOf(profile?.firstName ?: "") }
+    var apellidos by remember(profile) { mutableStateOf(profile?.lastName ?: "") }
+    var startReminder by remember(profile) {
+        mutableStateOf(profile?.notificationSettings?.startReminder ?: true)
+    }
+    var expiringReminder by remember(profile) {
+        mutableStateOf(profile?.notificationSettings?.expiringReminder ?: true)
+    }
 
-    // --- GESTIÓN DE VEHÍCULOS (Mapeado de EditProfile.tsx) ---
-    val listaVehiculos = remember {
-        mutableStateListOf(
-            VehiculoUI("1", "1234ABC", "Eléctrico"),
-            VehiculoUI("2", "5678XYZ", "Normal")
-        )
+    // Vehicles list — initialize from profile
+    val listaVehiculos = remember(profile) {
+        mutableStateListOf<VehiculoUI>().also { list ->
+            profile?.vehicles?.forEach { v ->
+                list.add(VehiculoUI(v.id, v.licensePlate, v.type.replaceFirstChar { it.uppercase() }))
+            }
+            if (list.isEmpty()) {
+                list.add(VehiculoUI("1", "1234ABC", "Normal"))
+            }
+        }
     }
 
     var mostrarFormularioAnadir by remember { mutableStateOf(false) }
     var nuevaMatricula by remember { mutableStateOf("") }
     var nuevoTipoVehiculo by remember { mutableStateOf("Normal") }
+
+    // Navigate back on successful save
+    LaunchedEffect(uiState.saveSuccess) {
+        if (uiState.saveSuccess) {
+            viewModel.clearSaveSuccess()
+            onNavigateBack()
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -91,7 +111,8 @@ fun EditProfileScreen(
                 label = { Text("Nombre") },
                 leadingIcon = { Icon(Icons.Default.Person, contentDescription = null) },
                 modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp),
-                shape = RoundedCornerShape(12.dp)
+                shape = RoundedCornerShape(12.dp),
+                enabled = !uiState.isSaving
             )
 
             OutlinedTextField(
@@ -100,7 +121,8 @@ fun EditProfileScreen(
                 label = { Text("Apellidos") },
                 leadingIcon = { Icon(Icons.Default.Person, contentDescription = null) },
                 modifier = Modifier.fillMaxWidth().padding(bottom = 24.dp),
-                shape = RoundedCornerShape(12.dp)
+                shape = RoundedCornerShape(12.dp),
+                enabled = !uiState.isSaving
             )
 
             // --- SECCIÓN 2: MIS VEHÍCULOS ---
@@ -115,17 +137,18 @@ fun EditProfileScreen(
                     fontWeight = FontWeight.Bold,
                     color = Color(0xFF0F2537)
                 )
-                // Botón más (+) para desplegar el formulario
                 IconButton(
                     onClick = { mostrarFormularioAnadir = true },
-                    colors = IconButtonDefaults.iconButtonColors(containerColor = MaterialTheme.colorScheme.primary, contentColor = Color.White),
+                    colors = IconButtonDefaults.iconButtonColors(
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        contentColor = Color.White
+                    ),
                     modifier = Modifier.size(36.dp)
                 ) {
                     Icon(Icons.Default.Add, contentDescription = "Añadir Vehículo", modifier = Modifier.size(20.dp))
                 }
             }
 
-            // Formulario dinámico azul para Añadir Vehículo
             if (mostrarFormularioAnadir) {
                 Card(
                     modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
@@ -142,10 +165,12 @@ fun EditProfileScreen(
                             placeholder = { Text("Matrícula (ej: 1234ABC)") },
                             modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp),
                             shape = RoundedCornerShape(8.dp),
-                            colors = OutlinedTextFieldDefaults.colors(focusedContainerColor = Color.White, unfocusedContainerColor = Color.White)
+                            colors = OutlinedTextFieldDefaults.colors(
+                                focusedContainerColor = Color.White,
+                                unfocusedContainerColor = Color.White
+                            )
                         )
 
-                        // Selector triple de tipo de vehículo
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
                             horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -169,7 +194,6 @@ fun EditProfileScreen(
                             }
                         }
 
-                        // Acciones del formulario interno
                         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                             OutlinedButton(
                                 onClick = {
@@ -184,7 +208,13 @@ fun EditProfileScreen(
                             Button(
                                 onClick = {
                                     if (nuevaMatricula.isNotBlank()) {
-                                        listaVehiculos.add(VehiculoUI(id = System.currentTimeMillis().toString(), matricula = nuevaMatricula, tipo = nuevoTipoVehiculo))
+                                        listaVehiculos.add(
+                                            VehiculoUI(
+                                                id = System.currentTimeMillis().toString(),
+                                                matricula = nuevaMatricula,
+                                                tipo = nuevoTipoVehiculo
+                                            )
+                                        )
                                         nuevaMatricula = ""
                                         mostrarFormularioAnadir = false
                                     }
@@ -201,7 +231,6 @@ fun EditProfileScreen(
                 }
             }
 
-            // Listado reactivo de vehículos con botón de eliminar
             listaVehiculos.forEach { vehicle ->
                 Card(
                     modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp),
@@ -218,17 +247,19 @@ fun EditProfileScreen(
                             Icon(Icons.Default.CarRepair, contentDescription = null, tint = Color(0xFF6C757D))
                             Spacer(modifier = Modifier.width(12.dp))
                             Column {
-                                // 3. ERROR DE PARÁMETRO 'grandfather' CORREGIDO AQUÍ:
                                 Text(vehicle.matricula, fontWeight = FontWeight.Bold, color = Color(0xFF0F2537))
                                 Text(
                                     text = vehicle.tipo,
                                     fontSize = 12.sp,
-                                    color = if (vehicle.tipo == "Eléctrico") Color(0xFF137333) else if (vehicle.tipo == "Moto") Color(0xFF1A73E8) else Color.Gray
+                                    color = when (vehicle.tipo) {
+                                        "Eléctrico" -> Color(0xFF137333)
+                                        "Moto" -> Color(0xFF1A73E8)
+                                        else -> Color.Gray
+                                    }
                                 )
                             }
                         }
 
-                        // Botón de papelera para borrar
                         IconButton(
                             onClick = {
                                 if (listaVehiculos.size > 1) {
@@ -237,7 +268,7 @@ fun EditProfileScreen(
                             }
                         ) {
                             Icon(
-                                imageVector = Icons.Default.Delete, // CORREGIDO A 'Icons.Default.Delete'
+                                imageVector = Icons.Default.Delete,
                                 contentDescription = "Eliminar",
                                 tint = if (listaVehiculos.size > 1) Color(0xFFC5221F) else Color.LightGray
                             )
@@ -263,7 +294,6 @@ fun EditProfileScreen(
                 )
             }
 
-            // Interruptor 1
             Card(
                 modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp),
                 shape = RoundedCornerShape(12.dp),
@@ -286,7 +316,6 @@ fun EditProfileScreen(
                 }
             }
 
-            // Interruptor 2
             Card(
                 modifier = Modifier.fillMaxWidth().padding(bottom = 32.dp),
                 shape = RoundedCornerShape(12.dp),
@@ -309,7 +338,17 @@ fun EditProfileScreen(
                 }
             }
 
-            // --- ACCIONES ACCESIBLES ---
+            // Error display
+            if (uiState.error != null) {
+                Text(
+                    text = uiState.error ?: "",
+                    color = MaterialTheme.colorScheme.error,
+                    fontSize = 14.sp,
+                    modifier = Modifier.padding(bottom = 12.dp)
+                )
+            }
+
+            // --- ACCIONES ---
             Row(
                 modifier = Modifier.fillMaxWidth().padding(bottom = 24.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
@@ -323,12 +362,42 @@ fun EditProfileScreen(
                 }
 
                 Button(
-                    onClick = { /* Próximamente guardaremos la lista en Firebase */ },
+                    onClick = {
+                        val vehicles = listaVehiculos.map { v ->
+                            Vehicle(
+                                id = v.id,
+                                licensePlate = v.matricula,
+                                type = when (v.tipo) {
+                                    "Eléctrico" -> "electric"
+                                    "Moto" -> "motorcycle"
+                                    else -> "normal"
+                                }
+                            )
+                        }
+                        viewModel.updateProfile(
+                            firstName = nombre,
+                            lastName = apellidos,
+                            vehicles = vehicles,
+                            notificationSettings = NotificationSettings(
+                                startReminder = startReminder,
+                                expiringReminder = expiringReminder
+                            )
+                        )
+                    },
                     modifier = Modifier.weight(1f).height(50.dp),
                     shape = RoundedCornerShape(8.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
+                    enabled = !uiState.isSaving
                 ) {
-                    Text("Guardar", color = Color.White, fontWeight = FontWeight.Bold)
+                    if (uiState.isSaving) {
+                        CircularProgressIndicator(
+                            color = Color.White,
+                            modifier = Modifier.size(24.dp),
+                            strokeWidth = 2.dp
+                        )
+                    } else {
+                        Text("Guardar", color = Color.White, fontWeight = FontWeight.Bold)
+                    }
                 }
             }
         }

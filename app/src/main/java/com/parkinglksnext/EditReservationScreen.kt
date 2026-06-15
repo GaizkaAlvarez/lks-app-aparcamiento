@@ -8,7 +8,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Schedule // 1. ICONO DE RELOJ OFICIAL IMPORTADO
+import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -18,29 +18,44 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.parkinglksnext.viewmodel.ReservationsViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EditReservationScreen(
-    idReserva: String = "res-demo", // Recibe el ID de la reserva a editar
+    idReserva: String = "res-demo",
+    viewModel: ReservationsViewModel,
     onNavigateBack: () -> Unit = {}
 ) {
-    // 2. Lógica para usar el parámetro idReserva y solucionar el "never used"
     LaunchedEffect(idReserva) {
         Log.d("EditReservation", "Cargando datos para la reserva: $idReserva")
     }
 
-    // Rango de horas idéntico de 6:00 a 22:00
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    // Find the reservation by ID
+    val reservation = remember(uiState.activeReservations, idReserva) {
+        uiState.activeReservations.find { it.id == idReserva }
+    }
+
+    // Navigate back on successful update
+    LaunchedEffect(uiState.isUpdateSuccess) {
+        if (uiState.isUpdateSuccess) {
+            viewModel.clearUpdateSuccess()
+            onNavigateBack()
+        }
+    }
+
     val rangoHoras = remember { (6..22).map { stringOfHora(it) } }
 
-    // Estados iniciales cargados (Simulando los valores previos de la reserva)
-    var horaInicio by remember { mutableStateOf("08:00") }
-    var horaFin by remember { mutableStateOf("14:00") }
+    // Initialize from reservation data
+    var horaInicio by remember(reservation) { mutableStateOf(reservation?.startTime ?: "08:00") }
+    var horaFin by remember(reservation) { mutableStateOf(reservation?.endTime ?: "14:00") }
 
     var expandidoInicio by remember { mutableStateOf(false) }
     var expandidoFin by remember { mutableStateOf(false) }
 
-    // Cálculo dinámico de la duración (Lógica de tu archivo .tsx)
     val startInt = horaInicio.split(":")[0].toInt()
     val endInt = horaFin.split(":")[0].toInt()
     val duracion = endInt - startInt
@@ -70,13 +85,13 @@ fun EditReservationScreen(
         ) {
             Spacer(modifier = Modifier.height(16.dp))
 
-            // --- TARJETA DE INFO CON DEGRADADO (Figma Clone) ---
+            // Reservation info card
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(
                         brush = Brush.linearGradient(
-                            colors = listOf(Color(0xFFFF6B00), Color(0xFFFF8C00)) // Tus colores exactos de Figma
+                            colors = listOf(Color(0xFFFF6B00), Color(0xFFFF8C00))
                         ),
                         shape = RoundedCornerShape(16.dp)
                     )
@@ -84,14 +99,14 @@ fun EditReservationScreen(
             ) {
                 Column {
                     Text(
-                        text = "Plaza 42", // Hardcoded para el mock visual
+                        text = "Plaza ${reservation?.spotNumber ?: "—"}",
                         color = Color.White,
                         fontSize = 22.sp,
                         fontWeight = FontWeight.Bold
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "15 de Junio, 2026", // Fecha simulada de ejemplo
+                        text = reservation?.date ?: "—",
                         color = Color.White.copy(alpha = 0.9f),
                         fontSize = 14.sp
                     )
@@ -100,7 +115,7 @@ fun EditReservationScreen(
 
             Spacer(modifier = Modifier.height(28.dp))
 
-            // --- SECCIÓN DE HORARIOS ---
+            // Time editing card
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(16.dp),
@@ -109,7 +124,6 @@ fun EditReservationScreen(
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
                     Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(bottom = 16.dp)) {
-                        // REEMPLAZADO EL ICONO AQUÍ:
                         Icon(Icons.Default.Schedule, contentDescription = null, tint = Color(0xFFFF6B00))
                         Spacer(modifier = Modifier.width(8.dp))
                         Text("Modificar Horario", fontWeight = FontWeight.Bold, color = Color(0xFF0F2537), fontSize = 16.sp)
@@ -119,7 +133,6 @@ fun EditReservationScreen(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
-                        // Desplegable: Hora de Inicio
                         Column(modifier = Modifier.weight(1f)) {
                             Text("Hora de Inicio", fontSize = 13.sp, color = Color.Gray, modifier = Modifier.padding(bottom = 6.dp))
                             ExposedDropdownMenuBox(
@@ -148,7 +161,6 @@ fun EditReservationScreen(
                             }
                         }
 
-                        // Desplegable: Hora de Fin
                         Column(modifier = Modifier.weight(1f)) {
                             Text("Hora de Fin", fontSize = 13.sp, color = Color.Gray, modifier = Modifier.padding(bottom = 6.dp))
                             ExposedDropdownMenuBox(
@@ -179,7 +191,7 @@ fun EditReservationScreen(
                         }
                     }
 
-                    // Mensaje dinámico de Estado/Error
+                    // Duration message
                     Spacer(modifier = Modifier.height(16.dp))
                     Box(
                         modifier = Modifier
@@ -206,9 +218,19 @@ fun EditReservationScreen(
                 }
             }
 
+            // Error display
+            if (uiState.error != null) {
+                Spacer(modifier = Modifier.height(12.dp))
+                Text(
+                    text = uiState.error ?: "",
+                    color = MaterialTheme.colorScheme.error,
+                    fontSize = 14.sp
+                )
+            }
+
             Spacer(modifier = Modifier.weight(1f))
 
-            // --- ACCIONES (CANCELAR / GUARDAR) ---
+            // Action buttons
             Row(
                 modifier = Modifier.fillMaxWidth().padding(vertical = 24.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
@@ -222,7 +244,11 @@ fun EditReservationScreen(
                 }
 
                 Button(
-                    onClick = { /* Pendiente actualizar en Firestore collection */ },
+                    onClick = {
+                        if (isValidDuration) {
+                            viewModel.updateReservation(idReserva, horaInicio, horaFin)
+                        }
+                    },
                     enabled = isValidDuration,
                     modifier = Modifier.weight(1f).height(52.dp),
                     shape = RoundedCornerShape(12.dp),

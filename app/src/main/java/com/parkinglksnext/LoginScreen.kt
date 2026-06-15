@@ -1,6 +1,5 @@
 package com.parkinglksnext
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,15 +13,27 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.google.firebase.auth.FirebaseAuth
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.parkinglksnext.viewmodel.AuthViewModel
 
 @Composable
 fun LoginScreen(
+    viewModel: AuthViewModel,
     onNavigateToRegister: () -> Unit = {},
-    onNavigateToDashboard: () -> Unit = {}
+    onNavigateToDashboard: () -> Unit = {},
+    onNavigateToForgotPassword: () -> Unit = {}
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    // Navigate to Dashboard when authenticated
+    LaunchedEffect(uiState.isAuthenticated) {
+        if (uiState.isAuthenticated) {
+            onNavigateToDashboard()
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -53,7 +64,8 @@ fun LoginScreen(
             onValueChange = { email = it },
             label = { Text("Correo electrónico") },
             modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
-            shape = RoundedCornerShape(8.dp)
+            shape = RoundedCornerShape(8.dp),
+            enabled = !uiState.isLoading
         )
 
         OutlinedTextField(
@@ -62,14 +74,25 @@ fun LoginScreen(
             label = { Text("Contraseña") },
             visualTransformation = PasswordVisualTransformation(),
             modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(8.dp)
+            shape = RoundedCornerShape(8.dp),
+            enabled = !uiState.isLoading
         )
 
         TextButton(
-            onClick = { /* Próximamente flujo ForgotPassword */ },
+            onClick = { onNavigateToForgotPassword() },
             modifier = Modifier.align(Alignment.End)
         ) {
             Text("¿Olvidaste tu contraseña?", color = MaterialTheme.colorScheme.primary)
+        }
+
+        // Error message
+        if (uiState.error != null) {
+            Spacer(modifier = Modifier.height(12.dp))
+            Text(
+                text = uiState.error ?: "",
+                color = MaterialTheme.colorScheme.error,
+                fontSize = 14.sp
+            )
         }
 
         Spacer(modifier = Modifier.height(30.dp))
@@ -77,27 +100,26 @@ fun LoginScreen(
         Button(
             onClick = {
                 if (email.isNotBlank() && password.isNotBlank()) {
-                    // Código de la página 19 de la guía
-                    FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                Log.d(":::", "Inicio de sesión correcto")
-                                onNavigateToDashboard() // ¡Ahora sí existe!
-                            } else {
-                                Log.d(":::", "Error al iniciar sesión")
-                            }
-                        }
+                    viewModel.login(email, password)
                 }
             },
             modifier = Modifier.fillMaxWidth().height(55.dp),
-            shape = RoundedCornerShape(12.dp)
+            shape = RoundedCornerShape(12.dp),
+            enabled = !uiState.isLoading
         ) {
-            Text("Iniciar Sesión", fontWeight = FontWeight.Bold)
+            if (uiState.isLoading) {
+                CircularProgressIndicator(
+                    color = Color.White,
+                    modifier = Modifier.size(24.dp),
+                    strokeWidth = 2.dp
+                )
+            } else {
+                Text("Iniciar Sesión", fontWeight = FontWeight.Bold)
+            }
         }
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        // Conectamos el callback para ir a la pantalla de registro
         TextButton(onClick = { onNavigateToRegister() }) {
             Text("¿No tienes cuenta? ", color = Color.Gray)
             Text("Regístrate aquí", color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold)
