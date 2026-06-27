@@ -5,7 +5,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Schedule
@@ -82,15 +81,9 @@ fun DrawerContent(
         // ─── Navigation items ────────────────────────────────────
         DrawerNavItem(
             icon = Icons.Default.Home,
-            label = "Reservas Activas",
+            label = "Reservas",
             isSelected = currentRoute == Routes.Dashboard.route,
             onClick = { onNavigate(Routes.Dashboard.route) }
-        )
-        DrawerNavItem(
-            icon = Icons.Default.CalendarMonth,
-            label = "Nueva Reserva",
-            isSelected = currentRoute == Routes.NewReservation.route,
-            onClick = { onNavigate(Routes.NewReservation.route) }
         )
         DrawerNavItem(
             icon = Icons.Default.Schedule,

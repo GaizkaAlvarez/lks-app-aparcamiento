@@ -10,7 +10,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -21,10 +25,12 @@ fun LoginScreen(
     viewModel: AuthViewModel,
     onNavigateToRegister: () -> Unit = {},
     onNavigateToDashboard: () -> Unit = {},
-    onNavigateToForgotPassword: () -> Unit = {}
+    onNavigateToForgotPassword: () -> Unit = {},
+    onGoogleSignIn: () -> Unit = {}
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var passwordVisible by remember { mutableStateOf(false) }
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -72,7 +78,15 @@ fun LoginScreen(
             value = password,
             onValueChange = { password = it },
             label = { Text("Contraseña") },
-            visualTransformation = PasswordVisualTransformation(),
+            visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            trailingIcon = {
+                IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                    Icon(
+                        imageVector = if (passwordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff,
+                        contentDescription = if (passwordVisible) "Ocultar contraseña" else "Mostrar contraseña"
+                    )
+                }
+            },
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(8.dp),
             enabled = !uiState.isLoading
@@ -116,6 +130,25 @@ fun LoginScreen(
             } else {
                 Text("Iniciar Sesión", fontWeight = FontWeight.Bold)
             }
+        }
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        // ─── Google sign-in button ──────────────────────────────
+        Text(
+            text = "O inicia sesión con",
+            color = Color.Gray,
+            fontSize = 13.sp,
+            modifier = Modifier.padding(bottom = 12.dp)
+        )
+
+        OutlinedButton(
+            onClick = onGoogleSignIn,
+            modifier = Modifier.fillMaxWidth().height(50.dp),
+            shape = RoundedCornerShape(12.dp),
+            enabled = !uiState.isLoading
+        ) {
+            Text("Iniciar sesión con Google", color = Color(0xFF444444))
         }
 
         Spacer(modifier = Modifier.height(20.dp))

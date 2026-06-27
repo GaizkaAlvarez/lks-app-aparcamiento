@@ -9,6 +9,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material.icons.outlined.DirectionsCar
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Lock
@@ -21,6 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -35,7 +38,8 @@ fun RegisterScreen(
     var email by remember { mutableStateOf("") }
     var matricula by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    var tipoVehiculo by remember { mutableStateOf("Normal") }
+    var passwordVisible by remember { mutableStateOf(false) }
+    var tipoVehiculo by remember { mutableStateOf("Combustión") }
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -130,7 +134,7 @@ fun RegisterScreen(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                val opciones = listOf("Normal", "Eléctrico", "Moto")
+                val opciones = listOf("Combustión", "Eléctrico", "Moto")
                 opciones.forEach { tipo ->
                     val isSelected = tipoVehiculo == tipo
                     OutlinedButton(
@@ -160,7 +164,15 @@ fun RegisterScreen(
             label = { Text("Contraseña") },
             placeholder = { Text("Mínimo 6 caracteres") },
             leadingIcon = { Icon(Icons.Outlined.Lock, contentDescription = null) },
-            visualTransformation = PasswordVisualTransformation(),
+            visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            trailingIcon = {
+                IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                    Icon(
+                        imageVector = if (passwordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff,
+                        contentDescription = if (passwordVisible) "Ocultar contraseña" else "Mostrar contraseña"
+                    )
+                }
+            },
             modifier = Modifier.fillMaxWidth().padding(bottom = 24.dp),
             shape = RoundedCornerShape(12.dp),
             enabled = !uiState.isLoading
@@ -183,7 +195,7 @@ fun RegisterScreen(
                     val vehicleType = when (tipoVehiculo) {
                         "Eléctrico" -> "electric"
                         "Moto" -> "motorcycle"
-                        else -> "normal"
+                        else -> "combustion"
                     }
                     val profile = UserProfile(
                         firstName = nombre.split(" ").firstOrNull() ?: nombre,

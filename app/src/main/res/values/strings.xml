@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">ParkingLKSNext</string>
+    <!--
+        OAuth 2.0 Web Client ID for Google Sign-In.
+        1. Ve a Firebase Console → parkinglksnext → Authentication → Sign-in method → Google
+        2. Copia el "Web client ID" de la sección "Web SDK configuration"
+        3. Reemplaza el valor de abajo con ese ID
+        Ejemplo: 123456789-xxxxx.apps.googleusercontent.com
+    -->
+    <string name="default_web_client_id">145516130963-bnricd5agp2bj2tjv5pf22aueeuf684t.apps.googleusercontent.com</string>
 </resources>

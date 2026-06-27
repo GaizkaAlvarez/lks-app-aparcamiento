@@ -30,9 +30,10 @@ fun ForgotPasswordScreen(
     var email by remember { mutableStateOf("") }
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    // Clear password reset state when leaving screen
+    // Clear password reset & error state when leaving screen
     DisposableEffect(Unit) {
         onDispose {
+            viewModel.clearPasswordResetSent()
             viewModel.clearError()
         }
     }
@@ -153,11 +154,15 @@ fun ForgotPasswordScreen(
             }
 
             Button(
-                onClick = { viewModel.resetPassword(email) },
+                onClick = {
+                    if (email.isNotBlank()) {
+                        viewModel.resetPassword(email)
+                    }
+                },
                 modifier = Modifier.fillMaxWidth().height(55.dp),
                 shape = RoundedCornerShape(8.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
-                enabled = !uiState.isLoading
+                enabled = !uiState.isLoading && email.isNotBlank()
             ) {
                 if (uiState.isLoading) {
                     CircularProgressIndicator(

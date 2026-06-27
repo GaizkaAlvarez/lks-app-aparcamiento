@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.parkinglksnext.app-mergeDebugResources-69:/values-th/values-th.xml",
+            "outputFile": "com.parkinglksnext.app-mergeDebugResources-68:/values-th/values-th.xml",
             "map": [
                 {
                     "source": "/home/gaizka/.gradle/caches/8.13/transforms/09a8cd19feb9c55299e6cae83b4968d0/transformed/foundation-release/res/values-th/values-th.xml",
@@ -35,6 +35,23 @@
                         "startOffsets": "331,427,530,628,726,829,934,10964",
                         "endColumns": "95,102,97,97,102,104,111,100",
                         "endOffsets": "422,525,623,721,824,929,1041,11060"
+                    }
+                },
+                {
+                    "source": "/home/gaizka/.gradle/caches/8.13/transforms/fa236c1d64d9950fc30e374ee3ccda33/transformed/play-services-base-18.5.0/res/values-th/values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "193,295,438,557,660,792,912,1027,1131,1271,1372,1515,1633,1769,1916,1976,2040",
+                        "endColumns": "101,142,118,102,131,119,114,103,139,100,142,117,135,146,59,63,79",
+                        "endOffsets": "294,437,556,659,791,911,1026,1130,1270,1371,1514,1632,1768,1915,1975,2039,2119"
+                    },
+                    "to": {
+                        "startLines": "13,14,15,16,17,18,19,20,22,23,24,25,26,27,28,29,30",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1209,1315,1462,1585,1692,1828,1952,2071,2308,2452,2557,2704,2826,2966,3117,3181,3249",
+                        "endColumns": "105,146,122,106,135,123,118,107,143,104,146,121,139,150,63,67,83",
+                        "endOffsets": "1310,1457,1580,1687,1823,1947,2066,2174,2447,2552,2699,2821,2961,3112,3176,3244,3328"
                     }
                 },
                 {
@@ -89,24 +106,7 @@
                     }
                 },
                 {
-                    "source": "/home/gaizka/.gradle/caches/8.13/transforms/9f2075680e0eb0ecc6a61d888add5d0f/transformed/play-services-base-18.0.1/res/values-th/values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
-                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
-                        "startOffsets": "193,295,438,557,660,792,912,1027,1131,1271,1372,1515,1633,1769,1916,1976,2040",
-                        "endColumns": "101,142,118,102,131,119,114,103,139,100,142,117,135,146,59,63,79",
-                        "endOffsets": "294,437,556,659,791,911,1026,1130,1270,1371,1514,1632,1768,1915,1975,2039,2119"
-                    },
-                    "to": {
-                        "startLines": "13,14,15,16,17,18,19,20,22,23,24,25,26,27,28,29,30",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "1209,1315,1462,1585,1692,1828,1952,2071,2308,2452,2557,2704,2826,2966,3117,3181,3249",
-                        "endColumns": "105,146,122,106,135,123,118,107,143,104,146,121,139,150,63,67,83",
-                        "endOffsets": "1310,1457,1580,1687,1823,1947,2066,2174,2447,2552,2699,2821,2961,3112,3176,3244,3328"
-                    }
-                },
-                {
-                    "source": "/home/gaizka/.gradle/caches/8.13/transforms/7c29e7b0ac371fa9b83c598927559662/transformed/play-services-basement-18.3.0/res/values-th/values.xml",
+                    "source": "/home/gaizka/.gradle/caches/8.13/transforms/47e073557553128db777539f9a0f4225/transformed/play-services-basement-18.4.0/res/values-th/values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.parkinglksnext.app-mergeDebugResources-69:/values-en-rIN/values-en-rIN.xml",
+            "outputFile": "com.parkinglksnext.app-mergeDebugResources-68:/values-en-rIN/values-en-rIN.xml",
             "map": [
                 {
                     "source": "/home/gaizka/.gradle/caches/8.13/transforms/a356aba3156483eb68f4aae04b85b938/transformed/material3-release/res/values-en-rIN/values-en-rIN.xml",

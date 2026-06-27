@@ -31,7 +31,6 @@ import java.util.Locale
 fun NewReservationScreen(
     viewModel: NewReservationViewModel,
     profileViewModel: ProfileViewModel,
-    onNavigateBack: () -> Unit = {},
     onNavigateToDashboard: () -> Unit = {},
     onOpenMenu: () -> Unit = {}
 ) {
@@ -51,11 +50,15 @@ fun NewReservationScreen(
         }
     }
 
-    // Navigate to Dashboard on success
-    LaunchedEffect(uiState.isSuccess) {
-        if (uiState.isSuccess) {
-            viewModel.resetState()
-            onNavigateToDashboard()
+    // Collect one-shot success event (no boolean toggle loop)
+    LaunchedEffect(Unit) {
+        viewModel.events.collect { event ->
+            when (event) {
+                is com.parkinglksnext.viewmodel.NewReservationEvent.Success -> {
+                    viewModel.resetState()
+                    onNavigateToDashboard()
+                }
+            }
         }
     }
 
@@ -100,8 +103,7 @@ fun NewReservationScreen(
             Step2Content(
                 innerPadding = innerPadding,
                 uiState = uiState,
-                viewModel = viewModel,
-                onNavigateBack = onNavigateBack
+                viewModel = viewModel
             )
         }
     }
@@ -127,29 +129,34 @@ private fun Step1Content(
             viewModel.setDate(listaFechas.first().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
         }
         if (uiState.startTime == null) viewModel.setStartTime("08:00")
-        if (uiState.endTime == null) viewModel.setEndTime("14:00")
+        if (uiState.endTime == null) viewModel.setEndTime("14:55")
     }
 
     var fechaSeleccionada by remember { mutableStateOf(listaFechas.first()) }
 
-    val rangoHoras = remember { (6..22).map { stringOf(it) } }
+    val rangoHorasInicio = remember { (6..22).map { stringOf(it) } }
+    val rangoHorasFin = remember { (6..22).map { stringOfEnd(it) } }
     var horaInicio by remember(uiState.startTime) { mutableStateOf(uiState.startTime ?: "08:00") }
-    var horaFin by remember(uiState.endTime) { mutableStateOf(uiState.endTime ?: "14:00") }
+    var horaFin by remember(uiState.endTime) { mutableStateOf(uiState.endTime ?: "14:55") }
     var expandidoInicio by remember { mutableStateOf(false) }
     var expandidoFin by remember { mutableStateOf(false) }
 
     // Vehicle selector state
     val vehicles = uiState.userVehicles
-    val vehicleLabels = vehicles.map { "${it.licensePlate} (${it.type.replaceFirstChar { it.uppercase() }})" }
+    val vehicleLabels = vehicles.map { v ->
+        val typeName = v.type.replaceFirstChar { c -> c.uppercase() }
+        "${v.licensePlate} ($typeName)"
+    }
     val selectedIndex = vehicles.indexOf(uiState.selectedVehicle).coerceAtLeast(0)
     var vehiculoLabel by remember(uiState.selectedVehicle) {
         mutableStateOf(if (vehicles.isNotEmpty()) vehicleLabels[selectedIndex] else "Sin vehículos")
     }
     var expandidoVehiculo by remember { mutableStateOf(false) }
 
-    val horaInicioInt = horaInicio.split(":")[0].toInt()
-    val horaFinInt = horaFin.split(":")[0].toInt()
-    val horasValidas = horaInicioInt < horaFinInt && (horaFinInt - horaInicioInt) <= 9
+    val horaInicioMin = horaInicio.split(":").let { it[0].toInt() * 60 + it[1].toInt() }
+    val horaFinMin = horaFin.split(":").let { it[0].toInt() * 60 + it[1].toInt() }
+    val duracionMin = horaFinMin - horaInicioMin
+    val horasValidas = duracionMin > 0 && duracionMin <= 540  // max 9h = 540 min
 
     Column(
         modifier = Modifier
@@ -249,7 +256,7 @@ private fun Step1Content(
                         shape = RoundedCornerShape(8.dp)
                     )
                     ExposedDropdownMenu(expanded = expandidoInicio, onDismissRequest = { expandidoInicio = false }) {
-                        rangoHoras.forEach { hora ->
+                        rangoHorasInicio.forEach { hora ->
                             DropdownMenuItem(
                                 text = { Text(hora) },
                                 onClick = {
@@ -279,7 +286,7 @@ private fun Step1Content(
                         isError = !horasValidas
                     )
                     ExposedDropdownMenu(expanded = expandidoFin, onDismissRequest = { expandidoFin = false }) {
-                        rangoHoras.forEach { hora ->
+                        rangoHorasFin.forEach { hora ->
                             DropdownMenuItem(
                                 text = { Text(hora) },
                                 onClick = {
@@ -295,8 +302,7 @@ private fun Step1Content(
         }
 
         if (!horasValidas) {
-            val duracion = horaFinInt - horaInicioInt
-            val mensaje = if (duracion <= 0) {
+            val mensaje = if (duracionMin <= 0) {
                 "La hora de fin debe ser posterior a la de inicio."
             } else {
                 "La duración máxima es de 9 horas."
@@ -359,8 +365,7 @@ private fun Step1Content(
 private fun Step2Content(
     innerPadding: PaddingValues,
     uiState: NewReservationViewModel.NewReservationUiState,
-    viewModel: NewReservationViewModel,
-    onNavigateBack: () -> Unit
+    viewModel: NewReservationViewModel
 ) {
     Column(
         modifier = Modifier
@@ -391,7 +396,7 @@ private fun Step2Content(
 
         // Selected spot card
         if (uiState.selectedSpot != null) {
-            val spot = uiState.selectedSpot!!
+            val spot = uiState.selectedSpot  // non-null after if check
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -443,16 +448,36 @@ private fun Step2Content(
             modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            LegendItem(color = Color(0xFFFF6B00), label = "Normal")
+            LegendItem(color = Color(0xFFFF6B00), label = "Combustión")
             LegendItem(color = Color(0xFF137333), label = "Eléctrico")
             LegendItem(color = Color(0xFF1A73E8), label = "Moto")
         }
 
-        // Spot grid
-        val spotsByType = uiState.availableSpots.groupBy { it.type }
-        SpotsSection("Normal", spotsByType["normal"] ?: emptyList(), uiState.selectedSpot, Color(0xFFFF6B00)) { viewModel.selectSpot(it) }
-        SpotsSection("Eléctrico", spotsByType["electric"] ?: emptyList(), uiState.selectedSpot, Color(0xFF137333)) { viewModel.selectSpot(it) }
-        SpotsSection("Moto", spotsByType["motorcycle"] ?: emptyList(), uiState.selectedSpot, Color(0xFF1A73E8)) { viewModel.selectSpot(it) }
+        // Spot grid — show loading indicator while Firestore fetches spots
+        if (uiState.spotsLoading && uiState.availableSpots.isEmpty()) {
+            Box(
+                modifier = Modifier.fillMaxWidth().padding(32.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    CircularProgressIndicator(color = Color(0xFFFF6B00))
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Text("Cargando plazas...", fontSize = 14.sp, color = Color.Gray)
+                }
+            }
+        } else if (uiState.availableSpots.isEmpty()) {
+            Text(
+                "No hay plazas disponibles para este tipo de vehículo.",
+                fontSize = 14.sp,
+                color = Color.Gray,
+                modifier = Modifier.padding(vertical = 24.dp)
+            )
+        } else {
+            val spotsByType = uiState.availableSpots.groupBy { it.type }
+            SpotsSection("Combustión", spotsByType["combustion"] ?: emptyList(), uiState.selectedSpot, Color(0xFFFF6B00)) { viewModel.selectSpot(it) }
+            SpotsSection("Eléctrico", spotsByType["electric"] ?: emptyList(), uiState.selectedSpot, Color(0xFF137333)) { viewModel.selectSpot(it) }
+            SpotsSection("Moto", spotsByType["motorcycle"] ?: emptyList(), uiState.selectedSpot, Color(0xFF1A73E8)) { viewModel.selectSpot(it) }
+        }
 
         Spacer(modifier = Modifier.height(24.dp))
 
@@ -570,6 +595,7 @@ private fun SpotsSection(
 // ─── Shared utilities ────────────────────────────────────────────
 
 fun stringOf(hora: Int): String = if (hora < 10) "0$hora:00" else "$hora:00"
+fun stringOfEnd(hora: Int): String = if (hora < 10) "0$hora:55" else "$hora:55"
 
 @Composable
 fun BotonDia(texto: String, isSelected: Boolean, onClick: () -> Unit, modifier: Modifier = Modifier) {

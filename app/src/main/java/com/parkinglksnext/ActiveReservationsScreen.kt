@@ -1,7 +1,6 @@
 package com.parkinglksnext
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -45,7 +44,7 @@ fun ActiveReservationsScreen(
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
-                    Text("Reservas Activas", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                    Text("Reservas", fontSize = 20.sp, fontWeight = FontWeight.Bold)
                 },
                 navigationIcon = {
                     IconButton(onClick = { onOpenMenu() }) {
@@ -111,7 +110,7 @@ fun ActiveReservationsScreen(
 
             // --- TÍTULO SECCIÓN ---
             Text(
-                text = "Tus Reservas Activas",
+                text = "Tus Reservas",
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color(0xFF0F2537),
@@ -179,7 +178,7 @@ fun ActiveReservationsScreen(
                         Spacer(modifier = Modifier.height(24.dp))
 
                         Text(
-                            text = "No tienes reservas activas",
+                            text = "No tienes reservas",
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Bold,
                             color = Color(0xFF0F2537)

@@ -19,14 +19,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.parkinglksnext.viewmodel.AuthViewModel
 import com.parkinglksnext.viewmodel.ProfileViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen(
     viewModel: ProfileViewModel,
-    authViewModel: AuthViewModel,
     onNavigateToEditProfile: () -> Unit = {},
     onOpenMenu: () -> Unit = {},
     onLogout: () -> Unit = {}

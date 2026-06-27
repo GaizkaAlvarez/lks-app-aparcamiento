@@ -2,47 +2,53 @@ package com.parkinglksnext.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.auth.EmailAuthProvider
 import com.parkinglksnext.NotificationSettings
 import com.parkinglksnext.UserProfile
 import com.parkinglksnext.Vehicle
 import com.parkinglksnext.repository.AuthRepository
 import com.parkinglksnext.repository.UserRepository
 import com.parkinglksnext.util.Resource
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-/**
- * Manages user profile: real-time loading, edit, and save.
- */
+@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
 class ProfileViewModel : ViewModel() {
 
     private val userRepo = UserRepository()
     private val authRepo = AuthRepository()
 
-    // ─── UI State ────────────────────────────────────────────────
-
     data class ProfileUiState(
         val userProfile: UserProfile? = null,
         val isLoading: Boolean = false,
         val isSaving: Boolean = false,
-        val saveSuccess: Boolean = false,
         val error: String? = null
     )
 
     private val _uiState = MutableStateFlow(ProfileUiState())
     val uiState: StateFlow<ProfileUiState> = _uiState.asStateFlow()
 
-    init {
-        loadProfile()
-    }
+    private val _saveEvents = MutableSharedFlow<ProfileEvent>(extraBufferCapacity = 1)
+    val saveEvents: SharedFlow<ProfileEvent> = _saveEvents.asSharedFlow()
 
-    private fun loadProfile() {
-        val uid = authRepo.getCurrentUser()?.uid ?: return
+    init {
         viewModelScope.launch {
-            userRepo.getUserProfile(uid).collect { resource ->
+            authRepo.authStateFlow.flatMapLatest { firebaseUser ->
+                if (firebaseUser != null) {
+                    userRepo.getUserProfile(firebaseUser.uid)
+                } else {
+                    _uiState.update { ProfileUiState() }
+                    emptyFlow()
+                }
+            }.collect { resource ->
                 when (resource) {
                     is Resource.Loading -> _uiState.update { it.copy(isLoading = true) }
                     is Resource.Success -> _uiState.update {
@@ -56,48 +62,66 @@ class ProfileViewModel : ViewModel() {
         }
     }
 
-    /**
-     * Save the full user profile (edit profile screen).
-     */
     fun updateProfile(
         firstName: String,
         lastName: String,
         vehicles: List<Vehicle>,
-        notificationSettings: NotificationSettings
+        notificationSettings: NotificationSettings,
+        oldPassword: String = "",
+        newPassword: String = ""
     ) {
         val uid = authRepo.getCurrentUser()?.uid ?: return
         val currentProfile = _uiState.value.userProfile ?: return
-
-        val updatedProfile = currentProfile.copy(
-            firstName = firstName,
-            lastName = lastName,
-            name = "$firstName $lastName",
-            vehicles = vehicles,
-            licensePlate = vehicles.firstOrNull()?.licensePlate ?: "",
-            vehicleType = vehicles.firstOrNull()?.type ?: "normal",
-            notificationSettings = notificationSettings
-        )
+        val firebaseUser = authRepo.getCurrentUser() ?: return
 
         viewModelScope.launch {
-            userRepo.saveUserProfile(uid, updatedProfile).collect { resource ->
-                when (resource) {
-                    is Resource.Loading -> _uiState.update { it.copy(isSaving = true) }
-                    is Resource.Success -> _uiState.update {
-                        it.copy(isSaving = false, saveSuccess = true, error = null)
-                    }
-                    is Resource.Error -> _uiState.update {
-                        it.copy(isSaving = false, error = resource.message)
-                    }
+            _uiState.update { it.copy(isSaving = true, error = null) }
+
+            // 1. Change password if both fields provided
+            if (oldPassword.isNotEmpty() && newPassword.isNotEmpty()) {
+                val credential = EmailAuthProvider.getCredential(firebaseUser.email ?: "", oldPassword)
+                val reauthResult = authRepo.reauthenticate(credential)
+                if (reauthResult is Resource.Error) {
+                    _uiState.update { it.copy(isSaving = false, error = reauthResult.message) }
+                    return@launch
+                }
+                val pwdResult = authRepo.updatePassword(newPassword)
+                if (pwdResult is Resource.Error) {
+                    _uiState.update { it.copy(isSaving = false, error = pwdResult.message) }
+                    return@launch
                 }
             }
-        }
-    }
 
-    fun clearSaveSuccess() {
-        _uiState.update { it.copy(saveSuccess = false) }
+            // 2. Update Firestore profile
+            val updatedProfile = currentProfile.copy(
+                firstName = firstName,
+                lastName = lastName,
+                name = "$firstName $lastName",
+                vehicles = vehicles,
+                licensePlate = vehicles.firstOrNull()?.licensePlate ?: "",
+                vehicleType = vehicles.firstOrNull()?.type ?: "combustion",
+                notificationSettings = notificationSettings
+            )
+
+            val result = userRepo.saveUserProfile(uid, updatedProfile)
+            when (result) {
+                is Resource.Success -> {
+                    _uiState.update { it.copy(isSaving = false, error = null) }
+                    _saveEvents.emit(ProfileEvent.SaveSuccess)
+                }
+                is Resource.Error -> _uiState.update {
+                    it.copy(isSaving = false, error = result.message)
+                }
+                is Resource.Loading -> {}
+            }
+        }
     }
 
     fun clearError() {
         _uiState.update { it.copy(error = null) }
     }
+}
+
+sealed class ProfileEvent {
+    data object SaveSuccess : ProfileEvent()
 }

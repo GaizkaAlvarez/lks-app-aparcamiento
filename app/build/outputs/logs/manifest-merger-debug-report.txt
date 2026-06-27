@@ -27,40 +27,38 @@ MERGED from [androidx.compose.ui:ui-tooling-android:1.7.2] /home/gaizka/.gradle/
 MERGED from [androidx.compose.material:material-android:1.7.0] /home/gaizka/.gradle/caches/8.13/transforms/d167df510d9d7f6162cf46457261986e/transformed/material-release/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.compose.material:material-ripple-android:1.7.0] /home/gaizka/.gradle/caches/8.13/transforms/066dc04ad026a79968c65c7b5dea4471/transformed/material-ripple-release/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.compose.animation:animation-android:1.7.2] /home/gaizka/.gradle/caches/8.13/transforms/23885ffa0fb97f9b82219ffeb4de5996/transformed/animation-release/AndroidManifest.xml:2:1-7:12
-MERGED from [com.google.firebase:firebase-analytics:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/6f406e9395a7725c2537e7e0e2d7e0f3/transformed/firebase-analytics-22.0.0/AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:17:1-46:12
-MERGED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:17:1-43:12
-MERGED from [com.google.android.gms:play-services-measurement-sdk:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/e92b45b7b5e3265091a4f3720c88a2cb/transformed/play-services-measurement-sdk-22.0.0/AndroidManifest.xml:17:1-25:12
 MERGED from [androidx.credentials:credentials:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a010e134284a3ba392fdd455604dfb01/transformed/credentials-1.2.0-rc01/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:17:1-44:12
-MERGED from [com.google.android.gms:play-services-auth:20.7.0] /home/gaizka/.gradle/caches/8.13/transforms/5f82c75b39fb75b2f80492717a1e22ff/transformed/play-services-auth-20.7.0/AndroidManifest.xml:17:1-40:12
+MERGED from [com.google.android.gms:play-services-auth:21.3.0] /home/gaizka/.gradle/caches/8.13/transforms/3b06903130bfb74a165ea5417b3f2e6c/transformed/play-services-auth-21.3.0/AndroidManifest.xml:17:1-40:12
 MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.2] /home/gaizka/.gradle/caches/8.13/transforms/12e1824b790567efd088a1524d05221e/transformed/play-services-auth-api-phone-18.0.2/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-auth-base:18.0.10] /home/gaizka/.gradle/caches/8.13/transforms/cf52436ba927051403e359eecd9f23f9/transformed/play-services-auth-base-18.0.10/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d6f2238eb0397aa0f821f3946d4bca01/transformed/firebase-appcheck-interop-17.0.0/AndroidManifest.xml:15:1-25:12
+MERGED from [com.google.firebase:firebase-database-collection:18.0.1] /home/gaizka/.gradle/caches/8.13/transforms/50688d90f47302a59671355a5d6ecc5a/transformed/firebase-database-collection-18.0.1/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-fido:20.1.0] /home/gaizka/.gradle/caches/8.13/transforms/6c79e2a94def0877f852d4cd6fba49c6/transformed/play-services-fido-20.1.0/AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.android.gms:play-services-base:18.5.0] /home/gaizka/.gradle/caches/8.13/transforms/fa236c1d64d9950fc30e374ee3ccda33/transformed/play-services-base-18.5.0/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:2:1-24:12
+MERGED from [com.google.firebase:firebase-analytics:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/6f406e9395a7725c2537e7e0e2d7e0f3/transformed/firebase-analytics-22.0.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:17:1-43:12
 MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] /home/gaizka/.gradle/caches/8.13/transforms/5539cfc9dd116039413631a8333adb63/transformed/recaptcha-18.4.0/AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.android.play:integrity:1.2.0] /home/gaizka/.gradle/caches/8.13/transforms/da92f83fbbe74e37733ca1a19bfca816/transformed/integrity-1.2.0/AndroidManifest.xml:2:1-7:12
-MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d6f2238eb0397aa0f821f3946d4bca01/transformed/firebase-appcheck-interop-17.0.0/AndroidManifest.xml:15:1-25:12
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d8db524bd96caf87c366398bc3c9b986/transformed/firebase-auth-interop-20.0.0/AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.firebase:firebase-sessions:2.0.0] /home/gaizka/.gradle/caches/8.13/transforms/543aa80f640302f761c863c0ec94e744/transformed/firebase-sessions-2.0.0/AndroidManifest.xml:15:1-35:12
 MERGED from [com.google.firebase:firebase-installations:18.0.0] /home/gaizka/.gradle/caches/8.13/transforms/88374701e3c202e48fa4614c73ed968d/transformed/firebase-installations-18.0.0/AndroidManifest.xml:2:1-24:12
 MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] /home/gaizka/.gradle/caches/8.13/transforms/5e445a1af8c76b3bc23ceaa65d243db6/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:2:1-18:12
 MERGED from [com.google.firebase:firebase-common:21.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d9b8f8ea3bc9c5dfae860224cb275fdc/transformed/firebase-common-21.0.0/AndroidManifest.xml:15:1-41:12
-MERGED from [com.google.firebase:firebase-database-collection:18.0.1] /home/gaizka/.gradle/caches/8.13/transforms/50688d90f47302a59671355a5d6ecc5a/transformed/firebase-database-collection-18.0.1/AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.android.gms:play-services-fido:20.1.0] /home/gaizka/.gradle/caches/8.13/transforms/6c79e2a94def0877f852d4cd6fba49c6/transformed/play-services-fido-20.1.0/AndroidManifest.xml:2:1-10:12
-MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] /home/gaizka/.gradle/caches/8.13/transforms/0324be8d24870a5a1e193752797d8938/transformed/play-services-auth-base-18.0.4/AndroidManifest.xml:2:1-7:12
-MERGED from [com.google.android.gms:play-services-base:18.0.1] /home/gaizka/.gradle/caches/8.13/transforms/9f2075680e0eb0ecc6a61d888add5d0f/transformed/play-services-base-18.0.1/AndroidManifest.xml:16:1-24:12
 MERGED from [androidx.compose.runtime:runtime-saveable-android:1.7.2] /home/gaizka/.gradle/caches/8.13/transforms/7ae8f4e910c8cb2fe321d476d4d8d1a2/transformed/runtime-saveable-release/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.compose.runtime:runtime-android:1.7.2] /home/gaizka/.gradle/caches/8.13/transforms/50a8241709fc4f037f93c4a287daac93/transformed/runtime-release/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:17:1-46:12
+MERGED from [com.google.android.gms:play-services-measurement-sdk:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/e92b45b7b5e3265091a4f3720c88a2cb/transformed/play-services-measurement-sdk-22.0.0/AndroidManifest.xml:17:1-25:12
 MERGED from [com.google.android.gms:play-services-measurement-impl:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/55c681163e07fcb268b687865d679418/transformed/play-services-measurement-impl-22.0.0/AndroidManifest.xml:17:1-32:12
 MERGED from [com.google.android.gms:play-services-stats:17.0.2] /home/gaizka/.gradle/caches/8.13/transforms/7f9315e3f2d89f6e38083131ace991d4/transformed/play-services-stats-17.0.2/AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/gaizka/.gradle/caches/8.13/transforms/945e1f59544df18e36c010a893d1bd77/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.loader:loader:1.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ccd80a241b7016505e7730fbfa7074b8/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.1.0] /home/gaizka/.gradle/caches/8.13/transforms/d3433c4164f4d560a9ec6fc723292d37/transformed/loader-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity-ktx:1.8.2] /home/gaizka/.gradle/caches/8.13/transforms/8c18a7857bfba615bf9ca8a4a26dff84/transformed/activity-ktx-1.8.2/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /home/gaizka/.gradle/caches/8.13/transforms/6c91ac23a68ef07c6fcee5b9ee067308/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.savedstate:savedstate:1.2.1] /home/gaizka/.gradle/caches/8.13/transforms/4f92c60d729be135920d3498392c96cc/transformed/savedstate-1.2.1/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.emoji2:emoji2:1.3.0] /home/gaizka/.gradle/caches/8.13/transforms/8b2cce8914579670ee0538d650f17245/transformed/emoji2-1.3.0/AndroidManifest.xml:17:1-35:12
 MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/2b23385d96343b56ca697ed05ce7eb89/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:17:1-35:12
-MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/ead5c10eb780dd84aab1cd030b198ef4/transformed/lifecycle-livedata-core-ktx-2.8.7/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/2447d912e67c336b9db273179024dd3f/transformed/lifecycle-livedata-2.8.7/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/3aff1d91a344a4b2da240fa7115764a5/transformed/lifecycle-livedata-core-2.8.7/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/c97377637e0cf9d6f0eeedb42376cc6a/transformed/lifecycle-viewmodel-2.8.7/AndroidManifest.xml:2:1-5:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/6488a088b84913e00f001a0f1a6d5b96/transformed/lifecycle-viewmodel-release/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/a93ac56f54fd882d6f96fdc13d298f89/transformed/lifecycle-runtime-ktx-release/AndroidManifest.xml:2:1-7:12
@@ -75,20 +73,20 @@ MERGED from [androidx.privacysandbox.ads:ads-adservices:1.0.0-beta05] /home/gaiz
 MERGED from [androidx.core:core-ktx:1.13.1] /home/gaizka/.gradle/caches/8.13/transforms/b8f64bba088851cfdb9094d9b015f063/transformed/core-ktx-1.13.1/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.core:core:1.13.1] /home/gaizka/.gradle/caches/8.13/transforms/d93929b713276aff2e7dc9c2a2daeec1/transformed/core-1.13.1/AndroidManifest.xml:17:1-30:12
 MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/e1d00de3c6ead396002ace0fa16e6739/transformed/lifecycle-runtime-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/3aff1d91a344a4b2da240fa7115764a5/transformed/lifecycle-livedata-core-2.8.7/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/d7985a1cb0cb25af474a1daa3c9becc9/transformed/lifecycle-viewmodel-savedstate-2.8.7/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/d58198bd5f22b8680d2a542a1817facb/transformed/lifecycle-viewmodel-ktx-2.8.7/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.datastore:datastore-preferences:1.0.0] /home/gaizka/.gradle/caches/8.13/transforms/a27bf8b0d2e737e0bd3a23c79f079ba7/transformed/datastore-preferences-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.datastore:datastore:1.0.0] /home/gaizka/.gradle/caches/8.13/transforms/dc886ef3fcc55adc6ebc5f965323b4ab/transformed/datastore-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:firebase-installations-interop:17.1.1] /home/gaizka/.gradle/caches/8.13/transforms/2345b3c08db4723dc883aa7a733f301a/transformed/firebase-installations-interop-17.1.1/AndroidManifest.xml:15:1-19:12
-MERGED from [com.google.android.gms:play-services-tasks:18.1.0] /home/gaizka/.gradle/caches/8.13/transforms/0d483aa0133ccdb89b4613bb5d3fc3a8/transformed/play-services-tasks-18.1.0/AndroidManifest.xml:2:1-6:12
+MERGED from [com.google.android.gms:play-services-tasks:18.2.0] /home/gaizka/.gradle/caches/8.13/transforms/1852794a6f9a2010f8e04240c409501d/transformed/play-services-tasks-18.2.0/AndroidManifest.xml:2:1-5:12
 MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] /home/gaizka/.gradle/caches/8.13/transforms/91208c5e186e041ca29a9535fe3b1970/transformed/play-services-ads-identifier-18.0.0/AndroidManifest.xml:17:1-27:12
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/b4b345bf1348b189c627921cfcfb2413/transformed/play-services-measurement-sdk-api-22.0.0/AndroidManifest.xml:17:1-30:12
 MERGED from [com.google.android.gms:play-services-measurement-base:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/a505b62ca5bdfc84953b3bbdc8717aa8/transformed/play-services-measurement-base-22.0.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:firebase-measurement-connector:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d2cdc7c68ec44c36aac2d4f097323feb/transformed/firebase-measurement-connector-19.0.0/AndroidManifest.xml:17:1-25:12
-MERGED from [com.google.android.gms:play-services-basement:18.3.0] /home/gaizka/.gradle/caches/8.13/transforms/7c29e7b0ac371fa9b83c598927559662/transformed/play-services-basement-18.3.0/AndroidManifest.xml:16:1-26:12
-MERGED from [androidx.fragment:fragment:1.1.0] /home/gaizka/.gradle/caches/8.13/transforms/5075fc01b0b957a461ce174971c9ce3d/transformed/fragment-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-basement:18.4.0] /home/gaizka/.gradle/caches/8.13/transforms/47e073557553128db777539f9a0f4225/transformed/play-services-basement-18.4.0/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.fragment:fragment:1.5.7] /home/gaizka/.gradle/caches/8.13/transforms/9d7b72cf171771b2f5f90144cc16c8db/transformed/fragment-1.5.7/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.activity:activity:1.8.2] /home/gaizka/.gradle/caches/8.13/transforms/6ad04a354dcca10f31b14436d4d22e39/transformed/activity-1.8.2/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.activity:activity-ktx:1.8.2] /home/gaizka/.gradle/caches/8.13/transforms/8c18a7857bfba615bf9ca8a4a26dff84/transformed/activity-ktx-1.8.2/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.activity:activity-compose:1.8.2] /home/gaizka/.gradle/caches/8.13/transforms/24b5448258b4bd11b1a24366106c014b/transformed/activity-compose-1.8.2/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.compose.material:material-icons-extended-android:1.7.0] /home/gaizka/.gradle/caches/8.13/transforms/58a8f5b3f13976e4ec47fa11b18fc433/transformed/material-icons-extended-release/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.compose.material:material-icons-core-android:1.7.0] /home/gaizka/.gradle/caches/8.13/transforms/f70bb3fd411ce80acd937584d6c3f3d7/transformed/material-icons-core-release/AndroidManifest.xml:2:1-7:12
@@ -107,11 +105,11 @@ MERGED from [com.google.android.datatransport:transport-runtime:3.1.9] /home/gai
 MERGED from [com.google.android.datatransport:transport-api:3.0.0] /home/gaizka/.gradle/caches/8.13/transforms/c392545e3281dc372f1f3640c5f7cc10/transformed/transport-api-3.0.0/AndroidManifest.xml:15:1-22:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] /home/gaizka/.gradle/caches/8.13/transforms/72e153713aca6adb235e07bebb3d10b3/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:17:1-55:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /home/gaizka/.gradle/caches/8.13/transforms/827049fa688d8f53a4fbbe71a4b4c471/transformed/core-runtime-2.2.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.documentfile:documentfile:1.0.0] /home/gaizka/.gradle/caches/8.13/transforms/f3ef3803d5ca581c226b17c03f2f1ada/transformed/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] /home/gaizka/.gradle/caches/8.13/transforms/1b78827ad01960102661c22f773ff422/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/gaizka/.gradle/caches/8.13/transforms/d0834ce8ca2c1332559d18d80e914f58/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.startup:startup-runtime:1.1.1] /home/gaizka/.gradle/caches/8.13/transforms/7c3119c81925e105c96c4a4acc3cbd85/transformed/startup-runtime-1.1.1/AndroidManifest.xml:17:1-33:12
-MERGED from [androidx.arch.core:core-runtime:2.2.0] /home/gaizka/.gradle/caches/8.13/transforms/827049fa688d8f53a4fbbe71a4b4c471/transformed/core-runtime-2.2.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.tracing:tracing:1.0.0] /home/gaizka/.gradle/caches/8.13/transforms/702984ad3b84f25693ce9925075dfd9c/transformed/tracing-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /home/gaizka/.gradle/caches/8.13/transforms/c6592cb02886bcecb2971058f26de39d/transformed/protolite-well-known-types-18.0.0/AndroidManifest.xml:2:1-11:12
 MERGED from [io.grpc:grpc-android:1.57.2] /home/gaizka/.gradle/caches/8.13/transforms/9df6a3eb4f4a4c2769ecd46e81f1ed4c/transformed/grpc-android-1.57.2/AndroidManifest.xml:2:1-9:12
@@ -131,16 +129,16 @@ MERGED from [com.google.firebase:firebase-auth:23.0.0] /home/gaizka/.gradle/cach
 MERGED from [com.google.firebase:firebase-auth:23.0.0] /home/gaizka/.gradle/caches/8.13/transforms/b529a099e979447b680ff76f128297e4/transformed/firebase-auth-23.0.0/AndroidManifest.xml:25:5-67
 MERGED from [com.google.firebase:firebase-firestore:25.0.0] /home/gaizka/.gradle/caches/8.13/transforms/dbf59598d7052222a8b712a1f1007292/transformed/firebase-firestore-25.0.0/AndroidManifest.xml:11:5-67
 MERGED from [com.google.firebase:firebase-firestore:25.0.0] /home/gaizka/.gradle/caches/8.13/transforms/dbf59598d7052222a8b712a1f1007292/transformed/firebase-firestore-25.0.0/AndroidManifest.xml:11:5-67
-MERGED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:22:5-67
-MERGED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:22:5-67
 MERGED from [com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:7:5-67
 MERGED from [com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:7:5-67
+MERGED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:22:5-67
+MERGED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:22:5-67
 MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] /home/gaizka/.gradle/caches/8.13/transforms/5539cfc9dd116039413631a8333adb63/transformed/recaptcha-18.4.0/AndroidManifest.xml:7:5-67
 MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] /home/gaizka/.gradle/caches/8.13/transforms/5539cfc9dd116039413631a8333adb63/transformed/recaptcha-18.4.0/AndroidManifest.xml:7:5-67
 MERGED from [com.google.firebase:firebase-installations:18.0.0] /home/gaizka/.gradle/caches/8.13/transforms/88374701e3c202e48fa4614c73ed968d/transformed/firebase-installations-18.0.0/AndroidManifest.xml:8:5-67
 MERGED from [com.google.firebase:firebase-installations:18.0.0] /home/gaizka/.gradle/caches/8.13/transforms/88374701e3c202e48fa4614c73ed968d/transformed/firebase-installations-18.0.0/AndroidManifest.xml:8:5-67
+MERGED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:23:5-67
 MERGED from [com.google.android.gms:play-services-measurement-impl:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/55c681163e07fcb268b687865d679418/transformed/play-services-measurement-impl-22.0.0/AndroidManifest.xml:23:5-67
 MERGED from [com.google.android.gms:play-services-measurement-impl:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/55c681163e07fcb268b687865d679418/transformed/play-services-measurement-impl-22.0.0/AndroidManifest.xml:23:5-67
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/b4b345bf1348b189c627921cfcfb2413/transformed/play-services-measurement-sdk-api-22.0.0/AndroidManifest.xml:23:5-67
@@ -160,24 +158,24 @@ MERGED from [androidx.compose.ui:ui-test-manifest:1.7.2] /home/gaizka/.gradle/ca
 MERGED from [androidx.compose.ui:ui-test-manifest:1.7.2] /home/gaizka/.gradle/caches/8.13/transforms/181789f0c1e230524a8e3061bd782b75/transformed/ui-test-manifest-1.7.2/AndroidManifest.xml:22:5-26:19
 MERGED from [androidx.compose.ui:ui-tooling-android:1.7.2] /home/gaizka/.gradle/caches/8.13/transforms/c37cf8571321f177af1a477b2515f121/transformed/ui-tooling-release/AndroidManifest.xml:22:5-26:19
 MERGED from [androidx.compose.ui:ui-tooling-android:1.7.2] /home/gaizka/.gradle/caches/8.13/transforms/c37cf8571321f177af1a477b2515f121/transformed/ui-tooling-release/AndroidManifest.xml:22:5-26:19
-MERGED from [com.google.firebase:firebase-analytics:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/6f406e9395a7725c2537e7e0e2d7e0f3/transformed/firebase-analytics-22.0.0/AndroidManifest.xml:7:5-20
-MERGED from [com.google.firebase:firebase-analytics:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/6f406e9395a7725c2537e7e0e2d7e0f3/transformed/firebase-analytics-22.0.0/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:28:5-44:19
-MERGED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:28:5-44:19
-MERGED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:29:5-41:19
-MERGED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:29:5-41:19
-MERGED from [com.google.android.gms:play-services-measurement-sdk:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/e92b45b7b5e3265091a4f3720c88a2cb/transformed/play-services-measurement-sdk-22.0.0/AndroidManifest.xml:22:5-23:19
-MERGED from [com.google.android.gms:play-services-measurement-sdk:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/e92b45b7b5e3265091a4f3720c88a2cb/transformed/play-services-measurement-sdk-22.0.0/AndroidManifest.xml:22:5-23:19
 MERGED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:23:5-42:19
 MERGED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:23:5-42:19
-MERGED from [com.google.android.gms:play-services-auth:20.7.0] /home/gaizka/.gradle/caches/8.13/transforms/5f82c75b39fb75b2f80492717a1e22ff/transformed/play-services-auth-20.7.0/AndroidManifest.xml:22:5-38:19
-MERGED from [com.google.android.gms:play-services-auth:20.7.0] /home/gaizka/.gradle/caches/8.13/transforms/5f82c75b39fb75b2f80492717a1e22ff/transformed/play-services-auth-20.7.0/AndroidManifest.xml:22:5-38:19
-MERGED from [com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:11:5-22:19
-MERGED from [com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:11:5-22:19
-MERGED from [com.google.android.play:integrity:1.2.0] /home/gaizka/.gradle/caches/8.13/transforms/da92f83fbbe74e37733ca1a19bfca816/transformed/integrity-1.2.0/AndroidManifest.xml:5:5-6:19
-MERGED from [com.google.android.play:integrity:1.2.0] /home/gaizka/.gradle/caches/8.13/transforms/da92f83fbbe74e37733ca1a19bfca816/transformed/integrity-1.2.0/AndroidManifest.xml:5:5-6:19
+MERGED from [com.google.android.gms:play-services-auth:21.3.0] /home/gaizka/.gradle/caches/8.13/transforms/3b06903130bfb74a165ea5417b3f2e6c/transformed/play-services-auth-21.3.0/AndroidManifest.xml:22:5-38:19
+MERGED from [com.google.android.gms:play-services-auth:21.3.0] /home/gaizka/.gradle/caches/8.13/transforms/3b06903130bfb74a165ea5417b3f2e6c/transformed/play-services-auth-21.3.0/AndroidManifest.xml:22:5-38:19
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d6f2238eb0397aa0f821f3946d4bca01/transformed/firebase-appcheck-interop-17.0.0/AndroidManifest.xml:23:5-20
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d6f2238eb0397aa0f821f3946d4bca01/transformed/firebase-appcheck-interop-17.0.0/AndroidManifest.xml:23:5-20
+MERGED from [com.google.android.gms:play-services-fido:20.1.0] /home/gaizka/.gradle/caches/8.13/transforms/6c79e2a94def0877f852d4cd6fba49c6/transformed/play-services-fido-20.1.0/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.android.gms:play-services-fido:20.1.0] /home/gaizka/.gradle/caches/8.13/transforms/6c79e2a94def0877f852d4cd6fba49c6/transformed/play-services-fido-20.1.0/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.android.gms:play-services-base:18.5.0] /home/gaizka/.gradle/caches/8.13/transforms/fa236c1d64d9950fc30e374ee3ccda33/transformed/play-services-base-18.5.0/AndroidManifest.xml:4:5-6:19
+MERGED from [com.google.android.gms:play-services-base:18.5.0] /home/gaizka/.gradle/caches/8.13/transforms/fa236c1d64d9950fc30e374ee3ccda33/transformed/play-services-base-18.5.0/AndroidManifest.xml:4:5-6:19
+MERGED from [com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:11:5-22:19
+MERGED from [com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:11:5-22:19
+MERGED from [com.google.firebase:firebase-analytics:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/6f406e9395a7725c2537e7e0e2d7e0f3/transformed/firebase-analytics-22.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-analytics:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/6f406e9395a7725c2537e7e0e2d7e0f3/transformed/firebase-analytics-22.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:29:5-41:19
+MERGED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:29:5-41:19
+MERGED from [com.google.android.play:integrity:1.2.0] /home/gaizka/.gradle/caches/8.13/transforms/da92f83fbbe74e37733ca1a19bfca816/transformed/integrity-1.2.0/AndroidManifest.xml:5:5-6:19
+MERGED from [com.google.android.play:integrity:1.2.0] /home/gaizka/.gradle/caches/8.13/transforms/da92f83fbbe74e37733ca1a19bfca816/transformed/integrity-1.2.0/AndroidManifest.xml:5:5-6:19
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d8db524bd96caf87c366398bc3c9b986/transformed/firebase-auth-interop-20.0.0/AndroidManifest.xml:7:5-8:19
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d8db524bd96caf87c366398bc3c9b986/transformed/firebase-auth-interop-20.0.0/AndroidManifest.xml:7:5-8:19
 MERGED from [com.google.firebase:firebase-sessions:2.0.0] /home/gaizka/.gradle/caches/8.13/transforms/543aa80f640302f761c863c0ec94e744/transformed/firebase-sessions-2.0.0/AndroidManifest.xml:21:5-33:19
@@ -188,10 +186,10 @@ MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] /home/gaizka/.gradl
 MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] /home/gaizka/.gradle/caches/8.13/transforms/5e445a1af8c76b3bc23ceaa65d243db6/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:8:5-16:19
 MERGED from [com.google.firebase:firebase-common:21.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d9b8f8ea3bc9c5dfae860224cb275fdc/transformed/firebase-common-21.0.0/AndroidManifest.xml:22:5-39:19
 MERGED from [com.google.firebase:firebase-common:21.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d9b8f8ea3bc9c5dfae860224cb275fdc/transformed/firebase-common-21.0.0/AndroidManifest.xml:22:5-39:19
-MERGED from [com.google.android.gms:play-services-fido:20.1.0] /home/gaizka/.gradle/caches/8.13/transforms/6c79e2a94def0877f852d4cd6fba49c6/transformed/play-services-fido-20.1.0/AndroidManifest.xml:7:5-8:19
-MERGED from [com.google.android.gms:play-services-fido:20.1.0] /home/gaizka/.gradle/caches/8.13/transforms/6c79e2a94def0877f852d4cd6fba49c6/transformed/play-services-fido-20.1.0/AndroidManifest.xml:7:5-8:19
-MERGED from [com.google.android.gms:play-services-base:18.0.1] /home/gaizka/.gradle/caches/8.13/transforms/9f2075680e0eb0ecc6a61d888add5d0f/transformed/play-services-base-18.0.1/AndroidManifest.xml:19:5-23:19
-MERGED from [com.google.android.gms:play-services-base:18.0.1] /home/gaizka/.gradle/caches/8.13/transforms/9f2075680e0eb0ecc6a61d888add5d0f/transformed/play-services-base-18.0.1/AndroidManifest.xml:19:5-23:19
+MERGED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:28:5-44:19
+MERGED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:28:5-44:19
+MERGED from [com.google.android.gms:play-services-measurement-sdk:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/e92b45b7b5e3265091a4f3720c88a2cb/transformed/play-services-measurement-sdk-22.0.0/AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.android.gms:play-services-measurement-sdk:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/e92b45b7b5e3265091a4f3720c88a2cb/transformed/play-services-measurement-sdk-22.0.0/AndroidManifest.xml:22:5-23:19
 MERGED from [com.google.android.gms:play-services-measurement-impl:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/55c681163e07fcb268b687865d679418/transformed/play-services-measurement-impl-22.0.0/AndroidManifest.xml:29:5-30:19
 MERGED from [com.google.android.gms:play-services-measurement-impl:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/55c681163e07fcb268b687865d679418/transformed/play-services-measurement-impl-22.0.0/AndroidManifest.xml:29:5-30:19
 MERGED from [com.google.android.gms:play-services-stats:17.0.2] /home/gaizka/.gradle/caches/8.13/transforms/7f9315e3f2d89f6e38083131ace991d4/transformed/play-services-stats-17.0.2/AndroidManifest.xml:7:5-20
@@ -204,16 +202,16 @@ MERGED from [androidx.privacysandbox.ads:ads-adservices:1.0.0-beta05] /home/gaiz
 MERGED from [androidx.privacysandbox.ads:ads-adservices:1.0.0-beta05] /home/gaizka/.gradle/caches/8.13/transforms/7e02629711eea25d3049a194288fd046/transformed/ads-adservices-1.0.0-beta05/AndroidManifest.xml:22:5-26:19
 MERGED from [androidx.core:core:1.13.1] /home/gaizka/.gradle/caches/8.13/transforms/d93929b713276aff2e7dc9c2a2daeec1/transformed/core-1.13.1/AndroidManifest.xml:28:5-89
 MERGED from [androidx.core:core:1.13.1] /home/gaizka/.gradle/caches/8.13/transforms/d93929b713276aff2e7dc9c2a2daeec1/transformed/core-1.13.1/AndroidManifest.xml:28:5-89
-MERGED from [com.google.android.gms:play-services-tasks:18.1.0] /home/gaizka/.gradle/caches/8.13/transforms/0d483aa0133ccdb89b4613bb5d3fc3a8/transformed/play-services-tasks-18.1.0/AndroidManifest.xml:5:5-20
-MERGED from [com.google.android.gms:play-services-tasks:18.1.0] /home/gaizka/.gradle/caches/8.13/transforms/0d483aa0133ccdb89b4613bb5d3fc3a8/transformed/play-services-tasks-18.1.0/AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-tasks:18.2.0] /home/gaizka/.gradle/caches/8.13/transforms/1852794a6f9a2010f8e04240c409501d/transformed/play-services-tasks-18.2.0/AndroidManifest.xml:4:5-20
+MERGED from [com.google.android.gms:play-services-tasks:18.2.0] /home/gaizka/.gradle/caches/8.13/transforms/1852794a6f9a2010f8e04240c409501d/transformed/play-services-tasks-18.2.0/AndroidManifest.xml:4:5-20
 MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] /home/gaizka/.gradle/caches/8.13/transforms/91208c5e186e041ca29a9535fe3b1970/transformed/play-services-ads-identifier-18.0.0/AndroidManifest.xml:25:5-20
 MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] /home/gaizka/.gradle/caches/8.13/transforms/91208c5e186e041ca29a9535fe3b1970/transformed/play-services-ads-identifier-18.0.0/AndroidManifest.xml:25:5-20
 MERGED from [com.google.android.gms:play-services-measurement-base:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/a505b62ca5bdfc84953b3bbdc8717aa8/transformed/play-services-measurement-base-22.0.0/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-measurement-base:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/a505b62ca5bdfc84953b3bbdc8717aa8/transformed/play-services-measurement-base-22.0.0/AndroidManifest.xml:7:5-20
 MERGED from [com.google.firebase:firebase-measurement-connector:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d2cdc7c68ec44c36aac2d4f097323feb/transformed/firebase-measurement-connector-19.0.0/AndroidManifest.xml:22:5-23:19
 MERGED from [com.google.firebase:firebase-measurement-connector:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d2cdc7c68ec44c36aac2d4f097323feb/transformed/firebase-measurement-connector-19.0.0/AndroidManifest.xml:22:5-23:19
-MERGED from [com.google.android.gms:play-services-basement:18.3.0] /home/gaizka/.gradle/caches/8.13/transforms/7c29e7b0ac371fa9b83c598927559662/transformed/play-services-basement-18.3.0/AndroidManifest.xml:20:5-24:19
-MERGED from [com.google.android.gms:play-services-basement:18.3.0] /home/gaizka/.gradle/caches/8.13/transforms/7c29e7b0ac371fa9b83c598927559662/transformed/play-services-basement-18.3.0/AndroidManifest.xml:20:5-24:19
+MERGED from [com.google.android.gms:play-services-basement:18.4.0] /home/gaizka/.gradle/caches/8.13/transforms/47e073557553128db777539f9a0f4225/transformed/play-services-basement-18.4.0/AndroidManifest.xml:5:5-7:19
+MERGED from [com.google.android.gms:play-services-basement:18.4.0] /home/gaizka/.gradle/caches/8.13/transforms/47e073557553128db777539f9a0f4225/transformed/play-services-basement-18.4.0/AndroidManifest.xml:5:5-7:19
 MERGED from [com.google.firebase:firebase-datatransport:18.1.8] /home/gaizka/.gradle/caches/8.13/transforms/1158248ab54d61efddd478d542fd2f0d/transformed/firebase-datatransport-18.1.8/AndroidManifest.xml:23:5-31:19
 MERGED from [com.google.firebase:firebase-datatransport:18.1.8] /home/gaizka/.gradle/caches/8.13/transforms/1158248ab54d61efddd478d542fd2f0d/transformed/firebase-datatransport-18.1.8/AndroidManifest.xml:23:5-31:19
 MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/f590335581f216fab6302e0db6298baa/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:27:5-35:19
@@ -316,30 +314,34 @@ MERGED from [androidx.compose.material:material-ripple-android:1.7.0] /home/gaiz
 MERGED from [androidx.compose.material:material-ripple-android:1.7.0] /home/gaizka/.gradle/caches/8.13/transforms/066dc04ad026a79968c65c7b5dea4471/transformed/material-ripple-release/AndroidManifest.xml:5:5-44
 MERGED from [androidx.compose.animation:animation-android:1.7.2] /home/gaizka/.gradle/caches/8.13/transforms/23885ffa0fb97f9b82219ffeb4de5996/transformed/animation-release/AndroidManifest.xml:5:5-44
 MERGED from [androidx.compose.animation:animation-android:1.7.2] /home/gaizka/.gradle/caches/8.13/transforms/23885ffa0fb97f9b82219ffeb4de5996/transformed/animation-release/AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-analytics:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/6f406e9395a7725c2537e7e0e2d7e0f3/transformed/firebase-analytics-22.0.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-analytics:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/6f406e9395a7725c2537e7e0e2d7e0f3/transformed/firebase-analytics-22.0.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement-sdk:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/e92b45b7b5e3265091a4f3720c88a2cb/transformed/play-services-measurement-sdk-22.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement-sdk:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/e92b45b7b5e3265091a4f3720c88a2cb/transformed/play-services-measurement-sdk-22.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.credentials:credentials:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a010e134284a3ba392fdd455604dfb01/transformed/credentials-1.2.0-rc01/AndroidManifest.xml:5:5-44
 MERGED from [androidx.credentials:credentials:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a010e134284a3ba392fdd455604dfb01/transformed/credentials-1.2.0-rc01/AndroidManifest.xml:5:5-44
 MERGED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:21:5-44
 MERGED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:21:5-44
-MERGED from [com.google.android.gms:play-services-auth:20.7.0] /home/gaizka/.gradle/caches/8.13/transforms/5f82c75b39fb75b2f80492717a1e22ff/transformed/play-services-auth-20.7.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-auth:20.7.0] /home/gaizka/.gradle/caches/8.13/transforms/5f82c75b39fb75b2f80492717a1e22ff/transformed/play-services-auth-20.7.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth:21.3.0] /home/gaizka/.gradle/caches/8.13/transforms/3b06903130bfb74a165ea5417b3f2e6c/transformed/play-services-auth-21.3.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth:21.3.0] /home/gaizka/.gradle/caches/8.13/transforms/3b06903130bfb74a165ea5417b3f2e6c/transformed/play-services-auth-21.3.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.2] /home/gaizka/.gradle/caches/8.13/transforms/12e1824b790567efd088a1524d05221e/transformed/play-services-auth-api-phone-18.0.2/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.2] /home/gaizka/.gradle/caches/8.13/transforms/12e1824b790567efd088a1524d05221e/transformed/play-services-auth-api-phone-18.0.2/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:18.0.10] /home/gaizka/.gradle/caches/8.13/transforms/cf52436ba927051403e359eecd9f23f9/transformed/play-services-auth-base-18.0.10/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:18.0.10] /home/gaizka/.gradle/caches/8.13/transforms/cf52436ba927051403e359eecd9f23f9/transformed/play-services-auth-base-18.0.10/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d6f2238eb0397aa0f821f3946d4bca01/transformed/firebase-appcheck-interop-17.0.0/AndroidManifest.xml:18:5-20:41
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d6f2238eb0397aa0f821f3946d4bca01/transformed/firebase-appcheck-interop-17.0.0/AndroidManifest.xml:18:5-20:41
+MERGED from [com.google.firebase:firebase-database-collection:18.0.1] /home/gaizka/.gradle/caches/8.13/transforms/50688d90f47302a59671355a5d6ecc5a/transformed/firebase-database-collection-18.0.1/AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.firebase:firebase-database-collection:18.0.1] /home/gaizka/.gradle/caches/8.13/transforms/50688d90f47302a59671355a5d6ecc5a/transformed/firebase-database-collection-18.0.1/AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.android.gms:play-services-fido:20.1.0] /home/gaizka/.gradle/caches/8.13/transforms/6c79e2a94def0877f852d4cd6fba49c6/transformed/play-services-fido-20.1.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-fido:20.1.0] /home/gaizka/.gradle/caches/8.13/transforms/6c79e2a94def0877f852d4cd6fba49c6/transformed/play-services-fido-20.1.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:18.5.0] /home/gaizka/.gradle/caches/8.13/transforms/fa236c1d64d9950fc30e374ee3ccda33/transformed/play-services-base-18.5.0/AndroidManifest.xml:3:5-44
+MERGED from [com.google.android.gms:play-services-base:18.5.0] /home/gaizka/.gradle/caches/8.13/transforms/fa236c1d64d9950fc30e374ee3ccda33/transformed/play-services-base-18.5.0/AndroidManifest.xml:3:5-44
 MERGED from [com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-analytics:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/6f406e9395a7725c2537e7e0e2d7e0f3/transformed/firebase-analytics-22.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-analytics:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/6f406e9395a7725c2537e7e0e2d7e0f3/transformed/firebase-analytics-22.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] /home/gaizka/.gradle/caches/8.13/transforms/5539cfc9dd116039413631a8333adb63/transformed/recaptcha-18.4.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] /home/gaizka/.gradle/caches/8.13/transforms/5539cfc9dd116039413631a8333adb63/transformed/recaptcha-18.4.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.play:integrity:1.2.0] /home/gaizka/.gradle/caches/8.13/transforms/da92f83fbbe74e37733ca1a19bfca816/transformed/integrity-1.2.0/AndroidManifest.xml:4:5-44
 MERGED from [com.google.android.play:integrity:1.2.0] /home/gaizka/.gradle/caches/8.13/transforms/da92f83fbbe74e37733ca1a19bfca816/transformed/integrity-1.2.0/AndroidManifest.xml:4:5-44
-MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d6f2238eb0397aa0f821f3946d4bca01/transformed/firebase-appcheck-interop-17.0.0/AndroidManifest.xml:18:5-20:41
-MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d6f2238eb0397aa0f821f3946d4bca01/transformed/firebase-appcheck-interop-17.0.0/AndroidManifest.xml:18:5-20:41
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d8db524bd96caf87c366398bc3c9b986/transformed/firebase-auth-interop-20.0.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d8db524bd96caf87c366398bc3c9b986/transformed/firebase-auth-interop-20.0.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-sessions:2.0.0] /home/gaizka/.gradle/caches/8.13/transforms/543aa80f640302f761c863c0ec94e744/transformed/firebase-sessions-2.0.0/AndroidManifest.xml:18:5-44
@@ -350,26 +352,24 @@ MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] /home/gaizka/.gradl
 MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] /home/gaizka/.gradle/caches/8.13/transforms/5e445a1af8c76b3bc23ceaa65d243db6/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-common:21.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d9b8f8ea3bc9c5dfae860224cb275fdc/transformed/firebase-common-21.0.0/AndroidManifest.xml:19:5-44
 MERGED from [com.google.firebase:firebase-common:21.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d9b8f8ea3bc9c5dfae860224cb275fdc/transformed/firebase-common-21.0.0/AndroidManifest.xml:19:5-44
-MERGED from [com.google.firebase:firebase-database-collection:18.0.1] /home/gaizka/.gradle/caches/8.13/transforms/50688d90f47302a59671355a5d6ecc5a/transformed/firebase-database-collection-18.0.1/AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.firebase:firebase-database-collection:18.0.1] /home/gaizka/.gradle/caches/8.13/transforms/50688d90f47302a59671355a5d6ecc5a/transformed/firebase-database-collection-18.0.1/AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.android.gms:play-services-fido:20.1.0] /home/gaizka/.gradle/caches/8.13/transforms/6c79e2a94def0877f852d4cd6fba49c6/transformed/play-services-fido-20.1.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-fido:20.1.0] /home/gaizka/.gradle/caches/8.13/transforms/6c79e2a94def0877f852d4cd6fba49c6/transformed/play-services-fido-20.1.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] /home/gaizka/.gradle/caches/8.13/transforms/0324be8d24870a5a1e193752797d8938/transformed/play-services-auth-base-18.0.4/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] /home/gaizka/.gradle/caches/8.13/transforms/0324be8d24870a5a1e193752797d8938/transformed/play-services-auth-base-18.0.4/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-base:18.0.1] /home/gaizka/.gradle/caches/8.13/transforms/9f2075680e0eb0ecc6a61d888add5d0f/transformed/play-services-base-18.0.1/AndroidManifest.xml:18:5-43
-MERGED from [com.google.android.gms:play-services-base:18.0.1] /home/gaizka/.gradle/caches/8.13/transforms/9f2075680e0eb0ecc6a61d888add5d0f/transformed/play-services-base-18.0.1/AndroidManifest.xml:18:5-43
 MERGED from [androidx.compose.runtime:runtime-saveable-android:1.7.2] /home/gaizka/.gradle/caches/8.13/transforms/7ae8f4e910c8cb2fe321d476d4d8d1a2/transformed/runtime-saveable-release/AndroidManifest.xml:5:5-44
 MERGED from [androidx.compose.runtime:runtime-saveable-android:1.7.2] /home/gaizka/.gradle/caches/8.13/transforms/7ae8f4e910c8cb2fe321d476d4d8d1a2/transformed/runtime-saveable-release/AndroidManifest.xml:5:5-44
 MERGED from [androidx.compose.runtime:runtime-android:1.7.2] /home/gaizka/.gradle/caches/8.13/transforms/50a8241709fc4f037f93c4a287daac93/transformed/runtime-release/AndroidManifest.xml:5:5-44
 MERGED from [androidx.compose.runtime:runtime-android:1.7.2] /home/gaizka/.gradle/caches/8.13/transforms/50a8241709fc4f037f93c4a287daac93/transformed/runtime-release/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/e92b45b7b5e3265091a4f3720c88a2cb/transformed/play-services-measurement-sdk-22.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/e92b45b7b5e3265091a4f3720c88a2cb/transformed/play-services-measurement-sdk-22.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-measurement-impl:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/55c681163e07fcb268b687865d679418/transformed/play-services-measurement-impl-22.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-measurement-impl:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/55c681163e07fcb268b687865d679418/transformed/play-services-measurement-impl-22.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-stats:17.0.2] /home/gaizka/.gradle/caches/8.13/transforms/7f9315e3f2d89f6e38083131ace991d4/transformed/play-services-stats-17.0.2/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-stats:17.0.2] /home/gaizka/.gradle/caches/8.13/transforms/7f9315e3f2d89f6e38083131ace991d4/transformed/play-services-stats-17.0.2/AndroidManifest.xml:5:5-44
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/gaizka/.gradle/caches/8.13/transforms/945e1f59544df18e36c010a893d1bd77/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/gaizka/.gradle/caches/8.13/transforms/945e1f59544df18e36c010a893d1bd77/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ccd80a241b7016505e7730fbfa7074b8/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ccd80a241b7016505e7730fbfa7074b8/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.1.0] /home/gaizka/.gradle/caches/8.13/transforms/d3433c4164f4d560a9ec6fc723292d37/transformed/loader-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.loader:loader:1.1.0] /home/gaizka/.gradle/caches/8.13/transforms/d3433c4164f4d560a9ec6fc723292d37/transformed/loader-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity-ktx:1.8.2] /home/gaizka/.gradle/caches/8.13/transforms/8c18a7857bfba615bf9ca8a4a26dff84/transformed/activity-ktx-1.8.2/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.8.2] /home/gaizka/.gradle/caches/8.13/transforms/8c18a7857bfba615bf9ca8a4a26dff84/transformed/activity-ktx-1.8.2/AndroidManifest.xml:5:5-44
 MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /home/gaizka/.gradle/caches/8.13/transforms/6c91ac23a68ef07c6fcee5b9ee067308/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:20:5-44
 MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /home/gaizka/.gradle/caches/8.13/transforms/6c91ac23a68ef07c6fcee5b9ee067308/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:20:5-44
 MERGED from [androidx.savedstate:savedstate:1.2.1] /home/gaizka/.gradle/caches/8.13/transforms/4f92c60d729be135920d3498392c96cc/transformed/savedstate-1.2.1/AndroidManifest.xml:20:5-44
@@ -378,12 +378,6 @@ MERGED from [androidx.emoji2:emoji2:1.3.0] /home/gaizka/.gradle/caches/8.13/tran
 MERGED from [androidx.emoji2:emoji2:1.3.0] /home/gaizka/.gradle/caches/8.13/transforms/8b2cce8914579670ee0538d650f17245/transformed/emoji2-1.3.0/AndroidManifest.xml:21:5-44
 MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/2b23385d96343b56ca697ed05ce7eb89/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:21:5-44
 MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/2b23385d96343b56ca697ed05ce7eb89/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:21:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/ead5c10eb780dd84aab1cd030b198ef4/transformed/lifecycle-livedata-core-ktx-2.8.7/AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/ead5c10eb780dd84aab1cd030b198ef4/transformed/lifecycle-livedata-core-ktx-2.8.7/AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/2447d912e67c336b9db273179024dd3f/transformed/lifecycle-livedata-2.8.7/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/2447d912e67c336b9db273179024dd3f/transformed/lifecycle-livedata-2.8.7/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/3aff1d91a344a4b2da240fa7115764a5/transformed/lifecycle-livedata-core-2.8.7/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/3aff1d91a344a4b2da240fa7115764a5/transformed/lifecycle-livedata-core-2.8.7/AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/c97377637e0cf9d6f0eeedb42376cc6a/transformed/lifecycle-viewmodel-2.8.7/AndroidManifest.xml:4:5-43
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/c97377637e0cf9d6f0eeedb42376cc6a/transformed/lifecycle-viewmodel-2.8.7/AndroidManifest.xml:4:5-43
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/6488a088b84913e00f001a0f1a6d5b96/transformed/lifecycle-viewmodel-release/AndroidManifest.xml:20:5-44
@@ -412,6 +406,8 @@ MERGED from [androidx.core:core:1.13.1] /home/gaizka/.gradle/caches/8.13/transfo
 MERGED from [androidx.core:core:1.13.1] /home/gaizka/.gradle/caches/8.13/transforms/d93929b713276aff2e7dc9c2a2daeec1/transformed/core-1.13.1/AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/e1d00de3c6ead396002ace0fa16e6739/transformed/lifecycle-runtime-release/AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/e1d00de3c6ead396002ace0fa16e6739/transformed/lifecycle-runtime-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/3aff1d91a344a4b2da240fa7115764a5/transformed/lifecycle-livedata-core-2.8.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/3aff1d91a344a4b2da240fa7115764a5/transformed/lifecycle-livedata-core-2.8.7/AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/d7985a1cb0cb25af474a1daa3c9becc9/transformed/lifecycle-viewmodel-savedstate-2.8.7/AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/d7985a1cb0cb25af474a1daa3c9becc9/transformed/lifecycle-viewmodel-savedstate-2.8.7/AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/d58198bd5f22b8680d2a542a1817facb/transformed/lifecycle-viewmodel-ktx-2.8.7/AndroidManifest.xml:5:5-44
@@ -422,8 +418,8 @@ MERGED from [androidx.datastore:datastore:1.0.0] /home/gaizka/.gradle/caches/8.1
 MERGED from [androidx.datastore:datastore:1.0.0] /home/gaizka/.gradle/caches/8.13/transforms/dc886ef3fcc55adc6ebc5f965323b4ab/transformed/datastore-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-installations-interop:17.1.1] /home/gaizka/.gradle/caches/8.13/transforms/2345b3c08db4723dc883aa7a733f301a/transformed/firebase-installations-interop-17.1.1/AndroidManifest.xml:17:5-44
 MERGED from [com.google.firebase:firebase-installations-interop:17.1.1] /home/gaizka/.gradle/caches/8.13/transforms/2345b3c08db4723dc883aa7a733f301a/transformed/firebase-installations-interop-17.1.1/AndroidManifest.xml:17:5-44
-MERGED from [com.google.android.gms:play-services-tasks:18.1.0] /home/gaizka/.gradle/caches/8.13/transforms/0d483aa0133ccdb89b4613bb5d3fc3a8/transformed/play-services-tasks-18.1.0/AndroidManifest.xml:4:5-43
-MERGED from [com.google.android.gms:play-services-tasks:18.1.0] /home/gaizka/.gradle/caches/8.13/transforms/0d483aa0133ccdb89b4613bb5d3fc3a8/transformed/play-services-tasks-18.1.0/AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-tasks:18.2.0] /home/gaizka/.gradle/caches/8.13/transforms/1852794a6f9a2010f8e04240c409501d/transformed/play-services-tasks-18.2.0/AndroidManifest.xml:3:5-44
+MERGED from [com.google.android.gms:play-services-tasks:18.2.0] /home/gaizka/.gradle/caches/8.13/transforms/1852794a6f9a2010f8e04240c409501d/transformed/play-services-tasks-18.2.0/AndroidManifest.xml:3:5-44
 MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] /home/gaizka/.gradle/caches/8.13/transforms/91208c5e186e041ca29a9535fe3b1970/transformed/play-services-ads-identifier-18.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] /home/gaizka/.gradle/caches/8.13/transforms/91208c5e186e041ca29a9535fe3b1970/transformed/play-services-ads-identifier-18.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/b4b345bf1348b189c627921cfcfb2413/transformed/play-services-measurement-sdk-api-22.0.0/AndroidManifest.xml:20:5-44
@@ -432,14 +428,12 @@ MERGED from [com.google.android.gms:play-services-measurement-base:22.0.0] /home
 MERGED from [com.google.android.gms:play-services-measurement-base:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/a505b62ca5bdfc84953b3bbdc8717aa8/transformed/play-services-measurement-base-22.0.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-measurement-connector:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d2cdc7c68ec44c36aac2d4f097323feb/transformed/firebase-measurement-connector-19.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.firebase:firebase-measurement-connector:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d2cdc7c68ec44c36aac2d4f097323feb/transformed/firebase-measurement-connector-19.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-basement:18.3.0] /home/gaizka/.gradle/caches/8.13/transforms/7c29e7b0ac371fa9b83c598927559662/transformed/play-services-basement-18.3.0/AndroidManifest.xml:18:5-43
-MERGED from [com.google.android.gms:play-services-basement:18.3.0] /home/gaizka/.gradle/caches/8.13/transforms/7c29e7b0ac371fa9b83c598927559662/transformed/play-services-basement-18.3.0/AndroidManifest.xml:18:5-43
-MERGED from [androidx.fragment:fragment:1.1.0] /home/gaizka/.gradle/caches/8.13/transforms/5075fc01b0b957a461ce174971c9ce3d/transformed/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.fragment:fragment:1.1.0] /home/gaizka/.gradle/caches/8.13/transforms/5075fc01b0b957a461ce174971c9ce3d/transformed/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.gms:play-services-basement:18.4.0] /home/gaizka/.gradle/caches/8.13/transforms/47e073557553128db777539f9a0f4225/transformed/play-services-basement-18.4.0/AndroidManifest.xml:3:5-44
+MERGED from [com.google.android.gms:play-services-basement:18.4.0] /home/gaizka/.gradle/caches/8.13/transforms/47e073557553128db777539f9a0f4225/transformed/play-services-basement-18.4.0/AndroidManifest.xml:3:5-44
+MERGED from [androidx.fragment:fragment:1.5.7] /home/gaizka/.gradle/caches/8.13/transforms/9d7b72cf171771b2f5f90144cc16c8db/transformed/fragment-1.5.7/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.5.7] /home/gaizka/.gradle/caches/8.13/transforms/9d7b72cf171771b2f5f90144cc16c8db/transformed/fragment-1.5.7/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.activity:activity:1.8.2] /home/gaizka/.gradle/caches/8.13/transforms/6ad04a354dcca10f31b14436d4d22e39/transformed/activity-1.8.2/AndroidManifest.xml:20:5-44
 MERGED from [androidx.activity:activity:1.8.2] /home/gaizka/.gradle/caches/8.13/transforms/6ad04a354dcca10f31b14436d4d22e39/transformed/activity-1.8.2/AndroidManifest.xml:20:5-44
-MERGED from [androidx.activity:activity-ktx:1.8.2] /home/gaizka/.gradle/caches/8.13/transforms/8c18a7857bfba615bf9ca8a4a26dff84/transformed/activity-ktx-1.8.2/AndroidManifest.xml:5:5-44
-MERGED from [androidx.activity:activity-ktx:1.8.2] /home/gaizka/.gradle/caches/8.13/transforms/8c18a7857bfba615bf9ca8a4a26dff84/transformed/activity-ktx-1.8.2/AndroidManifest.xml:5:5-44
 MERGED from [androidx.activity:activity-compose:1.8.2] /home/gaizka/.gradle/caches/8.13/transforms/24b5448258b4bd11b1a24366106c014b/transformed/activity-compose-1.8.2/AndroidManifest.xml:5:5-44
 MERGED from [androidx.activity:activity-compose:1.8.2] /home/gaizka/.gradle/caches/8.13/transforms/24b5448258b4bd11b1a24366106c014b/transformed/activity-compose-1.8.2/AndroidManifest.xml:5:5-44
 MERGED from [androidx.compose.material:material-icons-extended-android:1.7.0] /home/gaizka/.gradle/caches/8.13/transforms/58a8f5b3f13976e4ec47fa11b18fc433/transformed/material-icons-extended-release/AndroidManifest.xml:5:5-44
@@ -476,6 +470,8 @@ MERGED from [androidx.interpolator:interpolator:1.0.0] /home/gaizka/.gradle/cach
 MERGED from [androidx.interpolator:interpolator:1.0.0] /home/gaizka/.gradle/caches/8.13/transforms/72e153713aca6adb235e07bebb3d10b3/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:21:5-44
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:21:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /home/gaizka/.gradle/caches/8.13/transforms/827049fa688d8f53a4fbbe71a4b4c471/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /home/gaizka/.gradle/caches/8.13/transforms/827049fa688d8f53a4fbbe71a4b4c471/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.documentfile:documentfile:1.0.0] /home/gaizka/.gradle/caches/8.13/transforms/f3ef3803d5ca581c226b17c03f2f1ada/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.documentfile:documentfile:1.0.0] /home/gaizka/.gradle/caches/8.13/transforms/f3ef3803d5ca581c226b17c03f2f1ada/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.print:print:1.0.0] /home/gaizka/.gradle/caches/8.13/transforms/1b78827ad01960102661c22f773ff422/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
@@ -484,8 +480,6 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/gaizk
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/gaizka/.gradle/caches/8.13/transforms/d0834ce8ca2c1332559d18d80e914f58/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.startup:startup-runtime:1.1.1] /home/gaizka/.gradle/caches/8.13/transforms/7c3119c81925e105c96c4a4acc3cbd85/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
 MERGED from [androidx.startup:startup-runtime:1.1.1] /home/gaizka/.gradle/caches/8.13/transforms/7c3119c81925e105c96c4a4acc3cbd85/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
-MERGED from [androidx.arch.core:core-runtime:2.2.0] /home/gaizka/.gradle/caches/8.13/transforms/827049fa688d8f53a4fbbe71a4b4c471/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.arch.core:core-runtime:2.2.0] /home/gaizka/.gradle/caches/8.13/transforms/827049fa688d8f53a4fbbe71a4b4c471/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.tracing:tracing:1.0.0] /home/gaizka/.gradle/caches/8.13/transforms/702984ad3b84f25693ce9925075dfd9c/transformed/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.tracing:tracing:1.0.0] /home/gaizka/.gradle/caches/8.13/transforms/702984ad3b84f25693ce9925075dfd9c/transformed/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /home/gaizka/.gradle/caches/8.13/transforms/c6592cb02886bcecb2971058f26de39d/transformed/protolite-well-known-types-18.0.0/AndroidManifest.xml:7:5-9:41
@@ -502,14 +496,14 @@ uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from [com.google.firebase:firebase-auth:23.0.0] /home/gaizka/.gradle/caches/8.13/transforms/b529a099e979447b680ff76f128297e4/transformed/firebase-auth-23.0.0/AndroidManifest.xml:26:5-79
 MERGED from [com.google.firebase:firebase-firestore:25.0.0] /home/gaizka/.gradle/caches/8.13/transforms/dbf59598d7052222a8b712a1f1007292/transformed/firebase-firestore-25.0.0/AndroidManifest.xml:10:5-79
 MERGED from [com.google.firebase:firebase-firestore:25.0.0] /home/gaizka/.gradle/caches/8.13/transforms/dbf59598d7052222a8b712a1f1007292/transformed/firebase-firestore-25.0.0/AndroidManifest.xml:10:5-79
-MERGED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:23:5-79
 MERGED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:23:5-79
 MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] /home/gaizka/.gradle/caches/8.13/transforms/5539cfc9dd116039413631a8333adb63/transformed/recaptcha-18.4.0/AndroidManifest.xml:8:5-79
 MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] /home/gaizka/.gradle/caches/8.13/transforms/5539cfc9dd116039413631a8333adb63/transformed/recaptcha-18.4.0/AndroidManifest.xml:8:5-79
 MERGED from [com.google.firebase:firebase-installations:18.0.0] /home/gaizka/.gradle/caches/8.13/transforms/88374701e3c202e48fa4614c73ed968d/transformed/firebase-installations-18.0.0/AndroidManifest.xml:7:5-79
 MERGED from [com.google.firebase:firebase-installations:18.0.0] /home/gaizka/.gradle/caches/8.13/transforms/88374701e3c202e48fa4614c73ed968d/transformed/firebase-installations-18.0.0/AndroidManifest.xml:7:5-79
+MERGED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.gms:play-services-measurement-impl:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/55c681163e07fcb268b687865d679418/transformed/play-services-measurement-impl-22.0.0/AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.gms:play-services-measurement-impl:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/55c681163e07fcb268b687865d679418/transformed/play-services-measurement-impl-22.0.0/AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/b4b345bf1348b189c627921cfcfb2413/transformed/play-services-measurement-sdk-api-22.0.0/AndroidManifest.xml:24:5-79
@@ -574,10 +568,10 @@ service#com.google.firebase.components.ComponentDiscoveryService
 ADDED from [com.google.firebase:firebase-auth:23.0.0] /home/gaizka/.gradle/caches/8.13/transforms/b529a099e979447b680ff76f128297e4/transformed/firebase-auth-23.0.0/AndroidManifest.xml:66:9-72:19
 MERGED from [com.google.firebase:firebase-firestore:25.0.0] /home/gaizka/.gradle/caches/8.13/transforms/dbf59598d7052222a8b712a1f1007292/transformed/firebase-firestore-25.0.0/AndroidManifest.xml:14:9-23:19
 MERGED from [com.google.firebase:firebase-firestore:25.0.0] /home/gaizka/.gradle/caches/8.13/transforms/dbf59598d7052222a8b712a1f1007292/transformed/firebase-firestore-25.0.0/AndroidManifest.xml:14:9-23:19
-MERGED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:34:9-40:19
-MERGED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:34:9-40:19
 MERGED from [com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:12:9-21:19
 MERGED from [com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:12:9-21:19
+MERGED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:34:9-40:19
+MERGED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:34:9-40:19
 MERGED from [com.google.firebase:firebase-sessions:2.0.0] /home/gaizka/.gradle/caches/8.13/transforms/543aa80f640302f761c863c0ec94e744/transformed/firebase-sessions-2.0.0/AndroidManifest.xml:26:9-32:19
 MERGED from [com.google.firebase:firebase-sessions:2.0.0] /home/gaizka/.gradle/caches/8.13/transforms/543aa80f640302f761c863c0ec94e744/transformed/firebase-sessions-2.0.0/AndroidManifest.xml:26:9-32:19
 MERGED from [com.google.firebase:firebase-installations:18.0.0] /home/gaizka/.gradle/caches/8.13/transforms/88374701e3c202e48fa4614c73ed968d/transformed/firebase-installations-18.0.0/AndroidManifest.xml:12:9-21:19
@@ -626,48 +620,86 @@ ADDED from [androidx.compose.ui:ui-tooling-android:1.7.2] /home/gaizka/.gradle/c
 		ADDED from [androidx.compose.ui:ui-tooling-android:1.7.2] /home/gaizka/.gradle/caches/8.13/transforms/c37cf8571321f177af1a477b2515f121/transformed/ui-tooling-release/AndroidManifest.xml:25:13-36
 	android:name
 		ADDED from [androidx.compose.ui:ui-tooling-android:1.7.2] /home/gaizka/.gradle/caches/8.13/transforms/c37cf8571321f177af1a477b2515f121/transformed/ui-tooling-release/AndroidManifest.xml:24:13-71
-uses-permission#android.permission.WAKE_LOCK
-ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:25:5-68
-MERGED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:24:5-68
-MERGED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:24:5-68
-MERGED from [com.google.android.gms:play-services-measurement-impl:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/55c681163e07fcb268b687865d679418/transformed/play-services-measurement-impl-22.0.0/AndroidManifest.xml:25:5-68
-MERGED from [com.google.android.gms:play-services-measurement-impl:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/55c681163e07fcb268b687865d679418/transformed/play-services-measurement-impl-22.0.0/AndroidManifest.xml:25:5-68
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/b4b345bf1348b189c627921cfcfb2413/transformed/play-services-measurement-sdk-api-22.0.0/AndroidManifest.xml:25:5-68
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/b4b345bf1348b189c627921cfcfb2413/transformed/play-services-measurement-sdk-api-22.0.0/AndroidManifest.xml:25:5-68
-	android:name
-		ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:25:22-65
-uses-permission#com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE
-ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:26:5-110
-MERGED from [com.google.android.gms:play-services-measurement-impl:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/55c681163e07fcb268b687865d679418/transformed/play-services-measurement-impl-22.0.0/AndroidManifest.xml:26:5-110
-MERGED from [com.google.android.gms:play-services-measurement-impl:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/55c681163e07fcb268b687865d679418/transformed/play-services-measurement-impl-22.0.0/AndroidManifest.xml:26:5-110
-	android:name
-		ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:26:22-107
-receiver#com.google.android.gms.measurement.AppMeasurementReceiver
-ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:29:9-33:20
+service#androidx.credentials.playservices.CredentialProviderMetadataHolder
+ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:24:9-32:19
 	android:enabled
-		ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:31:13-35
+		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:26:13-35
 	android:exported
-		ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:32:13-37
+		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:27:13-37
+	tools:ignore
+		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:28:13-60
 	android:name
-		ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:30:13-85
-service#com.google.android.gms.measurement.AppMeasurementService
-ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:35:9-38:40
-	android:enabled
-		ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:37:13-35
-	android:exported
-		ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:38:13-37
+		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:25:13-94
+meta-data#androidx.credentials.CREDENTIAL_PROVIDER_KEY
+ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:29:13-31:104
+	android:value
+		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:31:17-101
 	android:name
-		ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:36:13-84
-service#com.google.android.gms.measurement.AppMeasurementJobService
-ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:39:9-43:72
+		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:30:17-76
+activity#androidx.credentials.playservices.HiddenActivity
+ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:34:9-41:20
+	android:fitsSystemWindows
+		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:39:13-45
 	android:enabled
-		ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:41:13-35
+		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:37:13-35
 	android:exported
-		ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:42:13-37
+		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:38:13-37
+	android:configChanges
+		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:36:13-87
+	android:theme
+		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:40:13-48
+	android:name
+		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:35:13-76
+activity#com.google.android.gms.auth.api.signin.internal.SignInHubActivity
+ADDED from [com.google.android.gms:play-services-auth:21.3.0] /home/gaizka/.gradle/caches/8.13/transforms/3b06903130bfb74a165ea5417b3f2e6c/transformed/play-services-auth-21.3.0/AndroidManifest.xml:23:9-27:75
+	android:excludeFromRecents
+		ADDED from [com.google.android.gms:play-services-auth:21.3.0] /home/gaizka/.gradle/caches/8.13/transforms/3b06903130bfb74a165ea5417b3f2e6c/transformed/play-services-auth-21.3.0/AndroidManifest.xml:25:13-46
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:21.3.0] /home/gaizka/.gradle/caches/8.13/transforms/3b06903130bfb74a165ea5417b3f2e6c/transformed/play-services-auth-21.3.0/AndroidManifest.xml:26:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-auth:21.3.0] /home/gaizka/.gradle/caches/8.13/transforms/3b06903130bfb74a165ea5417b3f2e6c/transformed/play-services-auth-21.3.0/AndroidManifest.xml:27:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:21.3.0] /home/gaizka/.gradle/caches/8.13/transforms/3b06903130bfb74a165ea5417b3f2e6c/transformed/play-services-auth-21.3.0/AndroidManifest.xml:24:13-93
+service#com.google.android.gms.auth.api.signin.RevocationBoundService
+ADDED from [com.google.android.gms:play-services-auth:21.3.0] /home/gaizka/.gradle/caches/8.13/transforms/3b06903130bfb74a165ea5417b3f2e6c/transformed/play-services-auth-21.3.0/AndroidManifest.xml:33:9-37:51
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:21.3.0] /home/gaizka/.gradle/caches/8.13/transforms/3b06903130bfb74a165ea5417b3f2e6c/transformed/play-services-auth-21.3.0/AndroidManifest.xml:35:13-36
+	android:visibleToInstantApps
+		ADDED from [com.google.android.gms:play-services-auth:21.3.0] /home/gaizka/.gradle/caches/8.13/transforms/3b06903130bfb74a165ea5417b3f2e6c/transformed/play-services-auth-21.3.0/AndroidManifest.xml:37:13-48
 	android:permission
-		ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:43:13-69
+		ADDED from [com.google.android.gms:play-services-auth:21.3.0] /home/gaizka/.gradle/caches/8.13/transforms/3b06903130bfb74a165ea5417b3f2e6c/transformed/play-services-auth-21.3.0/AndroidManifest.xml:36:13-107
 	android:name
-		ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:40:13-87
+		ADDED from [com.google.android.gms:play-services-auth:21.3.0] /home/gaizka/.gradle/caches/8.13/transforms/3b06903130bfb74a165ea5417b3f2e6c/transformed/play-services-auth-21.3.0/AndroidManifest.xml:34:13-89
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:18.5.0] /home/gaizka/.gradle/caches/8.13/transforms/fa236c1d64d9950fc30e374ee3ccda33/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:9-173
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:18.5.0] /home/gaizka/.gradle/caches/8.13/transforms/fa236c1d64d9950fc30e374ee3ccda33/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:146-170
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:18.5.0] /home/gaizka/.gradle/caches/8.13/transforms/fa236c1d64d9950fc30e374ee3ccda33/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:86-145
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:18.5.0] /home/gaizka/.gradle/caches/8.13/transforms/fa236c1d64d9950fc30e374ee3ccda33/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:19-85
+meta-data#com.google.firebase.components:com.google.firebase.crashlytics.FirebaseCrashlyticsKtxRegistrar
+ADDED from [com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:15:13-17:85
+	android:value
+		ADDED from [com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:17:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:16:17-126
+meta-data#com.google.firebase.components:com.google.firebase.crashlytics.CrashlyticsRegistrar
+ADDED from [com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:18:13-20:85
+	android:value
+		ADDED from [com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:20:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:19:17-115
+uses-permission#android.permission.WAKE_LOCK
+ADDED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:24:5-68
+MERGED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-impl:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/55c681163e07fcb268b687865d679418/transformed/play-services-measurement-impl-22.0.0/AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-impl:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/55c681163e07fcb268b687865d679418/transformed/play-services-measurement-impl-22.0.0/AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/b4b345bf1348b189c627921cfcfb2413/transformed/play-services-measurement-sdk-api-22.0.0/AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/b4b345bf1348b189c627921cfcfb2413/transformed/play-services-measurement-sdk-api-22.0.0/AndroidManifest.xml:25:5-68
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:24:22-65
 uses-permission#com.google.android.gms.permission.AD_ID
 ADDED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:25:5-79
 MERGED from [com.google.android.gms:play-services-measurement-impl:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/55c681163e07fcb268b687865d679418/transformed/play-services-measurement-impl-22.0.0/AndroidManifest.xml:27:5-79
@@ -702,68 +734,6 @@ ADDED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/g
 		ADDED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:39:17-82
 	android:name
 		ADDED from [com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:38:17-139
-service#androidx.credentials.playservices.CredentialProviderMetadataHolder
-ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:24:9-32:19
-	android:enabled
-		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:26:13-35
-	android:exported
-		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:27:13-37
-	tools:ignore
-		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:28:13-60
-	android:name
-		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:25:13-94
-meta-data#androidx.credentials.CREDENTIAL_PROVIDER_KEY
-ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:29:13-31:104
-	android:value
-		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:31:17-101
-	android:name
-		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:30:17-76
-activity#androidx.credentials.playservices.HiddenActivity
-ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:34:9-41:20
-	android:fitsSystemWindows
-		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:39:13-45
-	android:enabled
-		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:37:13-35
-	android:exported
-		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:38:13-37
-	android:configChanges
-		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:36:13-87
-	android:theme
-		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:40:13-48
-	android:name
-		ADDED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:35:13-76
-activity#com.google.android.gms.auth.api.signin.internal.SignInHubActivity
-ADDED from [com.google.android.gms:play-services-auth:20.7.0] /home/gaizka/.gradle/caches/8.13/transforms/5f82c75b39fb75b2f80492717a1e22ff/transformed/play-services-auth-20.7.0/AndroidManifest.xml:23:9-27:75
-	android:excludeFromRecents
-		ADDED from [com.google.android.gms:play-services-auth:20.7.0] /home/gaizka/.gradle/caches/8.13/transforms/5f82c75b39fb75b2f80492717a1e22ff/transformed/play-services-auth-20.7.0/AndroidManifest.xml:25:13-46
-	android:exported
-		ADDED from [com.google.android.gms:play-services-auth:20.7.0] /home/gaizka/.gradle/caches/8.13/transforms/5f82c75b39fb75b2f80492717a1e22ff/transformed/play-services-auth-20.7.0/AndroidManifest.xml:26:13-37
-	android:theme
-		ADDED from [com.google.android.gms:play-services-auth:20.7.0] /home/gaizka/.gradle/caches/8.13/transforms/5f82c75b39fb75b2f80492717a1e22ff/transformed/play-services-auth-20.7.0/AndroidManifest.xml:27:13-72
-	android:name
-		ADDED from [com.google.android.gms:play-services-auth:20.7.0] /home/gaizka/.gradle/caches/8.13/transforms/5f82c75b39fb75b2f80492717a1e22ff/transformed/play-services-auth-20.7.0/AndroidManifest.xml:24:13-93
-service#com.google.android.gms.auth.api.signin.RevocationBoundService
-ADDED from [com.google.android.gms:play-services-auth:20.7.0] /home/gaizka/.gradle/caches/8.13/transforms/5f82c75b39fb75b2f80492717a1e22ff/transformed/play-services-auth-20.7.0/AndroidManifest.xml:33:9-37:51
-	android:exported
-		ADDED from [com.google.android.gms:play-services-auth:20.7.0] /home/gaizka/.gradle/caches/8.13/transforms/5f82c75b39fb75b2f80492717a1e22ff/transformed/play-services-auth-20.7.0/AndroidManifest.xml:35:13-36
-	android:visibleToInstantApps
-		ADDED from [com.google.android.gms:play-services-auth:20.7.0] /home/gaizka/.gradle/caches/8.13/transforms/5f82c75b39fb75b2f80492717a1e22ff/transformed/play-services-auth-20.7.0/AndroidManifest.xml:37:13-48
-	android:permission
-		ADDED from [com.google.android.gms:play-services-auth:20.7.0] /home/gaizka/.gradle/caches/8.13/transforms/5f82c75b39fb75b2f80492717a1e22ff/transformed/play-services-auth-20.7.0/AndroidManifest.xml:36:13-107
-	android:name
-		ADDED from [com.google.android.gms:play-services-auth:20.7.0] /home/gaizka/.gradle/caches/8.13/transforms/5f82c75b39fb75b2f80492717a1e22ff/transformed/play-services-auth-20.7.0/AndroidManifest.xml:34:13-89
-meta-data#com.google.firebase.components:com.google.firebase.crashlytics.FirebaseCrashlyticsKtxRegistrar
-ADDED from [com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:15:13-17:85
-	android:value
-		ADDED from [com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:17:17-82
-	android:name
-		ADDED from [com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:16:17-126
-meta-data#com.google.firebase.components:com.google.firebase.crashlytics.CrashlyticsRegistrar
-ADDED from [com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:18:13-20:85
-	android:value
-		ADDED from [com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:20:17-82
-	android:name
-		ADDED from [com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:19:17-115
 uses-permission#com.google.android.providers.gsf.permission.READ_GSERVICES
 ADDED from [com.google.android.recaptcha:recaptcha:18.4.0] /home/gaizka/.gradle/caches/8.13/transforms/5539cfc9dd116039413631a8333adb63/transformed/recaptcha-18.4.0/AndroidManifest.xml:9:5-98
 	android:name
@@ -818,14 +788,38 @@ ADDED from [com.google.firebase:firebase-common:21.0.0] /home/gaizka/.gradle/cac
 		ADDED from [com.google.firebase:firebase-common:21.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d9b8f8ea3bc9c5dfae860224cb275fdc/transformed/firebase-common-21.0.0/AndroidManifest.xml:37:17-82
 	android:name
 		ADDED from [com.google.firebase:firebase-common:21.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d9b8f8ea3bc9c5dfae860224cb275fdc/transformed/firebase-common-21.0.0/AndroidManifest.xml:36:17-109
-activity#com.google.android.gms.common.api.GoogleApiActivity
-ADDED from [com.google.android.gms:play-services-base:18.0.1] /home/gaizka/.gradle/caches/8.13/transforms/9f2075680e0eb0ecc6a61d888add5d0f/transformed/play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
-	android:exported
-		ADDED from [com.google.android.gms:play-services-base:18.0.1] /home/gaizka/.gradle/caches/8.13/transforms/9f2075680e0eb0ecc6a61d888add5d0f/transformed/play-services-base-18.0.1/AndroidManifest.xml:22:19-43
-	android:theme
-		ADDED from [com.google.android.gms:play-services-base:18.0.1] /home/gaizka/.gradle/caches/8.13/transforms/9f2075680e0eb0ecc6a61d888add5d0f/transformed/play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+uses-permission#com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE
+ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:26:5-110
+MERGED from [com.google.android.gms:play-services-measurement-impl:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/55c681163e07fcb268b687865d679418/transformed/play-services-measurement-impl-22.0.0/AndroidManifest.xml:26:5-110
+MERGED from [com.google.android.gms:play-services-measurement-impl:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/55c681163e07fcb268b687865d679418/transformed/play-services-measurement-impl-22.0.0/AndroidManifest.xml:26:5-110
 	android:name
-		ADDED from [com.google.android.gms:play-services-base:18.0.1] /home/gaizka/.gradle/caches/8.13/transforms/9f2075680e0eb0ecc6a61d888add5d0f/transformed/play-services-base-18.0.1/AndroidManifest.xml:20:19-85
+		ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:26:22-107
+receiver#com.google.android.gms.measurement.AppMeasurementReceiver
+ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:29:9-33:20
+	android:enabled
+		ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:31:13-35
+	android:exported
+		ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:32:13-37
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:30:13-85
+service#com.google.android.gms.measurement.AppMeasurementService
+ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:35:9-38:40
+	android:enabled
+		ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:37:13-35
+	android:exported
+		ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:38:13-37
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:36:13-84
+service#com.google.android.gms.measurement.AppMeasurementJobService
+ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:39:9-43:72
+	android:enabled
+		ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:41:13-35
+	android:exported
+		ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:42:13-37
+	android:permission
+		ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:43:13-69
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:40:13-87
 provider#androidx.startup.InitializationProvider
 ADDED from [androidx.emoji2:emoji2:1.3.0] /home/gaizka/.gradle/caches/8.13/transforms/8b2cce8914579670ee0538d650f17245/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
 MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/2b23385d96343b56ca697ed05ce7eb89/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:24:9-32:20
@@ -881,11 +875,11 @@ ADDED from [androidx.core:core:1.13.1] /home/gaizka/.gradle/caches/8.13/transfor
 	android:name
 		ADDED from [androidx.core:core:1.13.1] /home/gaizka/.gradle/caches/8.13/transforms/d93929b713276aff2e7dc9c2a2daeec1/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
 meta-data#com.google.android.gms.version
-ADDED from [com.google.android.gms:play-services-basement:18.3.0] /home/gaizka/.gradle/caches/8.13/transforms/7c29e7b0ac371fa9b83c598927559662/transformed/play-services-basement-18.3.0/AndroidManifest.xml:21:9-23:69
+ADDED from [com.google.android.gms:play-services-basement:18.4.0] /home/gaizka/.gradle/caches/8.13/transforms/47e073557553128db777539f9a0f4225/transformed/play-services-basement-18.4.0/AndroidManifest.xml:6:9-122
 	android:value
-		ADDED from [com.google.android.gms:play-services-basement:18.3.0] /home/gaizka/.gradle/caches/8.13/transforms/7c29e7b0ac371fa9b83c598927559662/transformed/play-services-basement-18.3.0/AndroidManifest.xml:23:13-66
+		ADDED from [com.google.android.gms:play-services-basement:18.4.0] /home/gaizka/.gradle/caches/8.13/transforms/47e073557553128db777539f9a0f4225/transformed/play-services-basement-18.4.0/AndroidManifest.xml:6:66-119
 	android:name
-		ADDED from [com.google.android.gms:play-services-basement:18.3.0] /home/gaizka/.gradle/caches/8.13/transforms/7c29e7b0ac371fa9b83c598927559662/transformed/play-services-basement-18.3.0/AndroidManifest.xml:22:13-58
+		ADDED from [com.google.android.gms:play-services-basement:18.4.0] /home/gaizka/.gradle/caches/8.13/transforms/47e073557553128db777539f9a0f4225/transformed/play-services-basement-18.4.0/AndroidManifest.xml:6:20-65
 meta-data#com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar
 ADDED from [com.google.firebase:firebase-datatransport:18.1.8] /home/gaizka/.gradle/caches/8.13/transforms/1158248ab54d61efddd478d542fd2f0d/transformed/firebase-datatransport-18.1.8/AndroidManifest.xml:27:13-29:85
 	android:value

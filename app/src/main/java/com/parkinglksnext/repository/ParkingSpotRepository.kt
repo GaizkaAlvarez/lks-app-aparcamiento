@@ -3,24 +3,41 @@ package com.parkinglksnext.repository
 import com.google.firebase.firestore.FirebaseFirestore
 import com.parkinglksnext.ParkingSpot
 import com.parkinglksnext.util.Resource
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.launch
 
 /**
  * Repository for parking spots (read-only, seeded data).
- * Collection: parkingSpots/{spotId} — 100 documents (1-85 normal, 86-95 electric, 96-100 motorcycle)
+ * Collection: parkingSpots/{spotId} — 25 documents (1-21 combustion, 22-24 electric, 25 motorcycle)
+ *
+ * Starts a real-time Firestore snapshot listener on construction so _spots stays in sync.
  */
 class ParkingSpotRepository {
 
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
     private val collection = db.collection("parkingSpots")
 
+    // Dedicated scope for the snapshot listener — lives as long as the repository instance.
+    private val repoScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+
     private val _spots = MutableStateFlow<List<ParkingSpot>>(emptyList())
     val spots: StateFlow<List<ParkingSpot>> = _spots.asStateFlow()
+
+    init {
+        // Start the real-time snapshot listener immediately so any consumer
+        // that reads getAvailableSpotsForVehicle() sees live data.
+        repoScope.launch {
+            getParkingSpots().collect { /* _spots is updated inside getParkingSpots */ }
+        }
+    }
 
     /**
      * Real-time listener for all parking spots.
@@ -45,22 +62,25 @@ class ParkingSpotRepository {
      * Returns available parking spots compatible with the given vehicle type.
      *
      * Compatibility rules (from Figma reference):
-     * - "normal"     → normal spots only
-     * - "electric"   → electric OR normal spots
+     * - "combustion" → combustion spots only
+     * - "electric"   → electric OR combustion spots
      * - "motorcycle" → motorcycle spots only
      */
     fun getAvailableSpotsForVehicle(vehicleType: String): List<ParkingSpot> {
         val allAvailable = _spots.value.filter { it.available }
-        return when (vehicleType.lowercase()) {
+        val filtered = when (vehicleType.lowercase()) {
             "motorcycle", "moto" -> allAvailable.filter { it.type == "motorcycle" }
-            "electric", "eléctrico" -> allAvailable.filter { it.type in listOf("electric", "normal") }
-            else -> allAvailable.filter { it.type == "normal" }
+            "electric", "eléctrico" -> allAvailable.filter {
+                it.type in listOf("electric", "combustion")
+            }
+            else -> allAvailable.filter { it.type == "combustion" }
         }
+        return filtered.sortedBy { it.number }
     }
 
     /**
      * Initialize parking spots seed data on first launch.
-     * Creates 100 spots: 1-85 normal, 86-95 electric, 96-100 motorcycle.
+     * Creates 25 spots: 1-21 combustion, 22-24 electric, 25 motorcycle.
      */
     fun seedParkingSpotsIfEmpty(): Flow<Resource<Unit>> = callbackFlow {
         collection.get().addOnCompleteListener { task ->
@@ -69,10 +89,10 @@ class ParkingSpotRepository {
                 if (snapshot != null && snapshot.isEmpty) {
                     // Collection is empty — seed it
                     val batch = db.batch()
-                    for (i in 1..100) {
+                    for (i in 1..25) {
                         val type = when {
-                            i <= 85 -> "normal"
-                            i <= 95 -> "electric"
+                            i <= 21 -> "combustion"
+                            i <= 24 -> "electric"
                             else -> "motorcycle"
                         }
                         val spot = hashMapOf<String, Any>(

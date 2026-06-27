@@ -15,23 +15,23 @@
 12-->[com.google.firebase:firebase-auth:23.0.0] /home/gaizka/.gradle/caches/8.13/transforms/b529a099e979447b680ff76f128297e4/transformed/firebase-auth-23.0.0/AndroidManifest.xml:26:5-79
 12-->[com.google.firebase:firebase-auth:23.0.0] /home/gaizka/.gradle/caches/8.13/transforms/b529a099e979447b680ff76f128297e4/transformed/firebase-auth-23.0.0/AndroidManifest.xml:26:22-76
 13    <uses-permission android:name="android.permission.WAKE_LOCK" />
-13-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:25:5-68
-13-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:25:22-65
-14    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
-14-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:26:5-110
-14-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:26:22-107
-15    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
-15-->[com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:25:5-79
-15-->[com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:25:22-76
-16    <uses-permission android:name="android.permission.ACCESS_ADSERVICES_ATTRIBUTION" />
-16-->[com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:26:5-88
-16-->[com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:26:22-85
-17    <uses-permission android:name="android.permission.ACCESS_ADSERVICES_AD_ID" />
-17-->[com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:27:5-82
-17-->[com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:27:22-79
-18    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
-18-->[com.google.android.recaptcha:recaptcha:18.4.0] /home/gaizka/.gradle/caches/8.13/transforms/5539cfc9dd116039413631a8333adb63/transformed/recaptcha-18.4.0/AndroidManifest.xml:9:5-98
-18-->[com.google.android.recaptcha:recaptcha:18.4.0] /home/gaizka/.gradle/caches/8.13/transforms/5539cfc9dd116039413631a8333adb63/transformed/recaptcha-18.4.0/AndroidManifest.xml:9:22-95
+13-->[com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:24:5-68
+13-->[com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:24:22-65
+14    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+14-->[com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:25:5-79
+14-->[com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:25:22-76
+15    <uses-permission android:name="android.permission.ACCESS_ADSERVICES_ATTRIBUTION" />
+15-->[com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:26:5-88
+15-->[com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:26:22-85
+16    <uses-permission android:name="android.permission.ACCESS_ADSERVICES_AD_ID" />
+16-->[com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:27:5-82
+16-->[com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:27:22-79
+17    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+17-->[com.google.android.recaptcha:recaptcha:18.4.0] /home/gaizka/.gradle/caches/8.13/transforms/5539cfc9dd116039413631a8333adb63/transformed/recaptcha-18.4.0/AndroidManifest.xml:9:5-98
+17-->[com.google.android.recaptcha:recaptcha:18.4.0] /home/gaizka/.gradle/caches/8.13/transforms/5539cfc9dd116039413631a8333adb63/transformed/recaptcha-18.4.0/AndroidManifest.xml:9:22-95
+18    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+18-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:26:5-110
+18-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:26:22-107
 19
 20    <permission
 20-->[androidx.core:core:1.13.1] /home/gaizka/.gradle/caches/8.13/transforms/d93929b713276aff2e7dc9c2a2daeec1/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
@@ -186,23 +186,23 @@
 99                android:value="com.google.firebase.components.ComponentRegistrar" />
 99-->[com.google.firebase:firebase-firestore:25.0.0] /home/gaizka/.gradle/caches/8.13/transforms/dbf59598d7052222a8b712a1f1007292/transformed/firebase-firestore-25.0.0/AndroidManifest.xml:22:17-82
 100            <meta-data
-100-->[com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:37:13-39:85
-101                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
-101-->[com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:38:17-139
+100-->[com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:15:13-17:85
+101                android:name="com.google.firebase.components:com.google.firebase.crashlytics.FirebaseCrashlyticsKtxRegistrar"
+101-->[com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:16:17-126
 102                android:value="com.google.firebase.components.ComponentRegistrar" />
-102-->[com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:39:17-82
+102-->[com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:17:17-82
 103            <meta-data
-103-->[com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:15:13-17:85
-104                android:name="com.google.firebase.components:com.google.firebase.crashlytics.FirebaseCrashlyticsKtxRegistrar"
-104-->[com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:16:17-126
+103-->[com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:18:13-20:85
+104                android:name="com.google.firebase.components:com.google.firebase.crashlytics.CrashlyticsRegistrar"
+104-->[com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:19:17-115
 105                android:value="com.google.firebase.components.ComponentRegistrar" />
-105-->[com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:17:17-82
+105-->[com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:20:17-82
 106            <meta-data
-106-->[com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:18:13-20:85
-107                android:name="com.google.firebase.components:com.google.firebase.crashlytics.CrashlyticsRegistrar"
-107-->[com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:19:17-115
+106-->[com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:37:13-39:85
+107                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+107-->[com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:38:17-139
 108                android:value="com.google.firebase.components.ComponentRegistrar" />
-108-->[com.google.firebase:firebase-crashlytics:19.0.0] /home/gaizka/.gradle/caches/8.13/transforms/ae97fe55ea0237877a1a9c7f8eb159f6/transformed/firebase-crashlytics-19.0.0/AndroidManifest.xml:20:17-82
+108-->[com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:39:17-82
 109            <meta-data
 109-->[com.google.firebase:firebase-sessions:2.0.0] /home/gaizka/.gradle/caches/8.13/transforms/543aa80f640302f761c863c0ec94e744/transformed/firebase-sessions-2.0.0/AndroidManifest.xml:29:13-31:85
 110                android:name="com.google.firebase.components:com.google.firebase.sessions.FirebaseSessionsRegistrar"
@@ -254,236 +254,237 @@
 134            android:exported="true" />
 134-->[androidx.compose.ui:ui-tooling-android:1.7.2] /home/gaizka/.gradle/caches/8.13/transforms/c37cf8571321f177af1a477b2515f121/transformed/ui-tooling-release/AndroidManifest.xml:25:13-36
 135
-136        <receiver
-136-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:29:9-33:20
-137            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
-137-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:30:13-85
+136        <service
+136-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:24:9-32:19
+137            android:name="androidx.credentials.playservices.CredentialProviderMetadataHolder"
+137-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:25:13-94
 138            android:enabled="true"
-138-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:31:13-35
+138-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:26:13-35
 139            android:exported="false" >
-139-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:32:13-37
-140        </receiver>
-141
-142        <service
-142-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:35:9-38:40
-143            android:name="com.google.android.gms.measurement.AppMeasurementService"
-143-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:36:13-84
-144            android:enabled="true"
-144-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:37:13-35
-145            android:exported="false" />
-145-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:38:13-37
-146        <service
-146-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:39:9-43:72
-147            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
-147-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:40:13-87
+139-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:27:13-37
+140            <meta-data
+140-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:29:13-31:104
+141                android:name="androidx.credentials.CREDENTIAL_PROVIDER_KEY"
+141-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:30:17-76
+142                android:value="androidx.credentials.playservices.CredentialProviderPlayServicesImpl" />
+142-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:31:17-101
+143        </service>
+144
+145        <activity
+145-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:34:9-41:20
+146            android:name="androidx.credentials.playservices.HiddenActivity"
+146-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:35:13-76
+147            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+147-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:36:13-87
 148            android:enabled="true"
-148-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:41:13-35
+148-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:37:13-35
 149            android:exported="false"
-149-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:42:13-37
-150            android:permission="android.permission.BIND_JOB_SERVICE" />
-150-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:43:13-69
-151
-152        <property
-152-->[com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:30:9-32:61
-153            android:name="android.adservices.AD_SERVICES_CONFIG"
-153-->[com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:31:13-65
-154            android:resource="@xml/ga_ad_services_config" />
-154-->[com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:32:13-58
-155
-156        <service
-156-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:24:9-32:19
-157            android:name="androidx.credentials.playservices.CredentialProviderMetadataHolder"
-157-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:25:13-94
-158            android:enabled="true"
-158-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:26:13-35
-159            android:exported="false" >
-159-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:27:13-37
-160            <meta-data
-160-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:29:13-31:104
-161                android:name="androidx.credentials.CREDENTIAL_PROVIDER_KEY"
-161-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:30:17-76
-162                android:value="androidx.credentials.playservices.CredentialProviderPlayServicesImpl" />
-162-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:31:17-101
-163        </service>
-164
-165        <activity
-165-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:34:9-41:20
-166            android:name="androidx.credentials.playservices.HiddenActivity"
-166-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:35:13-76
-167            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
-167-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:36:13-87
-168            android:enabled="true"
-168-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:37:13-35
-169            android:exported="false"
-169-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:38:13-37
-170            android:fitsSystemWindows="true"
-170-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:39:13-45
-171            android:theme="@style/Theme.Hidden" >
-171-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:40:13-48
-172        </activity>
-173        <activity
-173-->[com.google.android.gms:play-services-auth:20.7.0] /home/gaizka/.gradle/caches/8.13/transforms/5f82c75b39fb75b2f80492717a1e22ff/transformed/play-services-auth-20.7.0/AndroidManifest.xml:23:9-27:75
-174            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-174-->[com.google.android.gms:play-services-auth:20.7.0] /home/gaizka/.gradle/caches/8.13/transforms/5f82c75b39fb75b2f80492717a1e22ff/transformed/play-services-auth-20.7.0/AndroidManifest.xml:24:13-93
-175            android:excludeFromRecents="true"
-175-->[com.google.android.gms:play-services-auth:20.7.0] /home/gaizka/.gradle/caches/8.13/transforms/5f82c75b39fb75b2f80492717a1e22ff/transformed/play-services-auth-20.7.0/AndroidManifest.xml:25:13-46
-176            android:exported="false"
-176-->[com.google.android.gms:play-services-auth:20.7.0] /home/gaizka/.gradle/caches/8.13/transforms/5f82c75b39fb75b2f80492717a1e22ff/transformed/play-services-auth-20.7.0/AndroidManifest.xml:26:13-37
-177            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-177-->[com.google.android.gms:play-services-auth:20.7.0] /home/gaizka/.gradle/caches/8.13/transforms/5f82c75b39fb75b2f80492717a1e22ff/transformed/play-services-auth-20.7.0/AndroidManifest.xml:27:13-72
-178        <!--
-179            Service handling Google Sign-In user revocation. For apps that do not integrate with
-180            Google Sign-In, this service will never be started.
-181        -->
-182        <service
-182-->[com.google.android.gms:play-services-auth:20.7.0] /home/gaizka/.gradle/caches/8.13/transforms/5f82c75b39fb75b2f80492717a1e22ff/transformed/play-services-auth-20.7.0/AndroidManifest.xml:33:9-37:51
-183            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
-183-->[com.google.android.gms:play-services-auth:20.7.0] /home/gaizka/.gradle/caches/8.13/transforms/5f82c75b39fb75b2f80492717a1e22ff/transformed/play-services-auth-20.7.0/AndroidManifest.xml:34:13-89
-184            android:exported="true"
-184-->[com.google.android.gms:play-services-auth:20.7.0] /home/gaizka/.gradle/caches/8.13/transforms/5f82c75b39fb75b2f80492717a1e22ff/transformed/play-services-auth-20.7.0/AndroidManifest.xml:35:13-36
-185            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
-185-->[com.google.android.gms:play-services-auth:20.7.0] /home/gaizka/.gradle/caches/8.13/transforms/5f82c75b39fb75b2f80492717a1e22ff/transformed/play-services-auth-20.7.0/AndroidManifest.xml:36:13-107
-186            android:visibleToInstantApps="true" />
-186-->[com.google.android.gms:play-services-auth:20.7.0] /home/gaizka/.gradle/caches/8.13/transforms/5f82c75b39fb75b2f80492717a1e22ff/transformed/play-services-auth-20.7.0/AndroidManifest.xml:37:13-48
-187        <service
-187-->[com.google.firebase:firebase-sessions:2.0.0] /home/gaizka/.gradle/caches/8.13/transforms/543aa80f640302f761c863c0ec94e744/transformed/firebase-sessions-2.0.0/AndroidManifest.xml:22:9-25:40
-188            android:name="com.google.firebase.sessions.SessionLifecycleService"
-188-->[com.google.firebase:firebase-sessions:2.0.0] /home/gaizka/.gradle/caches/8.13/transforms/543aa80f640302f761c863c0ec94e744/transformed/firebase-sessions-2.0.0/AndroidManifest.xml:23:13-80
-189            android:enabled="true"
-189-->[com.google.firebase:firebase-sessions:2.0.0] /home/gaizka/.gradle/caches/8.13/transforms/543aa80f640302f761c863c0ec94e744/transformed/firebase-sessions-2.0.0/AndroidManifest.xml:24:13-35
-190            android:exported="false" />
-190-->[com.google.firebase:firebase-sessions:2.0.0] /home/gaizka/.gradle/caches/8.13/transforms/543aa80f640302f761c863c0ec94e744/transformed/firebase-sessions-2.0.0/AndroidManifest.xml:25:13-37
-191
-192        <provider
-192-->[com.google.firebase:firebase-common:21.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d9b8f8ea3bc9c5dfae860224cb275fdc/transformed/firebase-common-21.0.0/AndroidManifest.xml:23:9-28:39
-193            android:name="com.google.firebase.provider.FirebaseInitProvider"
-193-->[com.google.firebase:firebase-common:21.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d9b8f8ea3bc9c5dfae860224cb275fdc/transformed/firebase-common-21.0.0/AndroidManifest.xml:24:13-77
-194            android:authorities="com.parkinglksnext.firebaseinitprovider"
-194-->[com.google.firebase:firebase-common:21.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d9b8f8ea3bc9c5dfae860224cb275fdc/transformed/firebase-common-21.0.0/AndroidManifest.xml:25:13-72
-195            android:directBootAware="true"
-195-->[com.google.firebase:firebase-common:21.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d9b8f8ea3bc9c5dfae860224cb275fdc/transformed/firebase-common-21.0.0/AndroidManifest.xml:26:13-43
-196            android:exported="false"
-196-->[com.google.firebase:firebase-common:21.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d9b8f8ea3bc9c5dfae860224cb275fdc/transformed/firebase-common-21.0.0/AndroidManifest.xml:27:13-37
-197            android:initOrder="100" />
-197-->[com.google.firebase:firebase-common:21.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d9b8f8ea3bc9c5dfae860224cb275fdc/transformed/firebase-common-21.0.0/AndroidManifest.xml:28:13-36
-198
-199        <activity
-199-->[com.google.android.gms:play-services-base:18.0.1] /home/gaizka/.gradle/caches/8.13/transforms/9f2075680e0eb0ecc6a61d888add5d0f/transformed/play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
-200            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-200-->[com.google.android.gms:play-services-base:18.0.1] /home/gaizka/.gradle/caches/8.13/transforms/9f2075680e0eb0ecc6a61d888add5d0f/transformed/play-services-base-18.0.1/AndroidManifest.xml:20:19-85
-201            android:exported="false"
-201-->[com.google.android.gms:play-services-base:18.0.1] /home/gaizka/.gradle/caches/8.13/transforms/9f2075680e0eb0ecc6a61d888add5d0f/transformed/play-services-base-18.0.1/AndroidManifest.xml:22:19-43
-202            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-202-->[com.google.android.gms:play-services-base:18.0.1] /home/gaizka/.gradle/caches/8.13/transforms/9f2075680e0eb0ecc6a61d888add5d0f/transformed/play-services-base-18.0.1/AndroidManifest.xml:21:19-78
-203
-204        <provider
-204-->[androidx.emoji2:emoji2:1.3.0] /home/gaizka/.gradle/caches/8.13/transforms/8b2cce8914579670ee0538d650f17245/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
-205            android:name="androidx.startup.InitializationProvider"
-205-->[androidx.emoji2:emoji2:1.3.0] /home/gaizka/.gradle/caches/8.13/transforms/8b2cce8914579670ee0538d650f17245/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
-206            android:authorities="com.parkinglksnext.androidx-startup"
-206-->[androidx.emoji2:emoji2:1.3.0] /home/gaizka/.gradle/caches/8.13/transforms/8b2cce8914579670ee0538d650f17245/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
-207            android:exported="false" >
-207-->[androidx.emoji2:emoji2:1.3.0] /home/gaizka/.gradle/caches/8.13/transforms/8b2cce8914579670ee0538d650f17245/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
-208            <meta-data
-208-->[androidx.emoji2:emoji2:1.3.0] /home/gaizka/.gradle/caches/8.13/transforms/8b2cce8914579670ee0538d650f17245/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
-209                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-209-->[androidx.emoji2:emoji2:1.3.0] /home/gaizka/.gradle/caches/8.13/transforms/8b2cce8914579670ee0538d650f17245/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
-210                android:value="androidx.startup" />
-210-->[androidx.emoji2:emoji2:1.3.0] /home/gaizka/.gradle/caches/8.13/transforms/8b2cce8914579670ee0538d650f17245/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
-211            <meta-data
-211-->[androidx.lifecycle:lifecycle-process:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/2b23385d96343b56ca697ed05ce7eb89/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:29:13-31:52
-212                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-212-->[androidx.lifecycle:lifecycle-process:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/2b23385d96343b56ca697ed05ce7eb89/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:30:17-78
-213                android:value="androidx.startup" />
-213-->[androidx.lifecycle:lifecycle-process:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/2b23385d96343b56ca697ed05ce7eb89/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:31:17-49
-214            <meta-data
-214-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
-215                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-215-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
-216                android:value="androidx.startup" />
-216-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
-217        </provider>
-218
-219        <uses-library
-219-->[androidx.privacysandbox.ads:ads-adservices:1.0.0-beta05] /home/gaizka/.gradle/caches/8.13/transforms/7e02629711eea25d3049a194288fd046/transformed/ads-adservices-1.0.0-beta05/AndroidManifest.xml:23:9-25:40
-220            android:name="android.ext.adservices"
-220-->[androidx.privacysandbox.ads:ads-adservices:1.0.0-beta05] /home/gaizka/.gradle/caches/8.13/transforms/7e02629711eea25d3049a194288fd046/transformed/ads-adservices-1.0.0-beta05/AndroidManifest.xml:24:13-50
-221            android:required="false" />
-221-->[androidx.privacysandbox.ads:ads-adservices:1.0.0-beta05] /home/gaizka/.gradle/caches/8.13/transforms/7e02629711eea25d3049a194288fd046/transformed/ads-adservices-1.0.0-beta05/AndroidManifest.xml:25:13-37
-222
-223        <meta-data
-223-->[com.google.android.gms:play-services-basement:18.3.0] /home/gaizka/.gradle/caches/8.13/transforms/7c29e7b0ac371fa9b83c598927559662/transformed/play-services-basement-18.3.0/AndroidManifest.xml:21:9-23:69
-224            android:name="com.google.android.gms.version"
-224-->[com.google.android.gms:play-services-basement:18.3.0] /home/gaizka/.gradle/caches/8.13/transforms/7c29e7b0ac371fa9b83c598927559662/transformed/play-services-basement-18.3.0/AndroidManifest.xml:22:13-58
-225            android:value="@integer/google_play_services_version" />
-225-->[com.google.android.gms:play-services-basement:18.3.0] /home/gaizka/.gradle/caches/8.13/transforms/7c29e7b0ac371fa9b83c598927559662/transformed/play-services-basement-18.3.0/AndroidManifest.xml:23:13-66
-226
-227        <service
-227-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/f590335581f216fab6302e0db6298baa/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:28:9-34:19
-228            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
-228-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/f590335581f216fab6302e0db6298baa/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:29:13-103
-229            android:exported="false" >
-229-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/f590335581f216fab6302e0db6298baa/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:30:13-37
-230            <meta-data
-230-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/f590335581f216fab6302e0db6298baa/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:31:13-33:39
-231                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
-231-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/f590335581f216fab6302e0db6298baa/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:32:17-94
-232                android:value="cct" />
-232-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/f590335581f216fab6302e0db6298baa/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:33:17-36
-233        </service>
-234        <service
-234-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/038737c767a223e434a97e4031ae5034/transformed/transport-runtime-3.1.9/AndroidManifest.xml:26:9-30:19
-235            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
-235-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/038737c767a223e434a97e4031ae5034/transformed/transport-runtime-3.1.9/AndroidManifest.xml:27:13-117
-236            android:exported="false"
-236-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/038737c767a223e434a97e4031ae5034/transformed/transport-runtime-3.1.9/AndroidManifest.xml:28:13-37
-237            android:permission="android.permission.BIND_JOB_SERVICE" >
-237-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/038737c767a223e434a97e4031ae5034/transformed/transport-runtime-3.1.9/AndroidManifest.xml:29:13-69
-238        </service>
-239
-240        <receiver
-240-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/038737c767a223e434a97e4031ae5034/transformed/transport-runtime-3.1.9/AndroidManifest.xml:32:9-34:40
-241            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
-241-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/038737c767a223e434a97e4031ae5034/transformed/transport-runtime-3.1.9/AndroidManifest.xml:33:13-132
-242            android:exported="false" />
-242-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/038737c767a223e434a97e4031ae5034/transformed/transport-runtime-3.1.9/AndroidManifest.xml:34:13-37
-243        <receiver
-243-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
-244            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-244-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
-245            android:directBootAware="false"
-245-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
-246            android:enabled="true"
-246-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
-247            android:exported="true"
-247-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
-248            android:permission="android.permission.DUMP" >
-248-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
-249            <intent-filter>
-249-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
-250                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-250-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
-250-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
-251            </intent-filter>
-252            <intent-filter>
-252-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
-253                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-253-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
-253-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
-254            </intent-filter>
-255            <intent-filter>
-255-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
-256                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-256-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
-256-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
-257            </intent-filter>
-258            <intent-filter>
-258-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
-259                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-259-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
-259-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
-260            </intent-filter>
-261        </receiver>
-262    </application>
-263
-264</manifest>
+149-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:38:13-37
+150            android:fitsSystemWindows="true"
+150-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:39:13-45
+151            android:theme="@style/Theme.Hidden" >
+151-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/gaizka/.gradle/caches/8.13/transforms/a54cc89ce2c54653c6dd4af101830261/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:40:13-48
+152        </activity>
+153        <activity
+153-->[com.google.android.gms:play-services-auth:21.3.0] /home/gaizka/.gradle/caches/8.13/transforms/3b06903130bfb74a165ea5417b3f2e6c/transformed/play-services-auth-21.3.0/AndroidManifest.xml:23:9-27:75
+154            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+154-->[com.google.android.gms:play-services-auth:21.3.0] /home/gaizka/.gradle/caches/8.13/transforms/3b06903130bfb74a165ea5417b3f2e6c/transformed/play-services-auth-21.3.0/AndroidManifest.xml:24:13-93
+155            android:excludeFromRecents="true"
+155-->[com.google.android.gms:play-services-auth:21.3.0] /home/gaizka/.gradle/caches/8.13/transforms/3b06903130bfb74a165ea5417b3f2e6c/transformed/play-services-auth-21.3.0/AndroidManifest.xml:25:13-46
+156            android:exported="false"
+156-->[com.google.android.gms:play-services-auth:21.3.0] /home/gaizka/.gradle/caches/8.13/transforms/3b06903130bfb74a165ea5417b3f2e6c/transformed/play-services-auth-21.3.0/AndroidManifest.xml:26:13-37
+157            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+157-->[com.google.android.gms:play-services-auth:21.3.0] /home/gaizka/.gradle/caches/8.13/transforms/3b06903130bfb74a165ea5417b3f2e6c/transformed/play-services-auth-21.3.0/AndroidManifest.xml:27:13-72
+158        <!--
+159            Service handling Google Sign-In user revocation. For apps that do not integrate with
+160            Google Sign-In, this service will never be started.
+161        -->
+162        <service
+162-->[com.google.android.gms:play-services-auth:21.3.0] /home/gaizka/.gradle/caches/8.13/transforms/3b06903130bfb74a165ea5417b3f2e6c/transformed/play-services-auth-21.3.0/AndroidManifest.xml:33:9-37:51
+163            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+163-->[com.google.android.gms:play-services-auth:21.3.0] /home/gaizka/.gradle/caches/8.13/transforms/3b06903130bfb74a165ea5417b3f2e6c/transformed/play-services-auth-21.3.0/AndroidManifest.xml:34:13-89
+164            android:exported="true"
+164-->[com.google.android.gms:play-services-auth:21.3.0] /home/gaizka/.gradle/caches/8.13/transforms/3b06903130bfb74a165ea5417b3f2e6c/transformed/play-services-auth-21.3.0/AndroidManifest.xml:35:13-36
+165            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+165-->[com.google.android.gms:play-services-auth:21.3.0] /home/gaizka/.gradle/caches/8.13/transforms/3b06903130bfb74a165ea5417b3f2e6c/transformed/play-services-auth-21.3.0/AndroidManifest.xml:36:13-107
+166            android:visibleToInstantApps="true" />
+166-->[com.google.android.gms:play-services-auth:21.3.0] /home/gaizka/.gradle/caches/8.13/transforms/3b06903130bfb74a165ea5417b3f2e6c/transformed/play-services-auth-21.3.0/AndroidManifest.xml:37:13-48
+167
+168        <activity
+168-->[com.google.android.gms:play-services-base:18.5.0] /home/gaizka/.gradle/caches/8.13/transforms/fa236c1d64d9950fc30e374ee3ccda33/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:9-173
+169            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+169-->[com.google.android.gms:play-services-base:18.5.0] /home/gaizka/.gradle/caches/8.13/transforms/fa236c1d64d9950fc30e374ee3ccda33/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:19-85
+170            android:exported="false"
+170-->[com.google.android.gms:play-services-base:18.5.0] /home/gaizka/.gradle/caches/8.13/transforms/fa236c1d64d9950fc30e374ee3ccda33/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:146-170
+171            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+171-->[com.google.android.gms:play-services-base:18.5.0] /home/gaizka/.gradle/caches/8.13/transforms/fa236c1d64d9950fc30e374ee3ccda33/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:86-145
+172
+173        <property
+173-->[com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:30:9-32:61
+174            android:name="android.adservices.AD_SERVICES_CONFIG"
+174-->[com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:31:13-65
+175            android:resource="@xml/ga_ad_services_config" />
+175-->[com.google.android.gms:play-services-measurement-api:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/677b872d6b529987e125c740e63082e5/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:32:13-58
+176
+177        <service
+177-->[com.google.firebase:firebase-sessions:2.0.0] /home/gaizka/.gradle/caches/8.13/transforms/543aa80f640302f761c863c0ec94e744/transformed/firebase-sessions-2.0.0/AndroidManifest.xml:22:9-25:40
+178            android:name="com.google.firebase.sessions.SessionLifecycleService"
+178-->[com.google.firebase:firebase-sessions:2.0.0] /home/gaizka/.gradle/caches/8.13/transforms/543aa80f640302f761c863c0ec94e744/transformed/firebase-sessions-2.0.0/AndroidManifest.xml:23:13-80
+179            android:enabled="true"
+179-->[com.google.firebase:firebase-sessions:2.0.0] /home/gaizka/.gradle/caches/8.13/transforms/543aa80f640302f761c863c0ec94e744/transformed/firebase-sessions-2.0.0/AndroidManifest.xml:24:13-35
+180            android:exported="false" />
+180-->[com.google.firebase:firebase-sessions:2.0.0] /home/gaizka/.gradle/caches/8.13/transforms/543aa80f640302f761c863c0ec94e744/transformed/firebase-sessions-2.0.0/AndroidManifest.xml:25:13-37
+181
+182        <provider
+182-->[com.google.firebase:firebase-common:21.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d9b8f8ea3bc9c5dfae860224cb275fdc/transformed/firebase-common-21.0.0/AndroidManifest.xml:23:9-28:39
+183            android:name="com.google.firebase.provider.FirebaseInitProvider"
+183-->[com.google.firebase:firebase-common:21.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d9b8f8ea3bc9c5dfae860224cb275fdc/transformed/firebase-common-21.0.0/AndroidManifest.xml:24:13-77
+184            android:authorities="com.parkinglksnext.firebaseinitprovider"
+184-->[com.google.firebase:firebase-common:21.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d9b8f8ea3bc9c5dfae860224cb275fdc/transformed/firebase-common-21.0.0/AndroidManifest.xml:25:13-72
+185            android:directBootAware="true"
+185-->[com.google.firebase:firebase-common:21.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d9b8f8ea3bc9c5dfae860224cb275fdc/transformed/firebase-common-21.0.0/AndroidManifest.xml:26:13-43
+186            android:exported="false"
+186-->[com.google.firebase:firebase-common:21.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d9b8f8ea3bc9c5dfae860224cb275fdc/transformed/firebase-common-21.0.0/AndroidManifest.xml:27:13-37
+187            android:initOrder="100" />
+187-->[com.google.firebase:firebase-common:21.0.0] /home/gaizka/.gradle/caches/8.13/transforms/d9b8f8ea3bc9c5dfae860224cb275fdc/transformed/firebase-common-21.0.0/AndroidManifest.xml:28:13-36
+188
+189        <receiver
+189-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:29:9-33:20
+190            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+190-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:30:13-85
+191            android:enabled="true"
+191-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:31:13-35
+192            android:exported="false" >
+192-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:32:13-37
+193        </receiver>
+194
+195        <service
+195-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:35:9-38:40
+196            android:name="com.google.android.gms.measurement.AppMeasurementService"
+196-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:36:13-84
+197            android:enabled="true"
+197-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:37:13-35
+198            android:exported="false" />
+198-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:38:13-37
+199        <service
+199-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:39:9-43:72
+200            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+200-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:40:13-87
+201            android:enabled="true"
+201-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:41:13-35
+202            android:exported="false"
+202-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:42:13-37
+203            android:permission="android.permission.BIND_JOB_SERVICE" />
+203-->[com.google.android.gms:play-services-measurement:22.0.0] /home/gaizka/.gradle/caches/8.13/transforms/51443b469fc9c0d5f285ce7caeea4472/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:43:13-69
+204
+205        <provider
+205-->[androidx.emoji2:emoji2:1.3.0] /home/gaizka/.gradle/caches/8.13/transforms/8b2cce8914579670ee0538d650f17245/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+206            android:name="androidx.startup.InitializationProvider"
+206-->[androidx.emoji2:emoji2:1.3.0] /home/gaizka/.gradle/caches/8.13/transforms/8b2cce8914579670ee0538d650f17245/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
+207            android:authorities="com.parkinglksnext.androidx-startup"
+207-->[androidx.emoji2:emoji2:1.3.0] /home/gaizka/.gradle/caches/8.13/transforms/8b2cce8914579670ee0538d650f17245/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
+208            android:exported="false" >
+208-->[androidx.emoji2:emoji2:1.3.0] /home/gaizka/.gradle/caches/8.13/transforms/8b2cce8914579670ee0538d650f17245/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
+209            <meta-data
+209-->[androidx.emoji2:emoji2:1.3.0] /home/gaizka/.gradle/caches/8.13/transforms/8b2cce8914579670ee0538d650f17245/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+210                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+210-->[androidx.emoji2:emoji2:1.3.0] /home/gaizka/.gradle/caches/8.13/transforms/8b2cce8914579670ee0538d650f17245/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
+211                android:value="androidx.startup" />
+211-->[androidx.emoji2:emoji2:1.3.0] /home/gaizka/.gradle/caches/8.13/transforms/8b2cce8914579670ee0538d650f17245/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
+212            <meta-data
+212-->[androidx.lifecycle:lifecycle-process:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/2b23385d96343b56ca697ed05ce7eb89/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:29:13-31:52
+213                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+213-->[androidx.lifecycle:lifecycle-process:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/2b23385d96343b56ca697ed05ce7eb89/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:30:17-78
+214                android:value="androidx.startup" />
+214-->[androidx.lifecycle:lifecycle-process:2.8.7] /home/gaizka/.gradle/caches/8.13/transforms/2b23385d96343b56ca697ed05ce7eb89/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:31:17-49
+215            <meta-data
+215-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+216                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+216-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+217                android:value="androidx.startup" />
+217-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+218        </provider>
+219
+220        <uses-library
+220-->[androidx.privacysandbox.ads:ads-adservices:1.0.0-beta05] /home/gaizka/.gradle/caches/8.13/transforms/7e02629711eea25d3049a194288fd046/transformed/ads-adservices-1.0.0-beta05/AndroidManifest.xml:23:9-25:40
+221            android:name="android.ext.adservices"
+221-->[androidx.privacysandbox.ads:ads-adservices:1.0.0-beta05] /home/gaizka/.gradle/caches/8.13/transforms/7e02629711eea25d3049a194288fd046/transformed/ads-adservices-1.0.0-beta05/AndroidManifest.xml:24:13-50
+222            android:required="false" />
+222-->[androidx.privacysandbox.ads:ads-adservices:1.0.0-beta05] /home/gaizka/.gradle/caches/8.13/transforms/7e02629711eea25d3049a194288fd046/transformed/ads-adservices-1.0.0-beta05/AndroidManifest.xml:25:13-37
+223
+224        <meta-data
+224-->[com.google.android.gms:play-services-basement:18.4.0] /home/gaizka/.gradle/caches/8.13/transforms/47e073557553128db777539f9a0f4225/transformed/play-services-basement-18.4.0/AndroidManifest.xml:6:9-122
+225            android:name="com.google.android.gms.version"
+225-->[com.google.android.gms:play-services-basement:18.4.0] /home/gaizka/.gradle/caches/8.13/transforms/47e073557553128db777539f9a0f4225/transformed/play-services-basement-18.4.0/AndroidManifest.xml:6:20-65
+226            android:value="@integer/google_play_services_version" />
+226-->[com.google.android.gms:play-services-basement:18.4.0] /home/gaizka/.gradle/caches/8.13/transforms/47e073557553128db777539f9a0f4225/transformed/play-services-basement-18.4.0/AndroidManifest.xml:6:66-119
+227
+228        <service
+228-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/f590335581f216fab6302e0db6298baa/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:28:9-34:19
+229            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+229-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/f590335581f216fab6302e0db6298baa/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:29:13-103
+230            android:exported="false" >
+230-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/f590335581f216fab6302e0db6298baa/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:30:13-37
+231            <meta-data
+231-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/f590335581f216fab6302e0db6298baa/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:31:13-33:39
+232                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+232-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/f590335581f216fab6302e0db6298baa/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:32:17-94
+233                android:value="cct" />
+233-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/f590335581f216fab6302e0db6298baa/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:33:17-36
+234        </service>
+235        <service
+235-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/038737c767a223e434a97e4031ae5034/transformed/transport-runtime-3.1.9/AndroidManifest.xml:26:9-30:19
+236            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+236-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/038737c767a223e434a97e4031ae5034/transformed/transport-runtime-3.1.9/AndroidManifest.xml:27:13-117
+237            android:exported="false"
+237-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/038737c767a223e434a97e4031ae5034/transformed/transport-runtime-3.1.9/AndroidManifest.xml:28:13-37
+238            android:permission="android.permission.BIND_JOB_SERVICE" >
+238-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/038737c767a223e434a97e4031ae5034/transformed/transport-runtime-3.1.9/AndroidManifest.xml:29:13-69
+239        </service>
+240
+241        <receiver
+241-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/038737c767a223e434a97e4031ae5034/transformed/transport-runtime-3.1.9/AndroidManifest.xml:32:9-34:40
+242            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+242-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/038737c767a223e434a97e4031ae5034/transformed/transport-runtime-3.1.9/AndroidManifest.xml:33:13-132
+243            android:exported="false" />
+243-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/gaizka/.gradle/caches/8.13/transforms/038737c767a223e434a97e4031ae5034/transformed/transport-runtime-3.1.9/AndroidManifest.xml:34:13-37
+244        <receiver
+244-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+245            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+245-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+246            android:directBootAware="false"
+246-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+247            android:enabled="true"
+247-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+248            android:exported="true"
+248-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+249            android:permission="android.permission.DUMP" >
+249-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+250            <intent-filter>
+250-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+251                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+251-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+251-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+252            </intent-filter>
+253            <intent-filter>
+253-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+254                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+254-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+254-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+255            </intent-filter>
+256            <intent-filter>
+256-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+257                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+257-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+257-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+258            </intent-filter>
+259            <intent-filter>
+259-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+260                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+260-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+260-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gaizka/.gradle/caches/8.13/transforms/39732a6647f15b6002210032bcdcba29/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+261            </intent-filter>
+262        </receiver>
+263    </application>
+264
+265</manifest>

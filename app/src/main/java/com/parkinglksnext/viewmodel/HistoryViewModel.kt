@@ -9,12 +9,15 @@ import com.parkinglksnext.util.Resource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 /**
  * Manages reservation history (completed + cancelled) for the authenticated user.
  */
+@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
 class HistoryViewModel : ViewModel() {
 
     private val reservationRepo = ReservationRepository()
@@ -32,13 +35,17 @@ class HistoryViewModel : ViewModel() {
     val uiState: StateFlow<HistoryUiState> = _uiState.asStateFlow()
 
     init {
-        loadHistory()
-    }
-
-    private fun loadHistory() {
-        val uid = authRepo.getCurrentUser()?.uid ?: return
+        // Reactively load history when the user authenticates.
+        // flatMapLatest cancels the previous snapshot listener on auth change.
         viewModelScope.launch {
-            reservationRepo.getReservationHistory(uid).collect { resource ->
+            authRepo.authStateFlow.flatMapLatest { firebaseUser ->
+                if (firebaseUser != null) {
+                    reservationRepo.getReservationHistory(firebaseUser.uid)
+                } else {
+                    _uiState.update { HistoryUiState() }
+                    emptyFlow()
+                }
+            }.collect { resource ->
                 when (resource) {
                     is Resource.Loading -> _uiState.update { it.copy(isLoading = true) }
                     is Resource.Success -> _uiState.update {

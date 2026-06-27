@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "145516130963",
+    "firebase_url": "https://parkinglksnext-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "parkinglksnext",
     "storage_bucket": "parkinglksnext.firebasestorage.app"
   },
@@ -12,7 +13,12 @@
           "package_name": "com.parkinglksnext"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "145516130963-bnricd5agp2bj2tjv5pf22aueeuf684t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAQAn8Wck9wzvF0-NF89VjPwOznERri9TQ"
@@ -20,7 +26,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "145516130963-bnricd5agp2bj2tjv5pf22aueeuf684t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

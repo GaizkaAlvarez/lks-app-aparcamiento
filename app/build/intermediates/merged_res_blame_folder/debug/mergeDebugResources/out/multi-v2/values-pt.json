@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.parkinglksnext.app-mergeDebugResources-69:/values-pt/values-pt.xml",
+            "outputFile": "com.parkinglksnext.app-mergeDebugResources-68:/values-pt/values-pt.xml",
             "map": [
                 {
                     "source": "/home/gaizka/.gradle/caches/8.13/transforms/09a8cd19feb9c55299e6cae83b4968d0/transformed/foundation-release/res/values-pt/values-pt.xml",

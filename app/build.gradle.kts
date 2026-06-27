@@ -33,6 +33,7 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+        isCoreLibraryDesugaringEnabled = true
     }
     kotlinOptions {
         jvmTarget = "17"
@@ -74,4 +75,10 @@ dependencies {
     // Lifecycle + Compose (collectAsStateWithLifecycle + viewModel)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+    // Core library desugaring (java.time on API < 26)
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
+
+    // Google Sign-In
+    implementation("com.google.android.gms:play-services-auth:21.3.0")
 }

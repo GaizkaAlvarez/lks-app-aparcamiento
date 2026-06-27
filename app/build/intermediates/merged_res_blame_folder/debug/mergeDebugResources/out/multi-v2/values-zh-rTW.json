@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.parkinglksnext.app-mergeDebugResources-69:/values-zh-rTW/values-zh-rTW.xml",
+            "outputFile": "com.parkinglksnext.app-mergeDebugResources-68:/values-zh-rTW/values-zh-rTW.xml",
             "map": [
                 {
                     "source": "/home/gaizka/.gradle/caches/8.13/transforms/d93929b713276aff2e7dc9c2a2daeec1/transformed/core-1.13.1/res/values-zh-rTW/values-zh-rTW.xml",
@@ -18,23 +18,6 @@
                         "startOffsets": "322,414,513,607,701,794,887,9849",
                         "endColumns": "91,98,93,93,92,92,95,100",
                         "endOffsets": "409,508,602,696,789,882,978,9945"
-                    }
-                },
-                {
-                    "source": "/home/gaizka/.gradle/caches/8.13/transforms/7c29e7b0ac371fa9b83c598927559662/transformed/play-services-basement-18.3.0/res/values-zh-rTW/values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "199",
-                        "endColumns": "98",
-                        "endOffsets": "297"
-                    },
-                    "to": {
-                        "startLines": "21",
-                        "startColumns": "4",
-                        "startOffsets": "2000",
-                        "endColumns": "102",
-                        "endOffsets": "2098"
                     }
                 },
                 {
@@ -72,23 +55,6 @@
                     }
                 },
                 {
-                    "source": "/home/gaizka/.gradle/caches/8.13/transforms/9f2075680e0eb0ecc6a61d888add5d0f/transformed/play-services-base-18.0.1/res/values-zh-rTW/values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
-                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
-                        "startOffsets": "197,294,418,529,627,730,842,938,1029,1135,1232,1357,1468,1566,1670,1722,1775",
-                        "endColumns": "96,123,110,97,102,111,95,90,105,96,124,110,97,103,51,52,69",
-                        "endOffsets": "293,417,528,626,729,841,937,1028,1134,1231,1356,1467,1565,1669,1721,1774,1844"
-                    },
-                    "to": {
-                        "startLines": "13,14,15,16,17,18,19,20,22,23,24,25,26,27,28,29,30",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "1136,1237,1365,1480,1582,1689,1805,1905,2103,2213,2314,2443,2558,2660,2768,2824,2881",
-                        "endColumns": "100,127,114,101,106,115,99,94,109,100,128,114,101,107,55,56,73",
-                        "endOffsets": "1232,1360,1475,1577,1684,1800,1900,1995,2208,2309,2438,2553,2655,2763,2819,2876,2950"
-                    }
-                },
-                {
                     "source": "/home/gaizka/.gradle/caches/8.13/transforms/fd66b9d2dc1a06d34be8d2fc6fa4af1f/transformed/browser-1.4.0/res/values-zh-rTW/values-zh-rTW.xml",
                     "from": {
                         "startLines": "2,3,4,5",
@@ -106,6 +72,23 @@
                     }
                 },
                 {
+                    "source": "/home/gaizka/.gradle/caches/8.13/transforms/47e073557553128db777539f9a0f4225/transformed/play-services-basement-18.4.0/res/values-zh-rTW/values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "199",
+                        "endColumns": "98",
+                        "endOffsets": "297"
+                    },
+                    "to": {
+                        "startLines": "21",
+                        "startColumns": "4",
+                        "startOffsets": "2000",
+                        "endColumns": "102",
+                        "endOffsets": "2098"
+                    }
+                },
+                {
                     "source": "/home/gaizka/.gradle/caches/8.13/transforms/a010e134284a3ba392fdd455604dfb01/transformed/credentials-1.2.0-rc01/res/values-zh-rTW/values-zh-rTW.xml",
                     "from": {
                         "startLines": "2,3",
@@ -120,6 +103,23 @@
                         "startOffsets": "105,211",
                         "endColumns": "105,110",
                         "endOffsets": "206,317"
+                    }
+                },
+                {
+                    "source": "/home/gaizka/.gradle/caches/8.13/transforms/fa236c1d64d9950fc30e374ee3ccda33/transformed/play-services-base-18.5.0/res/values-zh-rTW/values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "197,294,418,529,627,730,842,938,1029,1135,1232,1357,1468,1566,1670,1722,1775",
+                        "endColumns": "96,123,110,97,102,111,95,90,105,96,124,110,97,103,51,52,69",
+                        "endOffsets": "293,417,528,626,729,841,937,1028,1134,1231,1356,1467,1565,1669,1721,1774,1844"
+                    },
+                    "to": {
+                        "startLines": "13,14,15,16,17,18,19,20,22,23,24,25,26,27,28,29,30",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1136,1237,1365,1480,1582,1689,1805,1905,2103,2213,2314,2443,2558,2660,2768,2824,2881",
+                        "endColumns": "100,127,114,101,106,115,99,94,109,100,128,114,101,107,55,56,73",
+                        "endOffsets": "1232,1360,1475,1577,1684,1800,1900,1995,2208,2309,2438,2553,2655,2763,2819,2876,2950"
                     }
                 },
                 {

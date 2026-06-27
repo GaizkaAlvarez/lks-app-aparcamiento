@@ -1,9 +1,12 @@
 package com.parkinglksnext
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -17,6 +20,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.OAuthProvider
 import com.parkinglksnext.navigation.DrawerContent
 import com.parkinglksnext.navigation.Routes
 import com.parkinglksnext.repository.ParkingSpotRepository
@@ -48,24 +53,21 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun AppRoot() {
-    // ─── Seed parking spots on first launch ─────────────────────
     LaunchedEffect(Unit) {
         SeedData.ensureParkingSpotsSeeded(ParkingSpotRepository())
     }
 
-    // ─── Activity-scoped ViewModels (shared across screens) ──────
     val authViewModel: AuthViewModel = viewModel()
     val reservationsViewModel: ReservationsViewModel = viewModel()
     val newReservationViewModel: NewReservationViewModel = viewModel()
     val historyViewModel: HistoryViewModel = viewModel()
     val profileViewModel: ProfileViewModel = viewModel()
 
-    // ─── Navigation ──────────────────────────────────────────────
     val navController = rememberNavController()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
 
-    // Auth state determines start destination
     val authState by authViewModel.uiState.collectAsStateWithLifecycle()
     val startDestination = if (authState.isAuthenticated) {
         Routes.Dashboard.route
@@ -73,12 +75,54 @@ fun AppRoot() {
         Routes.Login.route
     }
 
-    // Current route for drawer highlighting
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route ?: startDestination
 
+    // ─── Google Sign-In via Credential Manager (no deprecated SDK) ──
+    @Suppress("DEPRECATION")
+    val googleSignInLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        try {
+            val task = com.google.android.gms.auth.api.signin.GoogleSignIn
+                .getSignedInAccountFromIntent(result.data)
+            val account = task.getResult(
+                com.google.android.gms.common.api.ApiException::class.java
+            )
+            account.idToken?.let { idToken ->
+                authViewModel.signInWithGoogle(idToken)
+            }
+        } catch (_: Exception) {
+            // User cancelled or error — ignore silently
+        }
+    }
+
+    @Suppress("DEPRECATION")
+    val onGoogleSignIn: () -> Unit = {
+        val gso = com.google.android.gms.auth.api.signin.GoogleSignInOptions
+            .Builder(com.google.android.gms.auth.api.signin.GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(context.getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+        val client = com.google.android.gms.auth.api.signin.GoogleSignIn.getClient(context, gso)
+        googleSignInLauncher.launch(client.signInIntent)
+    }
+
+    // ─── Profile photo picker ────────────────────────────────────
+    val photoPickerLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetContent()
+    ) { _: android.net.Uri? ->
+        // Photo picked — for now, the UI shows initials as placeholder.
+        // The URI can be uploaded to Firebase Storage in a future iteration.
+    }
+
+    val onPhotoClick: () -> Unit = {
+        photoPickerLauncher.launch("image/*")
+    }
+
     ModalNavigationDrawer(
         drawerState = drawerState,
+        gesturesEnabled = authState.isAuthenticated,
         drawerContent = {
             DrawerContent(
                 userProfile = authState.userProfile,
@@ -86,9 +130,7 @@ fun AppRoot() {
                 onNavigate = { route ->
                     scope.launch { drawerState.close() }
                     navController.navigate(route) {
-                        popUpTo(Routes.Dashboard.route) {
-                            saveState = true
-                        }
+                        popUpTo(Routes.Dashboard.route) { saveState = true }
                         launchSingleTop = true
                         restoreState = true
                     }
@@ -103,12 +145,7 @@ fun AppRoot() {
             )
         }
     ) {
-        // ─── NavHost: all 9 routes ──────────────────────────────
-        NavHost(
-            navController = navController,
-            startDestination = startDestination
-        ) {
-            // ── Auth routes ─────────────────────────────────────
+        NavHost(navController = navController, startDestination = startDestination) {
             composable(Routes.Login.route) {
                 LoginScreen(
                     viewModel = authViewModel,
@@ -122,7 +159,8 @@ fun AppRoot() {
                     },
                     onNavigateToForgotPassword = {
                         navController.navigate(Routes.ForgotPassword.route)
-                    }
+                    },
+                    onGoogleSignIn = onGoogleSignIn
                 )
             }
 
@@ -140,7 +178,6 @@ fun AppRoot() {
                 )
             }
 
-            // ── Main routes ─────────────────────────────────────
             composable(Routes.Dashboard.route) {
                 ActiveReservationsScreen(
                     viewModel = reservationsViewModel,
@@ -158,7 +195,6 @@ fun AppRoot() {
                 NewReservationScreen(
                     viewModel = newReservationViewModel,
                     profileViewModel = profileViewModel,
-                    onNavigateBack = { navController.popBackStack() },
                     onNavigateToDashboard = {
                         navController.navigate(Routes.Dashboard.route) {
                             popUpTo(Routes.Dashboard.route) { inclusive = true }
@@ -190,7 +226,6 @@ fun AppRoot() {
             composable(Routes.Profile.route) {
                 ProfileScreen(
                     viewModel = profileViewModel,
-                    authViewModel = authViewModel,
                     onNavigateToEditProfile = {
                         navController.navigate(Routes.EditProfile.route)
                     },
@@ -207,7 +242,8 @@ fun AppRoot() {
             composable(Routes.EditProfile.route) {
                 EditProfileScreen(
                     viewModel = profileViewModel,
-                    onNavigateBack = { navController.popBackStack() }
+                    onNavigateBack = { navController.popBackStack() },
+                    onPhotoClick = onPhotoClick
                 )
             }
         }

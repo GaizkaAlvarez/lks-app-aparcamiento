@@ -1,25 +1,8 @@
 {
     "logs": [
         {
-            "outputFile": "com.parkinglksnext.app-mergeDebugResources-69:/values-es/values-es.xml",
+            "outputFile": "com.parkinglksnext.app-mergeDebugResources-68:/values-es/values-es.xml",
             "map": [
-                {
-                    "source": "/home/gaizka/.gradle/caches/8.13/transforms/7c29e7b0ac371fa9b83c598927559662/transformed/play-services-basement-18.3.0/res/values-es/values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "195",
-                        "endColumns": "155",
-                        "endOffsets": "350"
-                    },
-                    "to": {
-                        "startLines": "21",
-                        "startColumns": "4",
-                        "startOffsets": "2287",
-                        "endColumns": "159",
-                        "endOffsets": "2442"
-                    }
-                },
                 {
                     "source": "/home/gaizka/.gradle/caches/8.13/transforms/d93929b713276aff2e7dc9c2a2daeec1/transformed/core-1.13.1/res/values-es/values-es.xml",
                     "from": {
@@ -38,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/home/gaizka/.gradle/caches/8.13/transforms/9f2075680e0eb0ecc6a61d888add5d0f/transformed/play-services-base-18.0.1/res/values-es/values.xml",
+                    "source": "/home/gaizka/.gradle/caches/8.13/transforms/fa236c1d64d9950fc30e374ee3ccda33/transformed/play-services-base-18.5.0/res/values-es/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -137,6 +120,23 @@
                         "startOffsets": "4478,4599,4718,4841,4962,5062,5162,5279,5422,5540,5688,5773,5880,5977,6079,6193,6311,6423,6561,6698,6842,7011,7147,7267,7389,7519,7617,7713,7834,7969,8072,8186,8301,8438,8579,8690,8795,8882,8978,9074,9190,9277,9363,9474,9557,9641,9742,9848,9948,10051,10140,10251,10352,10461,10580,10663,10780",
                         "endColumns": "120,118,122,120,99,99,116,142,117,147,84,106,96,101,113,117,111,137,136,143,168,135,119,121,129,97,95,120,134,102,113,114,136,140,110,104,86,95,95,115,86,85,110,82,83,100,105,99,102,88,110,100,108,118,82,116,108",
                         "endOffsets": "4594,4713,4836,4957,5057,5157,5274,5417,5535,5683,5768,5875,5972,6074,6188,6306,6418,6556,6693,6837,7006,7142,7262,7384,7514,7612,7708,7829,7964,8067,8181,8296,8433,8574,8685,8790,8877,8973,9069,9185,9272,9358,9469,9552,9636,9737,9843,9943,10046,10135,10246,10347,10456,10575,10658,10775,10884"
+                    }
+                },
+                {
+                    "source": "/home/gaizka/.gradle/caches/8.13/transforms/47e073557553128db777539f9a0f4225/transformed/play-services-basement-18.4.0/res/values-es/values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "195",
+                        "endColumns": "155",
+                        "endOffsets": "350"
+                    },
+                    "to": {
+                        "startLines": "21",
+                        "startColumns": "4",
+                        "startOffsets": "2287",
+                        "endColumns": "159",
+                        "endOffsets": "2442"
                     }
                 }
             ]

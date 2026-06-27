@@ -39,27 +39,39 @@ fun EditReservationScreen(
         uiState.activeReservations.find { it.id == idReserva }
     }
 
-    // Navigate back on successful update
-    LaunchedEffect(uiState.isUpdateSuccess) {
-        if (uiState.isUpdateSuccess) {
-            viewModel.clearUpdateSuccess()
-            onNavigateBack()
+    // Load spot reservations when the reservation is found
+    LaunchedEffect(reservation) {
+        reservation?.let {
+            viewModel.loadSpotReservations(it.spotId, it.date)
         }
     }
 
-    val rangoHoras = remember { (6..22).map { stringOfHora(it) } }
+    // Collect one-shot update events (no infinite loop)
+    LaunchedEffect(Unit) {
+        viewModel.events.collect { event ->
+            when (event) {
+                is com.parkinglksnext.viewmodel.ReservationEvent.UpdateSuccess -> onNavigateBack()
+                else -> {}
+            }
+        }
+    }
+
+    val rangoHorasInicio = remember { (6..22).map { stringOfHora(it) } }
+    val rangoHorasFin = remember { (6..22).map { stringOfEndHora(it) } }
 
     // Initialize from reservation data
     var horaInicio by remember(reservation) { mutableStateOf(reservation?.startTime ?: "08:00") }
-    var horaFin by remember(reservation) { mutableStateOf(reservation?.endTime ?: "14:00") }
+    var horaFin by remember(reservation) { mutableStateOf(reservation?.endTime ?: "14:55") }
 
     var expandidoInicio by remember { mutableStateOf(false) }
     var expandidoFin by remember { mutableStateOf(false) }
 
-    val startInt = horaInicio.split(":")[0].toInt()
-    val endInt = horaFin.split(":")[0].toInt()
-    val duracion = endInt - startInt
-    val isValidDuration = duracion in 1..9
+    val startMin = horaInicio.split(":").let { it[0].toInt() * 60 + it[1].toInt() }
+    val endMin = horaFin.split(":").let { it[0].toInt() * 60 + it[1].toInt() }
+    val duracion = endMin - startMin
+    val duracionHoras = duracion / 60
+    val duracionMinutos = duracion % 60
+    val isValidDuration = duracion > 0 && duracion <= 540  // max 9h = 540 min
 
     Scaffold(
         topBar = {
@@ -148,7 +160,7 @@ fun EditReservationScreen(
                                     shape = RoundedCornerShape(8.dp)
                                 )
                                 ExposedDropdownMenu(expanded = expandidoInicio, onDismissRequest = { expandidoInicio = false }) {
-                                    rangoHoras.forEach { hora ->
+                                    rangoHorasInicio.forEach { hora ->
                                         DropdownMenuItem(
                                             text = { Text(hora) },
                                             onClick = {
@@ -177,7 +189,7 @@ fun EditReservationScreen(
                                     isError = !isValidDuration
                                 )
                                 ExposedDropdownMenu(expanded = expandidoFin, onDismissRequest = { expandidoFin = false }) {
-                                    rangoHoras.forEach { hora ->
+                                    rangoHorasFin.forEach { hora ->
                                         DropdownMenuItem(
                                             text = { Text(hora) },
                                             onClick = {
@@ -204,7 +216,7 @@ fun EditReservationScreen(
                     ) {
                         Text(
                             text = if (isValidDuration) {
-                                "Duración: $duracion hora${if (duracion != 1) "s" else ""}"
+                                "Duración: ${duracionHoras}h ${duracionMinutos}min"
                             } else if (duracion <= 0) {
                                 "La hora de fin debe ser posterior a la de inicio"
                             } else {
@@ -214,6 +226,36 @@ fun EditReservationScreen(
                             fontSize = 13.sp,
                             fontWeight = FontWeight.Medium
                         )
+                    }
+                }
+            }
+
+            // ── Reservas activas en esta plaza ───────────────────
+            val otrasReservas = uiState.spotReservations.filter { it.id != idReserva }
+            if (otrasReservas.isNotEmpty()) {
+                Spacer(modifier = Modifier.height(16.dp))
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(12.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color(0xFFFFF8E1)),
+                    border = CardDefaults.outlinedCardBorder()
+                ) {
+                    Column(modifier = Modifier.padding(14.dp)) {
+                        Text(
+                            "Reservas en esta plaza para ese día:",
+                            fontWeight = FontWeight.SemiBold,
+                            fontSize = 14.sp,
+                            color = Color(0xFF8D6E00)
+                        )
+                        Spacer(modifier = Modifier.height(6.dp))
+                        otrasReservas.forEach { r ->
+                            Text(
+                                "• ${r.startTime} – ${r.endTime}",
+                                fontSize = 14.sp,
+                                color = Color(0xFF8D6E00),
+                                fontWeight = FontWeight.Medium
+                            )
+                        }
                     }
                 }
             }
@@ -262,3 +304,4 @@ fun EditReservationScreen(
 }
 
 private fun stringOfHora(hora: Int): String = if (hora < 10) "0$hora:00" else "$hora:00"
+private fun stringOfEndHora(hora: Int): String = if (hora < 10) "0$hora:55" else "$hora:55"
