@@ -1,0 +1,2 @@
+07-03 21:27:17.839 18405 18447 I TestRunner: started: newReservation_setStartTime_updates_state(com.parkinglksnext.viewmodel.ViewModelIntegrationTest)
+07-03 21:27:17.840 18405 18447 I TestRunner: finished: newReservation_setStartTime_updates_state(com.parkinglksnext.viewmodel.ViewModelIntegrationTest)

@@ -114,6 +114,18 @@ class AuthRepository {
 
     fun getCurrentUser(): FirebaseUser? = auth.currentUser
 
+    /**
+     * Get the current user's Firebase ID token for authenticating with external backends.
+     * Returns null if no user is signed in.
+     */
+    suspend fun getIdToken(forceRefresh: Boolean = false): String? {
+        return try {
+            auth.currentUser?.getIdToken(forceRefresh)?.await()?.token
+        } catch (_: Exception) {
+            null
+        }
+    }
+
     // ─── Error translation ──────────────────────────────────────
 
     /**

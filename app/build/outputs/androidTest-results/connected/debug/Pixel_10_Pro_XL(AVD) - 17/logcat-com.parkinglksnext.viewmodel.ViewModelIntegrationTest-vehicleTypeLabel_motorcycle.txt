@@ -1,0 +1,2 @@
+07-03 21:27:17.824 18405 18447 I TestRunner: started: vehicleTypeLabel_motorcycle(com.parkinglksnext.viewmodel.ViewModelIntegrationTest)
+07-03 21:27:17.825 18405 18447 I TestRunner: finished: vehicleTypeLabel_motorcycle(com.parkinglksnext.viewmodel.ViewModelIntegrationTest)

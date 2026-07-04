@@ -56,9 +56,28 @@ class AuthViewModel : ViewModel() {
                         it.copy(isAuthenticated = true, userProfile = resource.data, isLoading = false, error = null)
                     }
                     is Resource.Error -> {
-                        // Profile not found — user might have been deleted from Firestore.
+                        // Profile not found — create one for the authenticated user (e.g., Google Sign-In)
                         if (resource.message == "Perfil no encontrado") {
-                            viewModelScope.launch { authRepo.signOut() }
+                            val user = authRepo.getCurrentUser()
+                            if (user != null) {
+                                val newProfile = UserProfile(
+                                    firstName = user.displayName?.split(" ")?.firstOrNull() ?: "",
+                                    lastName = user.displayName?.split(" ")?.drop(1)?.joinToString(" ") ?: "",
+                                    name = user.displayName ?: "",
+                                    email = user.email ?: ""
+                                )
+                                viewModelScope.launch {
+                                    val saved = userRepo.saveUserProfile(user.uid, newProfile)
+                                    if (saved is Resource.Error) {
+                                        _uiState.update {
+                                            it.copy(isAuthenticated = false, isLoading = false, error = saved.message)
+                                        }
+                                        authRepo.signOut()
+                                    }
+                                }
+                            } else {
+                                viewModelScope.launch { authRepo.signOut() }
+                            }
                         } else {
                             _uiState.update {
                                 it.copy(isAuthenticated = true, isLoading = false, error = resource.message)

@@ -7,6 +7,23 @@ plugins {
     alias(libs.plugins.firebase.crashlytics)
 }
 
+// Read API keys from local.properties (gitignored, never committed)
+fun readLocalProperty(key: String, default: String = ""): String {
+    val file = rootProject.file("local.properties")
+    if (!file.exists()) return default
+    return file.readLines()
+        .map { it.trim() }
+        .filter { !it.startsWith("#") && it.contains("=") }
+        .map { it.split("=", limit = 2) }
+        .firstOrNull { it[0].trim() == key }
+        ?.get(1)?.trim() ?: default
+}
+val geminiApiKey: String = readLocalProperty("GEMINI_API_KEY")
+val geminiModel: String = readLocalProperty("GEMINI_MODEL", "gemini-2.0-flash")
+val deepseekApiKey: String = readLocalProperty("DEEPSEEK_API_KEY")
+val deepseekModel: String = readLocalProperty("DEEPSEEK_MODEL", "deepseek-chat")
+val aiProvider: String = readLocalProperty("AI_PROVIDER", "gemini")
+
 android {
     namespace = "com.parkinglksnext"
     compileSdk = 37
@@ -19,6 +36,12 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "AI_PROVIDER", "\"$aiProvider\"")
+        buildConfigField("String", "GEMINI_API_KEY", "\"$geminiApiKey\"")
+        buildConfigField("String", "GEMINI_MODEL", "\"$geminiModel\"")
+        buildConfigField("String", "DEEPSEEK_API_KEY", "\"$deepseekApiKey\"")
+        buildConfigField("String", "DEEPSEEK_MODEL", "\"$deepseekModel\"")
     }
 
     buildTypes {
@@ -40,6 +63,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -61,6 +85,18 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
+    // Testing libraries
+    testImplementation("io.mockk:mockk:1.13.12") {
+        exclude(group = "org.junit.jupiter")
+    }
+    androidTestImplementation("io.mockk:mockk-android:1.13.12") {
+        exclude(group = "org.junit.jupiter")
+    }
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
+    testImplementation("com.google.truth:truth:1.4.2")
+    androidTestImplementation("com.google.truth:truth:1.4.2")
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
+
     // Iconos de google
     implementation("androidx.compose.material:material-icons-extended")
 
@@ -81,4 +117,17 @@ dependencies {
 
     // Google Sign-In
     implementation("com.google.android.gms:play-services-auth:21.3.0")
+
+    // Image loading (Coil for Compose)
+    implementation("io.coil-kt:coil-compose:2.7.0")
+
+    // WorkManager for scheduling notifications
+    implementation("androidx.work:work-runtime-ktx:2.9.1")
+
+    // Networking (Retrofit + OkHttp for AI Chatbot backend)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.gson)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging.interceptor)
+    implementation(libs.gson)
 }

@@ -1,6 +1,7 @@
 package com.parkinglksnext.repository
 
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Source
 import com.parkinglksnext.Reservation
 import com.parkinglksnext.util.Resource
 import kotlinx.coroutines.channels.awaitClose
@@ -60,6 +61,25 @@ class ReservationRepository {
     }
 
     /**
+     * Real-time ALL reservations (active + completed + cancelled) for the history screen.
+     */
+    fun getAllReservations(userId: String): Flow<Resource<List<Reservation>>> = callbackFlow {
+        val listener = collection
+            .whereEqualTo("userId", userId)
+            .addSnapshotListener { snapshot, error ->
+                if (error != null) {
+                    trySend(Resource.Error(error.localizedMessage ?: "Error al cargar reservas"))
+                    return@addSnapshotListener
+                }
+                val reservations = snapshot?.documents?.mapNotNull { doc ->
+                    doc.toObject(Reservation::class.java)?.copy(id = doc.id)
+                } ?: emptyList()
+                trySend(Resource.Success(reservations))
+            }
+        awaitClose { listener.remove() }
+    }
+
+    /**
      * Get all spot IDs that have an active reservation overlapping with the given time range.
      * These spots are "reservada" — they should not appear as available.
      */
@@ -69,11 +89,21 @@ class ReservationRepository {
         endTime: String
     ): Set<String> {
         return try {
-            val snapshot = collection
-                .whereEqualTo("date", date)
-                .whereEqualTo("status", "active")
-                .get()
-                .await()
+            // Use Source.SERVER to bypass stale cache after cancellation
+            val snapshot = try {
+                collection
+                    .whereEqualTo("date", date)
+                    .whereEqualTo("status", "active")
+                    .get(Source.SERVER)
+                    .await()
+            } catch (_: Exception) {
+                // Fallback to cache if server unavailable
+                collection
+                    .whereEqualTo("date", date)
+                    .whereEqualTo("status", "active")
+                    .get()
+                    .await()
+            }
             val newStart = startTime.toMinutes()
             val newEnd = endTime.toMinutes()
             snapshot.documents.mapNotNull { doc ->
@@ -97,12 +127,23 @@ class ReservationRepository {
         excludeId: String? = null
     ): Boolean {
         return try {
-            val snapshot = collection
-                .whereEqualTo("spotId", spotId)
-                .whereEqualTo("date", date)
-                .whereEqualTo("status", "active")
-                .get()
-                .await()
+            // Use Source.SERVER to bypass stale cache after cancellation
+            val snapshot = try {
+                collection
+                    .whereEqualTo("spotId", spotId)
+                    .whereEqualTo("date", date)
+                    .whereEqualTo("status", "active")
+                    .get(Source.SERVER)
+                    .await()
+            } catch (_: Exception) {
+                // Fallback to cache if server unavailable
+                collection
+                    .whereEqualTo("spotId", spotId)
+                    .whereEqualTo("date", date)
+                    .whereEqualTo("status", "active")
+                    .get()
+                    .await()
+            }
             val newStart = startTime.toMinutes()
             val newEnd = endTime.toMinutes()
             snapshot.documents.any { doc ->

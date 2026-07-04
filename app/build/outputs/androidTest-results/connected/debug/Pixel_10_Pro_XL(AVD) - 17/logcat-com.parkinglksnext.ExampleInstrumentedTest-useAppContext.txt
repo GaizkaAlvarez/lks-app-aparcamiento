@@ -1,0 +1,2 @@
+07-03 21:27:08.176 18405 18447 I TestRunner: started: useAppContext(com.parkinglksnext.ExampleInstrumentedTest)
+07-03 21:27:08.178 18405 18447 I TestRunner: finished: useAppContext(com.parkinglksnext.ExampleInstrumentedTest)

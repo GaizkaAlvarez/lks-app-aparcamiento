@@ -1,29 +1,45 @@
 package com.parkinglksnext
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.ChevronLeft
+import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.parkinglksnext.ui.theme.*
 import com.parkinglksnext.viewmodel.NewReservationViewModel
 import com.parkinglksnext.viewmodel.ProfileViewModel
+import java.time.DayOfWeek
 import java.time.LocalDate
+import java.time.LocalTime
+import java.time.YearMonth
 import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -32,7 +48,7 @@ fun NewReservationScreen(
     viewModel: NewReservationViewModel,
     profileViewModel: ProfileViewModel,
     onNavigateToDashboard: () -> Unit = {},
-    onOpenMenu: () -> Unit = {}
+    onNavigateBack: () -> Unit = {}
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val profileUiState by profileViewModel.uiState.collectAsStateWithLifecycle()
@@ -72,24 +88,35 @@ fun NewReservationScreen(
     }
 
     Scaffold(
+        containerColor = ParklyBackground,
         topBar = {
-            CenterAlignedTopAppBar(
-                title = {
-                    Text(
-                        if (uiState.step == 1) "Nueva Reserva" else "Seleccionar Plaza",
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                },
-                navigationIcon = {
-                    IconButton(onClick = { onOpenMenu() }) {
-                        Icon(Icons.Default.Menu, contentDescription = "Menú")
+            Column(
+                modifier = androidx.compose.ui.Modifier
+                    .fillMaxWidth()
+                    .background(ParklySurface)
+            ) {
+                Row(
+                    modifier = androidx.compose.ui.Modifier
+                        .fillMaxWidth()
+                        .statusBarsPadding()
+                        .padding(horizontal = 8.dp, vertical = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    IconButton(onClick = { if (uiState.step == 1) onNavigateBack() else viewModel.goBackToStep1() }) {
+                        Icon(
+                            Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Volver",
+                            tint = ParklyTextPrimary
+                        )
                     }
-                },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.background
-                )
-            )
+                    Text(
+                        text = if (uiState.step == 1) "Nueva Reserva" else "Seleccionar Plaza",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = ParklyTextPrimary
+                    )
+                }
+            }
         },
         snackbarHost = { SnackbarHost(snackbarHostState) }
     ) { innerPadding ->
@@ -111,6 +138,8 @@ fun NewReservationScreen(
 
 // ─── STEP 1: Vehicle, Date, Time selection ────────────────────────
 
+data class DurationOption(val label: String, val minutes: Int)
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun Step1Content(
@@ -118,45 +147,75 @@ private fun Step1Content(
     uiState: NewReservationViewModel.NewReservationUiState,
     viewModel: NewReservationViewModel
 ) {
-    val formatoVisual = remember { DateTimeFormatter.ofPattern("EEE d 'de' MMM", Locale.forLanguageTag("es-ES")) }
-    val listaFechas = remember {
-        (0..6).map { LocalDate.now().plusDays(it.toLong()) }
-    }
+    val dateFormatter = remember { DateTimeFormatter.ofPattern("yyyy-MM-dd") }
+    val today = remember { LocalDate.now() }
 
-    // Initialize date if not set
+    // Calendar state
+    var displayedMonth by remember { mutableStateOf(today) }
+    var selectedDate by remember(uiState.selectedDate) {
+        mutableStateOf(
+            if (uiState.selectedDate != null) LocalDate.parse(uiState.selectedDate)
+            else today
+        )
+    }
+    val esHoy = selectedDate == today
+
+    // Start time state
+    var startHour by remember { mutableIntStateOf(8) }
+    var startMinute by remember { mutableIntStateOf(0) }
+
+    // End time state
+    val startTime = remember(startHour, startMinute) {
+        LocalTime.of(startHour, startMinute)
+    }
+    var endTime by remember { mutableStateOf(LocalTime.of(9, 0)) }
+
+    // Calculate minimum start time (current time + 5 min buffer, rounded up to next :00/:15/:30/:45)
+    val ahora = remember { LocalTime.now() }
+    val minStartTotalMinutes = if (esHoy) {
+        val nowMinutes = ahora.hour * 60 + ahora.minute
+        val withBuffer = nowMinutes + 5                      // 5 min gap between reservations
+        val nextSlot = (withBuffer + 14) / 15                // round up to next 15-min slot
+        maxOf(nextSlot * 15, 6 * 60)                         // parking opens at 06:00
+    } else 6 * 60
+    val minStartH = minStartTotalMinutes / 60
+    val minStartM = minStartTotalMinutes % 60
+    val horaPasada = esHoy && minStartTotalMinutes >= 23 * 60
+    val startTotalMinutes = startHour * 60 + startMinute
+    val startValid = !esHoy || (startTotalMinutes >= minStartTotalMinutes / 15 * 15)
+
+    // Initialize defaults (next available slot)
     LaunchedEffect(Unit) {
         if (uiState.selectedDate == null) {
-            viewModel.setDate(listaFechas.first().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+            viewModel.setDate(today.format(dateFormatter))
         }
-        if (uiState.startTime == null) viewModel.setStartTime("08:00")
-        if (uiState.endTime == null) viewModel.setEndTime("14:55")
+        if (uiState.startTime == null) {
+            val defaultStartH = if (esHoy) minStartH else 8
+            val defaultStartM = if (esHoy) minStartM else 0
+            startHour = defaultStartH
+            startMinute = defaultStartM
+            val formatted = String.format("%02d:%02d", startHour, startMinute)
+            viewModel.setStartTime(formatted)
+        }
+        if (uiState.endTime == null) {
+            viewModel.setEndTime("09:00")
+        }
     }
 
-    var fechaSeleccionada by remember { mutableStateOf(listaFechas.first()) }
+    val duracionMin = (endTime.hour * 60 + endTime.minute) - (startHour * 60 + startMinute)
+    val horasValidas = duracionMin > 0 && duracionMin <= 540
+    val reservaValida = horasValidas && startValid && !horaPasada
 
-    val rangoHorasInicio = remember { (6..22).map { stringOf(it) } }
-    val rangoHorasFin = remember { (6..22).map { stringOfEnd(it) } }
-    var horaInicio by remember(uiState.startTime) { mutableStateOf(uiState.startTime ?: "08:00") }
-    var horaFin by remember(uiState.endTime) { mutableStateOf(uiState.endTime ?: "14:55") }
-    var expandidoInicio by remember { mutableStateOf(false) }
-    var expandidoFin by remember { mutableStateOf(false) }
-
-    // Vehicle selector state
+    // Vehicle selector
     val vehicles = uiState.userVehicles
     val vehicleLabels = vehicles.map { v ->
-        val typeName = v.type.replaceFirstChar { c -> c.uppercase() }
-        "${v.licensePlate} ($typeName)"
+        "${v.licensePlate} (${vehicleTypeLabel(v.type)})"
     }
     val selectedIndex = vehicles.indexOf(uiState.selectedVehicle).coerceAtLeast(0)
     var vehiculoLabel by remember(uiState.selectedVehicle) {
         mutableStateOf(if (vehicles.isNotEmpty()) vehicleLabels[selectedIndex] else "Sin vehículos")
     }
     var expandidoVehiculo by remember { mutableStateOf(false) }
-
-    val horaInicioMin = horaInicio.split(":").let { it[0].toInt() * 60 + it[1].toInt() }
-    val horaFinMin = horaFin.split(":").let { it[0].toInt() * 60 + it[1].toInt() }
-    val duracionMin = horaFinMin - horaInicioMin
-    val horasValidas = duracionMin > 0 && duracionMin <= 540  // max 9h = 540 min
 
     Column(
         modifier = Modifier
@@ -168,7 +227,7 @@ private fun Step1Content(
         Spacer(modifier = Modifier.height(16.dp))
 
         // --- VEHÍCULOS ---
-        Text("Vehículo para la reserva", fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 8.dp))
+        Text("Vehículo", fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 8.dp))
         ExposedDropdownMenuBox(
             expanded = expandidoVehiculo,
             onExpandedChange = { expandidoVehiculo = !expandidoVehiculo },
@@ -199,116 +258,73 @@ private fun Step1Content(
             }
         }
 
-        // --- FECHA (DINÁMICA) ---
-        Text("Fecha", fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 16.dp))
-
-        for (i in listaFechas.indices step 2) {
-            Row(
-                modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                val fecha1 = listaFechas[i]
-                BotonDia(
-                    texto = fecha1.format(formatoVisual).replaceFirstChar { it.uppercase() },
-                    isSelected = fechaSeleccionada == fecha1,
-                    onClick = {
-                        fechaSeleccionada = fecha1
-                        viewModel.setDate(fecha1.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
-                    },
-                    modifier = Modifier.weight(1f)
-                )
-                if (i + 1 < listaFechas.size) {
-                    val fecha2 = listaFechas[i + 1]
-                    BotonDia(
-                        texto = fecha2.format(formatoVisual).replaceFirstChar { it.uppercase() },
-                        isSelected = fechaSeleccionada == fecha2,
-                        onClick = {
-                            fechaSeleccionada = fecha2
-                            viewModel.setDate(fecha2.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
-                        },
-                        modifier = Modifier.weight(1f)
-                    )
-                } else {
-                    Spacer(modifier = Modifier.weight(1f))
-                }
+        // --- CALENDARIO ---
+        Text("Fecha", fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 8.dp))
+        TwoMonthCalendar(
+            today = today,
+            displayedMonth = displayedMonth,
+            selectedDate = selectedDate,
+            onMonthChange = { displayedMonth = it },
+            onDateSelected = { date ->
+                selectedDate = date
+                viewModel.setDate(date.format(dateFormatter))
             }
-        }
+        )
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(20.dp))
 
-        // --- DESPLEGABLES DE HORAS ---
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            Column(modifier = Modifier.weight(1f)) {
-                Text("Hora de Inicio", fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 8.dp))
-                ExposedDropdownMenuBox(
-                    expanded = expandidoInicio,
-                    onExpandedChange = { expandidoInicio = !expandidoInicio }
-                ) {
-                    OutlinedTextField(
-                        value = horaInicio,
-                        onValueChange = {},
-                        readOnly = true,
-                        trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandidoInicio) },
-                        modifier = Modifier.menuAnchor(MenuAnchorType.PrimaryNotEditable, enabled = true).fillMaxWidth(),
-                        shape = RoundedCornerShape(8.dp)
-                    )
-                    ExposedDropdownMenu(expanded = expandidoInicio, onDismissRequest = { expandidoInicio = false }) {
-                        rangoHorasInicio.forEach { hora ->
-                            DropdownMenuItem(
-                                text = { Text(hora) },
-                                onClick = {
-                                    horaInicio = hora
-                                    viewModel.setStartTime(hora)
-                                    expandidoInicio = false
-                                }
-                            )
-                        }
-                    }
-                }
+        // --- HORA DE INICIO (Reloj digital) ---
+        Text(
+            "Hora de Inicio",
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(bottom = 8.dp)
+        )
+        ParkingTimePicker(
+            minHour = minStartH,
+            minMinute = minStartM,
+            initialHour = startHour,
+            initialMinute = startMinute,
+            onTimeChanged = { hour, minute ->
+                if (hour >= 0) startHour = hour
+                if (minute >= 0) startMinute = minute
+                val formatted = String.format("%02d:%02d", startHour, startMinute)
+                viewModel.setStartTime(formatted)
             }
+        )
 
-            Column(modifier = Modifier.weight(1f)) {
-                Text("Hora de Fin", fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 8.dp))
-                ExposedDropdownMenuBox(
-                    expanded = expandidoFin,
-                    onExpandedChange = { expandidoFin = !expandidoFin }
-                ) {
-                    OutlinedTextField(
-                        value = horaFin,
-                        onValueChange = {},
-                        readOnly = true,
-                        trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandidoFin) },
-                        modifier = Modifier.menuAnchor(MenuAnchorType.PrimaryNotEditable, enabled = true).fillMaxWidth(),
-                        shape = RoundedCornerShape(8.dp),
-                        isError = !horasValidas
-                    )
-                    ExposedDropdownMenu(expanded = expandidoFin, onDismissRequest = { expandidoFin = false }) {
-                        rangoHorasFin.forEach { hora ->
-                            DropdownMenuItem(
-                                text = { Text(hora) },
-                                onClick = {
-                                    horaFin = hora
-                                    viewModel.setEndTime(hora)
-                                    expandidoFin = false
-                                }
-                            )
-                        }
-                    }
-                }
-            }
-        }
+        Spacer(modifier = Modifier.height(20.dp))
 
-        if (!horasValidas) {
-            val mensaje = if (duracionMin <= 0) {
-                "La hora de fin debe ser posterior a la de inicio."
-            } else {
-                "La duración máxima es de 9 horas."
+        // --- DURACIÓN (Slider) ---
+        ParkingDurationSlider(
+            startTime = startTime,
+            onEndTimeSelected = { newEnd ->
+                // Round end time to :10/:25/:40/:55 (5 min before next slot start)
+                val rounded = roundEndTime(newEnd)
+                endTime = rounded
+                val formatted = String.format("%02d:%02d", rounded.hour, rounded.minute)
+                viewModel.setEndTime(formatted)
             }
+        )
+
+        // Validation messages
+        if (horaPasada) {
             Text(
-                text = mensaje,
+                text = "Ya no puedes reservar para hoy. Selecciona otro día.",
+                color = MaterialTheme.colorScheme.error,
+                fontSize = 12.sp,
+                modifier = Modifier.padding(top = 8.dp)
+            )
+        } else if (!startValid) {
+            Text(
+                text = "Selecciona una hora futura para hoy.",
+                color = MaterialTheme.colorScheme.error,
+                fontSize = 12.sp,
+                modifier = Modifier.padding(top = 8.dp)
+            )
+        } else if (!horasValidas && duracionMin > 0) {
+            Text(
+                text = "La duración máxima es de 9 horas.",
                 color = MaterialTheme.colorScheme.error,
                 fontSize = 12.sp,
                 modifier = Modifier.padding(top = 8.dp)
@@ -317,7 +333,7 @@ private fun Step1Content(
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        // --- CAJA DE RESUMEN INFO ---
+        // --- CAJA DE RESUMEN ---
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -326,7 +342,7 @@ private fun Step1Content(
         ) {
             Column {
                 Row {
-                    Text("Resumen: ", fontWeight = FontWeight.Bold, color = Color(0xFF0F2537))
+                    Text("Resumen: ", fontWeight = FontWeight.Bold, color = ParklyTextPrimary)
                     Text(
                         uiState.selectedVehicle?.licensePlate ?: "—",
                         color = Color(0xFF1E3A8A),
@@ -335,7 +351,13 @@ private fun Step1Content(
                 }
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    "Reserva programada para el ${fechaSeleccionada.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))}",
+                    "Reserva programada para el ${selectedDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))}",
+                    fontSize = 13.sp,
+                    color = Color(0xFF3B82F6)
+                )
+                Spacer(modifier = Modifier.height(2.dp))
+                Text(
+                    "De ${String.format("%02d:%02d", startHour, startMinute)} a ${String.format("%02d:%02d", endTime.hour, endTime.minute)}",
                     fontSize = 13.sp,
                     color = Color(0xFF3B82F6)
                 )
@@ -347,10 +369,11 @@ private fun Step1Content(
         // --- BOTÓN CONTINUAR ---
         Button(
             onClick = { viewModel.goToStep2() },
-            enabled = horasValidas && uiState.selectedVehicle != null,
-            modifier = Modifier.fillMaxWidth().height(55.dp),
-            shape = RoundedCornerShape(8.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF6B00))
+            enabled = reservaValida && uiState.selectedVehicle != null,
+            modifier = Modifier.fillMaxWidth().height(54.dp),
+            shape = RoundedCornerShape(14.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = ParklyOrange),
+            elevation = ButtonDefaults.buttonElevation(defaultElevation = 2.dp)
         ) {
             Text("Continuar", color = Color.White, fontSize = 16.sp, fontWeight = FontWeight.Bold)
         }
@@ -380,15 +403,16 @@ private fun Step2Content(
         Card(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(16.dp),
-            colors = CardDefaults.cardColors(containerColor = Color.White),
-            border = CardDefaults.outlinedCardBorder()
+            colors = CardDefaults.cardColors(containerColor = ParklySurface),
+            border = BorderStroke(1.dp, Color(0xFFE0E0E0)),
+            elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
-                Text("Resumen de la Reserva", fontWeight = FontWeight.Bold, fontSize = 16.sp, color = Color(0xFF0F2537))
+                Text("Resumen", fontWeight = FontWeight.Bold, fontSize = 15.sp, color = ParklyTextPrimary)
                 Spacer(modifier = Modifier.height(8.dp))
-                Text("Fecha: ${uiState.selectedDate ?: "—"}", fontSize = 14.sp, color = Color.Gray)
-                Text("Horario: ${uiState.startTime ?: "—"} - ${uiState.endTime ?: "—"}", fontSize = 14.sp, color = Color.Gray)
-                Text("Vehículo: ${uiState.selectedVehicle?.licensePlate ?: "—"}", fontSize = 14.sp, color = Color.Gray)
+                Text("Fecha: ${uiState.selectedDate ?: "—"}", fontSize = 13.sp, color = ParklyTextSecondary)
+                Text("Horario: ${uiState.startTime ?: "—"} - ${uiState.endTime ?: "—"}", fontSize = 13.sp, color = ParklyTextSecondary)
+                Text("Vehículo: ${uiState.selectedVehicle?.licensePlate ?: "—"}", fontSize = 13.sp, color = ParklyTextSecondary)
             }
         }
 
@@ -397,36 +421,34 @@ private fun Step2Content(
         // Selected spot card
         if (uiState.selectedSpot != null) {
             val spot = uiState.selectedSpot  // non-null after if check
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(
-                        brush = Brush.linearGradient(
-                            colors = listOf(Color(0xFFFF6B00), Color(0xFFFF8C00))
-                        ),
-                        shape = RoundedCornerShape(16.dp)
-                    )
-                    .padding(20.dp)
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(containerColor = ParklyOrangeLight),
+                border = androidx.compose.foundation.BorderStroke(2.dp, ParklyOrange)
             ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
+                Row(
+                    modifier = Modifier.padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                     Icon(
                         Icons.Default.CheckCircle,
                         contentDescription = null,
-                        tint = Color.White,
-                        modifier = Modifier.size(36.dp)
+                        tint = ParklyOrange,
+                        modifier = Modifier.size(32.dp)
                     )
                     Spacer(modifier = Modifier.width(12.dp))
                     Column {
                         Text(
-                            text = "Plaza ${spot.number}",
-                            color = Color.White,
-                            fontSize = 22.sp,
+                            text = "Plaza ${spot.number} seleccionada",
+                            color = ParklyOrange,
+                            fontSize = 16.sp,
                             fontWeight = FontWeight.Bold
                         )
                         Text(
-                            text = spot.type.replaceFirstChar { it.uppercase() },
-                            color = Color.White.copy(alpha = 0.85f),
-                            fontSize = 14.sp
+                            text = spotTypeLabel(spot.type),
+                            color = ParklyOrangeDark,
+                            fontSize = 13.sp
                         )
                     }
                 }
@@ -434,78 +456,67 @@ private fun Step2Content(
             Spacer(modifier = Modifier.height(20.dp))
         }
 
-        // Spot grid title
-        Text(
-            "Plazas Disponibles",
-            fontWeight = FontWeight.Bold,
-            fontSize = 16.sp,
-            color = Color(0xFF0F2537),
-            modifier = Modifier.padding(bottom = 12.dp)
-        )
-
-        // Spot type legend
+        // Legend
         Row(
-            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp),
+            horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            LegendItem(color = Color(0xFFFF6B00), label = "Combustión")
-            LegendItem(color = Color(0xFF137333), label = "Eléctrico")
-            LegendItem(color = Color(0xFF1A73E8), label = "Moto")
+            LegendItem(color = SpotAvailable, label = "Disponible")
+            LegendItem(color = ParklyOrange, label = "Ocupada")
+            LegendItem(color = SpotSelected, label = "Seleccionada")
         }
 
-        // Spot grid — show loading indicator while Firestore fetches spots
-        if (uiState.spotsLoading && uiState.availableSpots.isEmpty()) {
+        // Loading
+        if (uiState.spotsLoading && uiState.allCompatibleSpots.isEmpty()) {
             Box(
                 modifier = Modifier.fillMaxWidth().padding(32.dp),
                 contentAlignment = Alignment.Center
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    CircularProgressIndicator(color = Color(0xFFFF6B00))
+                    CircularProgressIndicator(color = ParklyOrange)
                     Spacer(modifier = Modifier.height(12.dp))
-                    Text("Cargando plazas...", fontSize = 14.sp, color = Color.Gray)
+                    Text("Cargando plazas...", fontSize = 14.sp, color = ParklyTextSecondary)
                 }
             }
-        } else if (uiState.availableSpots.isEmpty()) {
-            Text(
-                "No hay plazas disponibles para este tipo de vehículo.",
-                fontSize = 14.sp,
-                color = Color.Gray,
-                modifier = Modifier.padding(vertical = 24.dp)
-            )
         } else {
-            val spotsByType = uiState.availableSpots.groupBy { it.type }
-            SpotsSection("Combustión", spotsByType["combustion"] ?: emptyList(), uiState.selectedSpot, Color(0xFFFF6B00)) { viewModel.selectSpot(it) }
-            SpotsSection("Eléctrico", spotsByType["electric"] ?: emptyList(), uiState.selectedSpot, Color(0xFF137333)) { viewModel.selectSpot(it) }
-            SpotsSection("Moto", spotsByType["motorcycle"] ?: emptyList(), uiState.selectedSpot, Color(0xFF1A73E8)) { viewModel.selectSpot(it) }
+            // Visual parking lot
+            ParkingLotView(
+                allCompatibleSpots = uiState.allCompatibleSpots,
+                conflictingIds = uiState.conflictingSpotIds,
+                selectedSpot = uiState.selectedSpot,
+                onSelectSpot = { spot -> if (spot.id !in uiState.conflictingSpotIds) viewModel.selectSpot(spot) }
+            )
         }
 
         Spacer(modifier = Modifier.height(24.dp))
 
         // Action buttons
-        Row(
+        Column(
             modifier = Modifier.fillMaxWidth().padding(bottom = 32.dp),
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
+            verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            OutlinedButton(
-                onClick = { viewModel.goBackToStep1() },
-                modifier = Modifier.weight(1f).height(52.dp),
-                shape = RoundedCornerShape(12.dp)
-            ) {
-                Text("Atrás", color = Color.Gray, fontWeight = FontWeight.Bold)
-            }
-
             Button(
                 onClick = { viewModel.confirmReservation() },
                 enabled = uiState.selectedSpot != null && !uiState.isLoading,
-                modifier = Modifier.weight(1f).height(52.dp),
-                shape = RoundedCornerShape(12.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF6B00))
+                modifier = Modifier.fillMaxWidth().height(54.dp),
+                shape = RoundedCornerShape(14.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = ParklyOrange),
+                elevation = ButtonDefaults.buttonElevation(defaultElevation = 2.dp)
             ) {
                 if (uiState.isLoading) {
-                    CircularProgressIndicator(color = Color.White, modifier = Modifier.size(24.dp), strokeWidth = 2.dp)
+                    CircularProgressIndicator(color = Color.White, modifier = Modifier.size(22.dp), strokeWidth = 2.dp)
                 } else {
-                    Text("Confirmar", color = Color.White, fontWeight = FontWeight.Bold)
+                    Text("Confirmar Reserva", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 16.sp)
                 }
+            }
+            OutlinedButton(
+                onClick = { viewModel.goBackToStep1() },
+                modifier = Modifier.fillMaxWidth().height(52.dp),
+                shape = RoundedCornerShape(14.dp),
+                border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFE2E4ED)),
+                colors = ButtonDefaults.outlinedButtonColors(contentColor = ParklyTextSecondary)
+            ) {
+                Text("Atrás", fontWeight = FontWeight.Medium)
             }
         }
     }
@@ -516,102 +527,681 @@ private fun LegendItem(color: Color, label: String) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Box(
             modifier = Modifier
-                .size(12.dp)
-                .background(color, RoundedCornerShape(2.dp))
+                .size(10.dp)
+                .clip(RoundedCornerShape(3.dp))
+                .background(color)
         )
-        Spacer(modifier = Modifier.width(4.dp))
-        Text(label, fontSize = 12.sp, color = Color.Gray)
+        Spacer(modifier = Modifier.width(5.dp))
+        Text(label, fontSize = 12.sp, color = ParklyTextSecondary)
     }
 }
 
-@Composable
-private fun SpotsSection(
-    title: String,
-    spots: List<ParkingSpot>,
-    selectedSpot: ParkingSpot?,
-    accentColor: Color,
-    onSelect: (ParkingSpot) -> Unit
-) {
-    if (spots.isEmpty()) return
+// ─── Visual Parking Lot ─────────────────────────────────────────
 
-    Text(
-        title,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 14.sp,
-        color = Color(0xFF0F2537),
-        modifier = Modifier.padding(bottom = 8.dp)
+@Composable
+private fun ParkingLotView(
+    allCompatibleSpots: List<ParkingSpot>,
+    conflictingIds: Set<String>,
+    selectedSpot: ParkingSpot?,
+    onSelectSpot: (ParkingSpot) -> Unit
+) {
+    val spotsByNumber = allCompatibleSpots.associateBy { it.number }
+
+    // Define the parking lot layout rows with section headers
+    data class SpotSlot(val number: Int, val type: String)
+    data class ParkingRow(val label: String?, val spots: List<SpotSlot>)
+
+    val parkingRows = listOf(
+        ParkingRow("🚗 Común (1-21)", listOf(
+            SpotSlot(1, "combustion"), SpotSlot(2, "combustion"), SpotSlot(3, "combustion"),
+            SpotSlot(4, "combustion"), SpotSlot(5, "combustion"), SpotSlot(6, "combustion"),
+            SpotSlot(7, "combustion")
+        )),
+        ParkingRow(null, listOf(
+            SpotSlot(8, "combustion"), SpotSlot(9, "combustion"), SpotSlot(10, "combustion"),
+            SpotSlot(11, "combustion"), SpotSlot(12, "combustion"), SpotSlot(13, "combustion"),
+            SpotSlot(14, "combustion")
+        )),
+        ParkingRow(null, listOf(
+            SpotSlot(15, "combustion"), SpotSlot(16, "combustion"), SpotSlot(17, "combustion"),
+            SpotSlot(18, "combustion"), SpotSlot(19, "combustion"), SpotSlot(20, "combustion"),
+            SpotSlot(21, "combustion")
+        )),
+        ParkingRow("⚡ Con cargador (22-28)", listOf(
+            SpotSlot(22, "electric"), SpotSlot(23, "electric"), SpotSlot(24, "electric"),
+            SpotSlot(25, "electric"), SpotSlot(26, "electric"), SpotSlot(27, "electric"),
+            SpotSlot(28, "electric")
+        )),
+        ParkingRow("🏍 Moto (29-35)", listOf(
+            SpotSlot(29, "motorcycle"), SpotSlot(30, "motorcycle"), SpotSlot(31, "motorcycle"),
+            SpotSlot(32, "motorcycle"), SpotSlot(33, "motorcycle"), SpotSlot(34, "motorcycle"),
+            SpotSlot(35, "motorcycle")
+        )),
     )
 
-    // Simple grid using Row wrapping
-    var rowItems = mutableListOf<ParkingSpot>()
-    for (i in spots.indices) {
-        rowItems.add(spots[i])
-        if (rowItems.size == 5 || i == spots.lastIndex) {
+    // Parking lot container — white card with dark border
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White),
+        border = BorderStroke(1.5.dp, Color(0xFFCCCCCC)),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color(0xFFF5F5F5), RoundedCornerShape(16.dp))
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            // Entry indicator
             Row(
-                modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                modifier = Modifier.fillMaxWidth().padding(bottom = 10.dp),
+                horizontalArrangement = Arrangement.Center
             ) {
-                rowItems.forEach { spot ->
-                    val isSelected = selectedSpot?.id == spot.id
-                    Box(
-                        modifier = Modifier
-                            .weight(1f)
-                            .aspectRatio(1f)
-                            .background(
-                                color = when {
-                                    isSelected -> accentColor
-                                    spot.type == "electric" -> Color(0xFFE6F4EA)
-                                    spot.type == "motorcycle" -> Color(0xFFE8F0FE)
-                                    else -> Color(0xFFF0F0F0)
-                                },
-                                shape = RoundedCornerShape(8.dp)
-                            )
-                            .clickable { onSelect(spot) },
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            text = "${spot.number}",
-                            fontSize = 16.sp,
-                            fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
-                            color = when {
-                                isSelected -> Color.White
-                                spot.type == "electric" -> Color(0xFF137333)
-                                spot.type == "motorcycle" -> Color(0xFF1A73E8)
-                                else -> Color(0xFF495057)
-                            }
+                Text("⬇ ENTRADA ⬇", color = ParklyTextSecondary, fontSize = 11.sp, fontWeight = FontWeight.Bold)
+            }
+
+            parkingRows.forEachIndexed { rowIndex, parkingRow ->
+                // Section label
+                if (parkingRow.label != null) {
+                    if (rowIndex > 0) {
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(1.dp)
+                                .background(Color(0xFFDDDDDD))
                         )
                     }
+                    Spacer(modifier = Modifier.height(6.dp))
+                    Text(
+                        parkingRow.label,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        color = ParklyTextPrimary,
+                        modifier = Modifier.padding(bottom = 4.dp)
+                    )
                 }
-                // Fill remaining space if row is incomplete
-                repeat(5 - rowItems.size) {
-                    Spacer(modifier = Modifier.weight(1f))
+
+                // Spot row
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(5.dp)
+                ) {
+                    parkingRow.spots.forEach { slot ->
+                        val spot = spotsByNumber[slot.number]
+                        val isOccupied = spot != null && spot.id in conflictingIds
+                        val isSelected = selectedSpot?.number == slot.number
+                        val isAvailable = spot != null && spot.id !in conflictingIds
+                        val isIncompatible = spot == null
+
+                        ParkingSpotBox(
+                            number = slot.number,
+                            type = slot.type,
+                            isOccupied = isOccupied,
+                            isSelected = isSelected,
+                            isAvailable = isAvailable,
+                            isIncompatible = isIncompatible,
+                            onClick = {
+                                if (isAvailable && !isOccupied) {
+                                    onSelectSpot(spot!!)
+                                }
+                            },
+                            modifier = Modifier.weight(1f)
+                        )
+                    }
+
+                    val remaining = 7 - parkingRow.spots.size
+                    repeat(remaining) {
+                        Spacer(modifier = Modifier.weight(1f))
+                    }
                 }
             }
-            rowItems = mutableListOf()
         }
     }
 }
 
-// ─── Shared utilities ────────────────────────────────────────────
+@Composable
+private fun ParkingSpotBox(
+    number: Int,
+    type: String,
+    isOccupied: Boolean,
+    isSelected: Boolean,
+    isAvailable: Boolean,
+    isIncompatible: Boolean,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    val bgColor = when {
+        isSelected -> ParklyOrange
+        isAvailable -> Color.White
+        isOccupied -> Color(0xFFFFF5F0)    // Light warm white for occupied
+        else -> Color(0xFFF0F0F0)           // Light gray for incompatible
+    }
+    val borderColor = when {
+        isSelected -> ParklyOrange
+        isOccupied -> ParklyOrange
+        isAvailable -> SpotAvailable
+        else -> Color(0xFFCCCCCC)
+    }
+    val borderWidth = if (isSelected) 2.5.dp else 1.5.dp
+    val textColor = when {
+        isSelected -> Color.White
+        isAvailable -> ParklyTextPrimary
+        isOccupied -> ParklyTextPrimary
+        else -> Color(0xFFBBBBBB)
+    }
 
-fun stringOf(hora: Int): String = if (hora < 10) "0$hora:00" else "$hora:00"
-fun stringOfEnd(hora: Int): String = if (hora < 10) "0$hora:55" else "$hora:55"
+    Card(
+        onClick = onClick,
+        modifier = modifier.aspectRatio(0.7f),
+        shape = RoundedCornerShape(8.dp),
+        colors = CardDefaults.cardColors(containerColor = bgColor),
+        border = BorderStroke(borderWidth, borderColor),
+        elevation = CardDefaults.cardElevation(defaultElevation = if (isSelected) 3.dp else 1.dp)
+    ) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            if (isOccupied) {
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Text("🚗", fontSize = 18.sp)
+                    Text(
+                        String.format("%02d", number),
+                        fontSize = 9.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = ParklyOrange
+                    )
+                }
+            } else if (isIncompatible) {
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Text(String.format("%02d", number), fontSize = 13.sp, fontWeight = FontWeight.Medium, color = Color(0xFFCCCCCC))
+                }
+            } else {
+                // Available or selected
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Text(
+                        String.format("%02d", number),
+                        fontSize = 14.sp,
+                        fontWeight = if (isSelected) FontWeight.ExtraBold else FontWeight.Bold,
+                        color = textColor
+                    )
+                    val typeIcon = when (type) {
+                        "electric" -> "⚡"
+                        "motorcycle" -> "🏍"
+                        else -> ""
+                    }
+                    if (typeIcon.isNotEmpty()) {
+                        Text(typeIcon, fontSize = 11.sp)
+                    }
+                    if (isSelected) {
+                        Text("✓", fontSize = 12.sp, color = Color.White, fontWeight = FontWeight.Bold)
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ─── Calendar Component ─────────────────────────────────────────
 
 @Composable
-fun BotonDia(texto: String, isSelected: Boolean, onClick: () -> Unit, modifier: Modifier = Modifier) {
-    OutlinedButton(
-        onClick = onClick,
-        modifier = modifier.height(45.dp),
-        shape = RoundedCornerShape(8.dp),
-        border = BorderStroke(
-            1.dp,
-            if (isSelected) MaterialTheme.colorScheme.primary else Color.LightGray
-        ),
-        colors = ButtonDefaults.outlinedButtonColors(
-            containerColor = if (isSelected) MaterialTheme.colorScheme.primary.copy(alpha = 0.05f) else Color.Transparent,
-            contentColor = if (isSelected) MaterialTheme.colorScheme.primary else Color(0xFF495057)
+private fun TwoMonthCalendar(
+    today: LocalDate,
+    displayedMonth: LocalDate,
+    selectedDate: LocalDate,
+    onMonthChange: (LocalDate) -> Unit,
+    onDateSelected: (LocalDate) -> Unit
+) {
+    val currentMonth = YearMonth.from(displayedMonth)
+    val nextMonth = currentMonth.plusMonths(1)
+    val dayNames = remember { listOf("L", "M", "X", "J", "V", "S", "D") }
+
+    Column {
+        // Month header
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            IconButton(onClick = { onMonthChange(displayedMonth.minusMonths(1)) }) {
+                Icon(Icons.Default.ChevronLeft, contentDescription = "Anterior", tint = ParklyTextSecondary)
+            }
+            Text(
+                text = currentMonth.format(DateTimeFormatter.ofPattern("MMMM yyyy", Locale.forLanguageTag("es"))).replaceFirstChar { it.uppercase() },
+                fontWeight = FontWeight.Bold,
+                fontSize = 15.sp,
+                color = ParklyTextPrimary
+            )
+            IconButton(onClick = { onMonthChange(displayedMonth.plusMonths(1)) }) {
+                Icon(Icons.Default.ChevronRight, contentDescription = "Siguiente", tint = ParklyTextSecondary)
+            }
+        }
+
+        // Single month
+        MonthGrid(
+            month = currentMonth,
+            today = today,
+            selectedDate = selectedDate,
+            onDateSelected = onDateSelected,
+            modifier = Modifier.fillMaxWidth()
         )
-    ) {
-        Text(texto, fontSize = 11.sp, maxLines = 1)
     }
+}
+
+@Composable
+private fun MonthGrid(
+    month: YearMonth,
+    today: LocalDate,
+    selectedDate: LocalDate,
+    onDateSelected: (LocalDate) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    val dayNames = listOf("L", "M", "X", "J", "V", "S", "D")
+    val firstDay = month.atDay(1)
+    val daysInMonth = month.lengthOfMonth()
+    val startDayOfWeek = (firstDay.dayOfWeek.value - 1) // Monday = 0
+
+    Column(modifier = modifier) {
+        // Month label
+        Text(
+            text = month.month.name.replaceFirstChar { it.uppercase() }.take(3),
+            fontSize = 12.sp,
+            fontWeight = FontWeight.SemiBold,
+            color = ParklyTextSecondary,
+            modifier = Modifier.padding(bottom = 4.dp)
+        )
+
+        // Day headers
+        Row(modifier = Modifier.fillMaxWidth()) {
+            dayNames.forEach { name ->
+                Text(
+                    text = name,
+                    modifier = Modifier.weight(1f),
+                    textAlign = TextAlign.Center,
+                    fontSize = 10.sp,
+                    color = ParklyTextSecondary,
+                    fontWeight = FontWeight.Medium
+                )
+            }
+        }
+
+        // Days grid
+        val totalCells = startDayOfWeek + daysInMonth
+        val rows = (totalCells + 6) / 7
+        for (row in 0 until rows) {
+            Row(modifier = Modifier.fillMaxWidth()) {
+                for (col in 0..6) {
+                    val cellIndex = row * 7 + col
+                    val day = cellIndex - startDayOfWeek + 1
+                    if (day in 1..daysInMonth) {
+                        val date = month.atDay(day)
+                        val isSelected = date == selectedDate
+                        val isToday = date == today
+                        val isPast = date.isBefore(today)
+                        Box(
+                            modifier = Modifier
+                                .weight(1f)
+                                .aspectRatio(1f)
+                                .padding(2.dp)
+                                .clip(RoundedCornerShape(6.dp))
+                                .background(
+                                    when {
+                                        isSelected -> ParklyOrange
+                                        isToday -> ParklyOrangeLight
+                                        else -> Color.Transparent
+                                    }
+                                )
+                                .clickable(enabled = !isPast) { onDateSelected(date) },
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = "$day",
+                                fontSize = 11.sp,
+                                fontWeight = if (isSelected || isToday) FontWeight.Bold else FontWeight.Normal,
+                                color = when {
+                                    isSelected -> Color.White
+                                    isPast -> Color(0xFFCCCCCC)
+                                    else -> ParklyTextPrimary
+                                }
+                            )
+                        }
+                    } else {
+                        Spacer(modifier = Modifier.weight(1f))
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ─── Digital Clock Wheel Picker ─────────────────────────────────
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+private fun ParkingTimePicker(
+    minHour: Int,
+    minMinute: Int,
+    initialHour: Int,
+    initialMinute: Int,
+    onTimeChanged: (hour: Int, minute: Int) -> Unit
+) {
+    val hours = remember(minHour) { (minHour..22).toList() }
+    val allMinutes = remember { listOf(0, 15, 30, 45) }
+
+    // For the minimum hour, only show minutes >= minMinute
+    val firstHourMinMinutes = remember(minHour, minMinute) {
+        allMinutes.filter { it >= minMinute }
+    }
+
+    var selectedHour by remember { mutableIntStateOf(initialHour.coerceIn(minHour, 22)) }
+    var selectedMinute by remember {
+        mutableIntStateOf(
+            if (initialHour == minHour) initialMinute.coerceAtLeast(minMinute)
+            else initialMinute
+        )
+    }
+
+    val minutes = remember(selectedHour, minHour, minMinute) {
+        if (selectedHour == minHour) firstHourMinMinutes else allMinutes
+    }
+
+    // Initialize hour index
+    val initialHourIndex = hours.indexOf(selectedHour).coerceAtLeast(0)
+
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = ParklySurface),
+        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(160.dp),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            WheelColumn(
+                items = hours,
+                initialIndex = initialHourIndex,
+                labelFormatter = { String.format("%02d", it) },
+                onItemSelected = { hour ->
+                    selectedHour = hour
+                    onTimeChanged(hour, -1)
+                },
+                modifier = Modifier.weight(1f)
+            )
+
+            Text(
+                text = ":",
+                style = MaterialTheme.typography.headlineMedium,
+                color = ParklyOrange,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(horizontal = 8.dp)
+            )
+
+            WheelColumn(
+                items = minutes,
+                initialIndex = minutes.indexOf(selectedMinute).coerceAtLeast(0),
+                labelFormatter = { String.format("%02d", it) },
+                onItemSelected = { minute ->
+                    selectedMinute = minute
+                    onTimeChanged(-1, minute)
+                },
+                modifier = Modifier.weight(1f)
+            )
+        }
+    }
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+private fun <T> WheelColumn(
+    items: List<T>,
+    initialIndex: Int,
+    labelFormatter: (T) -> String,
+    onItemSelected: (T) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    val listState = rememberLazyListState(initialFirstVisibleItemIndex = initialIndex)
+    val flingBehavior = rememberSnapFlingBehavior(lazyListState = listState)
+
+    val currentIndex = remember {
+        derivedStateOf {
+            val layoutInfo = listState.layoutInfo
+            val visibleItemsInfo = layoutInfo.visibleItemsInfo
+            if (visibleItemsInfo.isEmpty()) 0
+            else {
+                val center = (layoutInfo.viewportStartOffset + layoutInfo.viewportEndOffset) / 2
+                visibleItemsInfo.minByOrNull {
+                    kotlin.math.abs((it.offset + it.size / 2) - center)
+                }?.index ?: 0
+            }
+        }
+    }
+
+    LaunchedEffect(currentIndex.value) {
+        if (currentIndex.value in items.indices) {
+            onItemSelected(items[currentIndex.value])
+        }
+    }
+
+    Box(modifier = modifier, contentAlignment = Alignment.Center) {
+        LazyColumn(
+            state = listState,
+            flingBehavior = flingBehavior,
+            contentPadding = PaddingValues(vertical = 60.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            items(items.size) { index ->
+                val isSelected = index == currentIndex.value
+                Text(
+                    text = labelFormatter(items[index]),
+                    style = MaterialTheme.typography.headlineMedium.copy(
+                        fontSize = if (isSelected) 26.sp else 18.sp
+                    ),
+                    fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
+                    color = if (isSelected) ParklyOrange else ParklyTextSecondary,
+                    modifier = Modifier
+                        .padding(vertical = 8.dp)
+                        .alpha(if (isSelected) 1f else 0.35f)
+                )
+            }
+        }
+    }
+}
+
+// ─── Duration Selector (Chips + end time) ───────────────────────
+
+// ─── Duration Slider (15-min steps up to 3h, then 1h steps up to 8h) ──
+
+@Composable
+private fun ParkingDurationSlider(
+    startTime: LocalTime,
+    onEndTimeSelected: (LocalTime) -> Unit
+) {
+    val limitTime = remember { LocalTime.of(23, 0) }
+
+    // Build non-linear steps: 15min increments up to 3h, then 1h up to 8h
+    val durationSteps = remember {
+        val steps = mutableListOf<Int>()
+        // 15min steps: 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180
+        var m = 15
+        while (m <= 180) {
+            steps.add(m)
+            m += 15
+        }
+        // 1h steps: 240, 300, 360, 420, 480
+        m = 240
+        while (m <= 480) {
+            steps.add(m)
+            m += 60
+        }
+        steps
+    }
+
+    // Filter steps that fit within the available time until 23:00
+    val maxAvailableMinutes = remember(startTime) {
+        ChronoUnit.MINUTES.between(startTime, limitTime).toInt()
+    }
+    val validSteps = remember(durationSteps, maxAvailableMinutes) {
+        durationSteps.filter { it <= maxAvailableMinutes }
+    }
+
+    if (validSteps.isEmpty()) {
+        Text(
+            "No es posible reservar después de las 23:00",
+            color = MaterialTheme.colorScheme.error,
+            modifier = Modifier.padding(vertical = 16.dp)
+        )
+        return
+    }
+
+    val maxIndex = validSteps.size - 1
+    // Default to 1h (index of 60 = 3)
+    val defaultIndex = validSteps.indexOf(60).coerceAtLeast(0)
+    var selectedIndex by remember(startTime) { mutableStateOf(defaultIndex.toFloat()) }
+
+    val totalSelectedMinutes = validSteps.getOrElse(selectedIndex.toInt()) { validSteps.last() }
+    val endTime = startTime.plusMinutes(totalSelectedMinutes.toLong())
+
+    val hoursSelected = totalSelectedMinutes / 60
+    val minutesSelected = totalSelectedMinutes % 60
+
+    val durationText = buildString {
+        if (hoursSelected > 0) append("${hoursSelected}h ")
+        if (minutesSelected > 0 || hoursSelected == 0) append("${minutesSelected} min")
+    }
+
+    LaunchedEffect(endTime) {
+        onEndTimeSelected(endTime)
+    }
+
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = ParklySurface),
+        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            Text(
+                text = "Duración del estacionamiento",
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
+                color = ParklyTextPrimary
+            )
+
+            // Duration + end time row
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.Bottom
+            ) {
+                Column {
+                    Text("Duración", fontSize = 11.sp, color = ParklyTextSecondary)
+                    Text(
+                        text = durationText,
+                        fontSize = 28.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = ParklyOrange
+                    )
+                }
+
+                Column(horizontalAlignment = Alignment.End) {
+                    Text("Salida estimada", fontSize = 11.sp, color = ParklyTextSecondary)
+                    Text(
+                        text = String.format("%02d:%02d", endTime.hour, endTime.minute),
+                        fontSize = 22.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = ParklyTextPrimary
+                    )
+                }
+            }
+
+            // Slider
+            Slider(
+                value = selectedIndex,
+                onValueChange = { selectedIndex = it },
+                valueRange = 0f..maxIndex.toFloat(),
+                steps = (maxIndex - 1).coerceAtLeast(0),
+                modifier = Modifier.fillMaxWidth(),
+                colors = SliderDefaults.colors(
+                    thumbColor = ParklyOrange,
+                    activeTrackColor = ParklyOrange,
+                    inactiveTrackColor = ParklyOrangeLight,
+                )
+            )
+
+            // Range labels
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = formatStepMinutes(validSteps.first()),
+                    fontSize = 11.sp,
+                    color = ParklyTextSecondary
+                )
+                Text(
+                    text = formatStepMinutes(validSteps.last()),
+                    fontSize = 11.sp,
+                    color = ParklyTextSecondary
+                )
+            }
+        }
+    }
+}
+
+private fun formatStepMinutes(minutes: Int): String {
+    val h = minutes / 60
+    val m = minutes % 60
+    return buildString {
+        if (h > 0) append("${h}h")
+        if (m > 0) {
+            if (h > 0) append(" ")
+            append("${m}min")
+        }
+    }
+}
+
+// ─── Label helpers (Spanish) ────────────────────────────────────
+
+private fun vehicleTypeLabel(type: String): String = when (type) {
+    "electric" -> "Eléctrico"
+    "motorcycle" -> "Moto"
+    else -> "Común"
+}
+
+private fun spotTypeLabel(type: String): String = when (type) {
+    "electric" -> "Con cargador"
+    "motorcycle" -> "Moto"
+    else -> "Común"
+}
+
+/**
+ * Round end time to :10, :25, :40, or :55 so there's always
+ * a 5-minute gap before the next reservation slot.
+ *
+ * Algorithm: subtract 5 min → round down to nearest :15 → add 10 min
+ *   13:15 → 13:10 → 13:00 → 13:10 ✓
+ *   13:30 → 13:25 → 13:15 → 13:25 ✓
+ *   13:45 → 13:40 → 13:30 → 13:40 ✓
+ *   14:00 → 13:55 → 13:45 → 13:55 ✓
+ */
+private fun roundEndTime(raw: LocalTime): LocalTime {
+    val totalMinutes = raw.hour * 60 + raw.minute
+    val adjusted = totalMinutes - 5
+    val roundedDown = (adjusted / 15) * 15
+    val result = roundedDown + 10
+    val hour = (result / 60) % 24
+    val minute = result % 60
+    return LocalTime.of(hour, minute)
 }

@@ -2,6 +2,7 @@ package com.parkinglksnext
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -19,6 +20,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -27,6 +29,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.parkinglksnext.ui.theme.*
 import com.parkinglksnext.viewmodel.AuthViewModel
 
 @Composable
@@ -36,10 +39,11 @@ fun RegisterScreen(
 ) {
     var nombre by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
+    var nombreCoche by remember { mutableStateOf("") }
     var matricula by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
-    var tipoVehiculo by remember { mutableStateOf("Combustión") }
+    var tipoVehiculo by remember { mutableStateOf("Común") }
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -53,6 +57,7 @@ fun RegisterScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(ParklyBackground)
             .verticalScroll(rememberScrollState())
             .padding(horizontal = 24.dp, vertical = 24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -78,19 +83,24 @@ fun RegisterScreen(
         }
 
         // --- LOGO ---
-        Image(
-            painter = painterResource(id = R.drawable.logo_lks),
-            contentDescription = "Logo LKS",
-            modifier = Modifier.width(140.dp).padding(bottom = 32.dp)
-        )
+        Box(
+            modifier = Modifier
+                .size(56.dp)
+                .clip(RoundedCornerShape(16.dp))
+                .background(ParklyOrange),
+            contentAlignment = Alignment.Center
+        ) {
+            Text("P", color = Color.White, fontWeight = FontWeight.ExtraBold, fontSize = 28.sp)
+        }
+        Spacer(modifier = Modifier.height(16.dp))
 
         // --- TÍTULO Y SUBTÍTULO ---
         Column(
             modifier = Modifier.fillMaxWidth().padding(bottom = 24.dp),
             horizontalAlignment = Alignment.Start
         ) {
-            Text(text = "Crear Cuenta", fontSize = 28.sp, fontWeight = FontWeight.Bold, color = Color.Black)
-            Text(text = "Únete a LKS Next Parking", fontSize = 15.sp, color = Color.Gray, modifier = Modifier.padding(top = 4.dp))
+            Text(text = "Crear Cuenta", fontSize = 26.sp, fontWeight = FontWeight.ExtraBold, color = ParklyTextPrimary)
+            Text(text = "Únete a LKS Next Parking", fontSize = 14.sp, color = ParklyTextSecondary, modifier = Modifier.padding(top = 4.dp))
         }
 
         // --- CAMPOS DE TEXTO ---
@@ -117,8 +127,19 @@ fun RegisterScreen(
         )
 
         OutlinedTextField(
+            value = nombreCoche,
+            onValueChange = { nombreCoche = it },
+            label = { Text("Nombre del Vehículo") },
+            placeholder = { Text("Ej: Mi coche, El Tesla...") },
+            leadingIcon = { Icon(Icons.Outlined.DirectionsCar, contentDescription = null) },
+            modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp),
+            shape = RoundedCornerShape(12.dp),
+            enabled = !uiState.isLoading
+        )
+
+        OutlinedTextField(
             value = matricula,
-            onValueChange = { matricula = it },
+            onValueChange = { matricula = it.uppercase() },
             label = { Text("Matrícula del Vehículo *") },
             placeholder = { Text("1234ABC") },
             leadingIcon = { Icon(Icons.Outlined.DirectionsCar, contentDescription = null) },
@@ -134,7 +155,7 @@ fun RegisterScreen(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                val opciones = listOf("Combustión", "Eléctrico", "Moto")
+                val opciones = listOf("Común", "Eléctrico", "Moto")
                 opciones.forEach { tipo ->
                     val isSelected = tipoVehiculo == tipo
                     OutlinedButton(
@@ -195,7 +216,7 @@ fun RegisterScreen(
                     val vehicleType = when (tipoVehiculo) {
                         "Eléctrico" -> "electric"
                         "Moto" -> "motorcycle"
-                        else -> "combustion"
+                        else -> "comun"
                     }
                     val profile = UserProfile(
                         firstName = nombre.split(" ").firstOrNull() ?: nombre,
@@ -207,6 +228,7 @@ fun RegisterScreen(
                         vehicles = listOf(
                             Vehicle(
                                 id = "vehicle-1",
+                                name = nombreCoche.ifBlank { matricula },
                                 licensePlate = matricula,
                                 type = vehicleType
                             )
@@ -216,9 +238,11 @@ fun RegisterScreen(
                     viewModel.register(email, password, profile)
                 }
             },
-            modifier = Modifier.fillMaxWidth().height(55.dp),
-            shape = RoundedCornerShape(12.dp),
-            enabled = !uiState.isLoading
+            modifier = Modifier.fillMaxWidth().height(54.dp),
+            shape = RoundedCornerShape(14.dp),
+            enabled = !uiState.isLoading,
+            colors = ButtonDefaults.buttonColors(containerColor = ParklyOrange),
+            elevation = ButtonDefaults.buttonElevation(defaultElevation = 2.dp)
         ) {
             if (uiState.isLoading) {
                 CircularProgressIndicator(
@@ -235,11 +259,12 @@ fun RegisterScreen(
 
         // --- FOOTER ---
         Row(modifier = Modifier.padding(bottom = 16.dp)) {
-            Text(text = "¿Ya tienes cuenta? ", color = Color.Gray)
+            Text(text = "¿Ya tienes cuenta? ", color = ParklyTextSecondary, fontSize = 14.sp)
             Text(
                 text = "Inicia sesión",
-                color = MaterialTheme.colorScheme.primary,
+                color = ParklyOrange,
                 fontWeight = FontWeight.Bold,
+                fontSize = 14.sp,
                 modifier = Modifier.clickable { onNavigateBack() }
             )
         }

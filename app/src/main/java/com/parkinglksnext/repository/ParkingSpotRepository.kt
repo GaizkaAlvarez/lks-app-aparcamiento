@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 
 /**
  * Repository for parking spots (read-only, seeded data).
- * Collection: parkingSpots/{spotId} — 25 documents (1-21 combustion, 22-24 electric, 25 motorcycle)
+ * Collection: parkingSpots/{spotId} — 35 documents (1-21 combustion, 22-28 electric, 29-35 motorcycle)
  *
  * Starts a real-time Firestore snapshot listener on construction so _spots stays in sync.
  */
@@ -61,21 +61,29 @@ class ParkingSpotRepository {
     /**
      * Returns available parking spots compatible with the given vehicle type.
      *
-     * Compatibility rules (from Figma reference):
-     * - "combustion" → combustion spots only
-     * - "electric"   → electric OR combustion spots
-     * - "motorcycle" → motorcycle spots only
+     * Compatibility rules:
+     * - "combustion" → combustion spots only (1-21)
+     * - "electric"   → electric OR combustion spots (1-28)
+     * - "motorcycle" → motorcycle spots only (29-35)
      */
     fun getAvailableSpotsForVehicle(vehicleType: String): List<ParkingSpot> {
         val allAvailable = _spots.value.filter { it.available }
-        val filtered = when (vehicleType.lowercase()) {
-            "motorcycle", "moto" -> allAvailable.filter { it.type == "motorcycle" }
-            "electric", "eléctrico" -> allAvailable.filter {
-                it.type in listOf("electric", "combustion")
+        val vType = vehicleType.lowercase()
+        val filtered = when {
+            vType in listOf("motorcycle", "moto") -> allAvailable.filter { it.type == "motorcycle" }
+            vType in listOf("electric", "eléctrico", "electrico") -> allAvailable.filter {
+                it.type in listOf("electric", "comun", "combustion")
             }
-            else -> allAvailable.filter { it.type == "combustion" }
+            // "comun", "combustion", "normal", or fallback
+            else -> allAvailable.filter { it.type in listOf("comun", "combustion") }
         }
-        return filtered.sortedBy { it.number }
+        // Sort: matching type first, then by number
+        val matchingType = when {
+            vType in listOf("motorcycle", "moto") -> "motorcycle"
+            vType in listOf("electric", "eléctrico", "electrico") -> "electric"
+            else -> "comun"
+        }
+        return filtered.sortedBy { if (it.type == matchingType) 0 else 1 }.sortedBy { it.number }
     }
 
     /**
@@ -89,10 +97,10 @@ class ParkingSpotRepository {
                 if (snapshot != null && snapshot.isEmpty) {
                     // Collection is empty — seed it
                     val batch = db.batch()
-                    for (i in 1..25) {
+                    for (i in 1..35) {
                         val type = when {
-                            i <= 21 -> "combustion"
-                            i <= 24 -> "electric"
+                            i <= 21 -> "comun"
+                            i <= 28 -> "electric"
                             else -> "motorcycle"
                         }
                         val spot = hashMapOf<String, Any>(

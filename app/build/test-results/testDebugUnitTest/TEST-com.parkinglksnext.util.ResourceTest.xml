@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.parkinglksnext.util.ResourceTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-07-03T19:17:36.733Z" hostname="Gaizka" time="0.16">
+  <properties/>
+  <testcase name="loading_is_instance_of_Resource" classname="com.parkinglksnext.util.ResourceTest" time="0.002"/>
+  <testcase name="sealed_has_three_subtypes" classname="com.parkinglksnext.util.ResourceTest" time="0.157"/>
+  <testcase name="success_holds_data" classname="com.parkinglksnext.util.ResourceTest" time="0.0"/>
+  <testcase name="error_holds_message" classname="com.parkinglksnext.util.ResourceTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

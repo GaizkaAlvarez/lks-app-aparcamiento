@@ -2,23 +2,23 @@ package com.parkinglksnext
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.parkinglksnext.ui.theme.*
 import com.parkinglksnext.viewmodel.ReservationsViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -26,12 +26,12 @@ import com.parkinglksnext.viewmodel.ReservationsViewModel
 fun ActiveReservationsScreen(
     viewModel: ReservationsViewModel,
     onNavigateToNewReservation: () -> Unit = {},
-    onNavigateToEditReservation: (String) -> Unit = {},
-    onOpenMenu: () -> Unit = {}
+    onNavigateToEditReservation: (String) -> Unit = {}
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    var selectedTab by remember { mutableIntStateOf(0) }
+    val tabs = listOf("En Curso", "Próximas")
 
-    // Show Snackbar on error
     val snackbarHostState = remember { SnackbarHostState() }
     LaunchedEffect(uiState.error) {
         uiState.error?.let {
@@ -40,170 +40,129 @@ fun ActiveReservationsScreen(
         }
     }
 
-    Scaffold(
-        topBar = {
-            CenterAlignedTopAppBar(
-                title = {
-                    Text("Reservas", fontSize = 20.sp, fontWeight = FontWeight.Bold)
-                },
-                navigationIcon = {
-                    IconButton(onClick = { onOpenMenu() }) {
-                        Icon(Icons.Default.Menu, contentDescription = "Menú")
-                    }
-                },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.background
-                )
-            )
-        },
-        snackbarHost = { SnackbarHost(snackbarHostState) }
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .padding(horizontal = 20.dp)
-        ) {
-            Spacer(modifier = Modifier.height(12.dp))
+    val shownReservations = when (selectedTab) {
+        0    -> uiState.currentReservations
+        else -> uiState.futureReservations
+    }
 
-            // --- TARJETA GRANDE: NUEVA RESERVA (Naranja LKS) ---
-            Card(
-                onClick = { onNavigateToNewReservation() },
+    Scaffold(
+        containerColor = ParklyBackground,
+        snackbarHost = { SnackbarHost(snackbarHostState) },
+        topBar = {
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(100.dp),
-                shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.primary
-                )
+                    .background(ParklySurface)
             ) {
-                Row(
+                Box(
                     modifier = Modifier
-                        .fillMaxSize()
-                        .padding(horizontal = 24.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
+                        .fillMaxWidth()
+                        .statusBarsPadding()
+                        .padding(horizontal = 24.dp, vertical = 16.dp)
                 ) {
-                    Column {
-                        Text(
-                            text = "Nueva Reserva",
-                            color = Color.White,
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                        Text(
-                            text = "Reserva tu plaza ahora",
-                            color = Color.White.copy(alpha = 0.8f),
-                            fontSize = 14.sp
-                        )
-                    }
-                    Icon(
-                        imageVector = Icons.Default.Add,
-                        contentDescription = "Añadir",
-                        tint = Color.White,
-                        modifier = Modifier.size(32.dp)
+                    Text(
+                        text = "Mis Reservas",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = ParklyTextPrimary,
+                        modifier = Modifier.align(Alignment.CenterStart)
                     )
                 }
-            }
-
-            Spacer(modifier = Modifier.height(32.dp))
-
-            // --- TÍTULO SECCIÓN ---
-            Text(
-                text = "Tus Reservas",
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFF0F2537),
-                modifier = Modifier.padding(bottom = 16.dp)
-            )
-
-            // Loading indicator
-            if (uiState.isLoading && uiState.activeReservations.isEmpty()) {
-                Box(
-                    modifier = Modifier.fillMaxWidth().weight(1f),
-                    contentAlignment = Alignment.Center
+                // Tabs
+                TabRow(
+                    selectedTabIndex = selectedTab,
+                    containerColor = ParklySurface,
+                    contentColor = ParklyOrange,
+                    divider = {}
                 ) {
-                    CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
+                    tabs.forEachIndexed { index, title ->
+                        Tab(
+                            selected = selectedTab == index,
+                            onClick = { selectedTab = index },
+                            text = {
+                                Text(
+                                    text = title,
+                                    fontWeight = if (selectedTab == index) FontWeight.SemiBold else FontWeight.Normal,
+                                    fontSize = 14.sp
+                                )
+                            },
+                            selectedContentColor = ParklyOrange,
+                            unselectedContentColor = ParklyTextSecondary
+                        )
+                    }
                 }
             }
-            // Active reservations list
-            else if (uiState.activeReservations.isNotEmpty()) {
-                Column(
-                    modifier = Modifier.weight(1f),
+        },
+        floatingActionButton = {
+            ExtendedFloatingActionButton(
+                onClick = onNavigateToNewReservation,
+                containerColor = ParklyOrange,
+                contentColor = Color.White,
+                shape = RoundedCornerShape(16.dp)
+            ) {
+                Text("+ Nueva Reserva", fontWeight = FontWeight.SemiBold)
+            }
+        }
+    ) { innerPadding ->
+        when {
+            uiState.isLoading && shownReservations.isEmpty() -> {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(innerPadding),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator(color = ParklyOrange)
+                }
+            }
+            shownReservations.isEmpty() -> {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(innerPadding),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text("🅿", fontSize = 48.sp)
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Text(
+                            text = if (selectedTab == 0) "Sin reservas en curso" else "Sin reservas próximas",
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = ParklyTextPrimary
+                        )
+                        Spacer(modifier = Modifier.height(6.dp))
+                        Text(
+                            text = "Reserva tu plaza ahora",
+                            fontSize = 13.sp,
+                            color = ParklyTextSecondary
+                        )
+                        Spacer(modifier = Modifier.height(20.dp))
+                        Button(
+                            onClick = onNavigateToNewReservation,
+                            shape = RoundedCornerShape(12.dp),
+                            colors = ButtonDefaults.buttonColors(containerColor = ParklyOrange)
+                        ) {
+                            Text("Crear Reserva", fontWeight = FontWeight.Bold)
+                        }
+                    }
+                }
+            }
+            else -> {
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(innerPadding),
+                    contentPadding = PaddingValues(horizontal = 20.dp, vertical = 16.dp),
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    uiState.activeReservations.forEach { reservation ->
-                        ActiveReservationCard(
+                    items(shownReservations, key = { it.id }) { reservation ->
+                        ParklyReservationCard(
                             reservation = reservation,
+                            isActive = selectedTab == 0,
                             onEdit = { onNavigateToEditReservation(reservation.id) },
                             onCancel = { viewModel.cancelReservation(reservation.id) }
                         )
-                    }
-                }
-            }
-            // Empty state
-            else {
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(1f)
-                        .padding(bottom = 40.dp),
-                    shape = RoundedCornerShape(16.dp),
-                    colors = CardDefaults.cardColors(
-                        containerColor = Color(0xFFF8F9FA)
-                    ),
-                    border = CardDefaults.outlinedCardBorder()
-                ) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(24.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
-                    ) {
-                        Box(
-                            modifier = Modifier
-                                .size(64.dp)
-                                .background(Color(0xFFE9ECEF), shape = CircleShape),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Icon(
-                                imageVector = Icons.Outlined.Info,
-                                contentDescription = null,
-                                tint = Color(0xFF6C757D),
-                                modifier = Modifier.size(32.dp)
-                            )
-                        }
-
-                        Spacer(modifier = Modifier.height(24.dp))
-
-                        Text(
-                            text = "No tienes reservas",
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color(0xFF0F2537)
-                        )
-
-                        Spacer(modifier = Modifier.height(8.dp))
-
-                        Text(
-                            text = "Crea una nueva reserva para aparcar",
-                            fontSize = 14.sp,
-                            color = Color.Gray
-                        )
-
-                        Spacer(modifier = Modifier.height(24.dp))
-
-                        Button(
-                            onClick = { onNavigateToNewReservation() },
-                            shape = RoundedCornerShape(8.dp),
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = MaterialTheme.colorScheme.primary
-                            ),
-                            modifier = Modifier.height(45.dp)
-                        ) {
-                            Text("Crear Reserva", color = Color.White, fontWeight = FontWeight.Bold)
-                        }
                     }
                 }
             }
@@ -212,84 +171,109 @@ fun ActiveReservationsScreen(
 }
 
 @Composable
-private fun ActiveReservationCard(
+private fun ParklyReservationCard(
     reservation: Reservation,
+    isActive: Boolean,
     onEdit: () -> Unit,
     onCancel: () -> Unit
 ) {
+    val spotTypeEmoji = when (reservation.spotType) {
+        "electric"   -> "⚡"
+        "motorcycle" -> "🏍"
+        else         -> "🚗"
+    }
+    val badgeText  = if (isActive) "En Curso" else "Próxima"
+    val badgeBg    = if (isActive) ParklyOrangeLight else ParklyGreenLight
+    val badgeColor = if (isActive) ParklyOrange else ParklyGreen
+
     Card(
         modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
-        border = CardDefaults.outlinedCardBorder()
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = ParklySurface),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            // Spot badge — larger emoji, no orange background
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.width(56.dp)
             ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    // Spot number badge
-                    Box(
-                        modifier = Modifier
-                            .size(44.dp)
-                            .background(
-                                color = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f),
-                                shape = RoundedCornerShape(10.dp)
-                            ),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            text = "${reservation.spotNumber}",
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = MaterialTheme.colorScheme.primary
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(12.dp))
-                    Column {
-                        Text(
-                            text = "Plaza ${reservation.spotNumber}",
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 16.sp,
-                            color = Color(0xFF0F2537)
-                        )
-                        Text(
-                            text = "${reservation.date}  ${reservation.startTime} - ${reservation.endTime}",
-                            fontSize = 13.sp,
-                            color = Color.Gray
-                        )
-                    }
-                }
+                Text(
+                    text = String.format("%02d", reservation.spotNumber),
+                    fontSize = 26.sp,
+                    fontWeight = FontWeight.ExtraBold,
+                    color = ParklyTextPrimary
+                )
+                Text(spotTypeEmoji, fontSize = 22.sp)
             }
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.width(14.dp))
 
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.End
+            Column(modifier = Modifier.weight(1f)) {
+                Row(
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = reservation.date,
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 14.sp,
+                        color = ParklyTextPrimary
+                    )
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(6.dp))
+                            .background(badgeBg)
+                            .padding(horizontal = 8.dp, vertical = 3.dp)
+                    ) {
+                        Text(badgeText, color = badgeColor, fontSize = 11.sp, fontWeight = FontWeight.SemiBold)
+                    }
+                }
+                Spacer(modifier = Modifier.height(3.dp))
+                Text(
+                    text = "${reservation.startTime} – ${reservation.endTime}",
+                    fontSize = 13.sp,
+                    color = ParklyTextSecondary
+                )
+                Text(
+                    text = "Level 1",
+                    fontSize = 12.sp,
+                    color = ParklyTextSecondary
+                )
+            }
+        }
+
+        HorizontalDivider(color = ParklyGrayLight, modifier = Modifier.padding(horizontal = 16.dp))
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 8.dp),
+            horizontalArrangement = Arrangement.End,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            TextButton(
+                onClick = onEdit,
+                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp)
             ) {
-                TextButton(onClick = onEdit) {
-                    Icon(
-                        Icons.Default.Edit,
-                        contentDescription = "Editar",
-                        modifier = Modifier.size(18.dp)
-                    )
-                    Spacer(modifier = Modifier.width(4.dp))
-                    Text("Editar", color = MaterialTheme.colorScheme.primary)
-                }
-                Spacer(modifier = Modifier.width(8.dp))
-                TextButton(onClick = onCancel) {
-                    Icon(
-                        Icons.Default.Close,
-                        contentDescription = "Cancelar",
-                        tint = Color(0xFFC5221F),
-                        modifier = Modifier.size(18.dp)
-                    )
-                    Spacer(modifier = Modifier.width(4.dp))
-                    Text("Cancelar", color = Color(0xFFC5221F))
-                }
+                Icon(Icons.Default.Edit, contentDescription = null, modifier = Modifier.size(14.dp), tint = ParklyOrange)
+                Spacer(modifier = Modifier.width(4.dp))
+                Text("Editar", color = ParklyOrange, fontSize = 13.sp, fontWeight = FontWeight.Medium)
+            }
+            Spacer(modifier = Modifier.width(4.dp))
+            TextButton(
+                onClick = onCancel,
+                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp)
+            ) {
+                Icon(Icons.Default.Close, contentDescription = null, modifier = Modifier.size(14.dp), tint = ParklyRed)
+                Spacer(modifier = Modifier.width(4.dp))
+                Text("Cancelar", color = ParklyRed, fontSize = 13.sp, fontWeight = FontWeight.Medium)
             }
         }
     }

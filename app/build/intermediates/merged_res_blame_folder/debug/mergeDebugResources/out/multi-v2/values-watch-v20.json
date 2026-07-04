@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.parkinglksnext.app-mergeDebugResources-68:/values-watch-v20/values-watch-v20.xml",
+            "outputFile": "com.parkinglksnext.app-mergeDebugResources-79:/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
-                    "source": "/home/gaizka/.gradle/caches/8.13/transforms/3b06903130bfb74a165ea5417b3f2e6c/transformed/play-services-auth-21.3.0/res/values-watch-v20/values.xml",
+                    "source": "/home/gaizka/.gradle/caches/8.13/transforms/9e530848a3c1a7982c0f0656876fac87/transformed/play-services-auth-21.3.0/res/values-watch-v20/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11",
                         "startColumns": "0,0,0,0,0,0,0,0",

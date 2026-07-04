@@ -1,6 +1,7 @@
 package com.parkinglksnext.viewmodel
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.parkinglksnext.ParkingSpot
 import com.parkinglksnext.Reservation
@@ -8,6 +9,7 @@ import com.parkinglksnext.Vehicle
 import com.parkinglksnext.repository.AuthRepository
 import com.parkinglksnext.repository.ParkingSpotRepository
 import com.parkinglksnext.repository.ReservationRepository
+import com.parkinglksnext.util.NotificationHelper
 import com.parkinglksnext.util.Resource
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,7 +20,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class NewReservationViewModel : ViewModel() {
+class NewReservationViewModel(application: Application) : AndroidViewModel(application) {
 
     private val spotRepo = ParkingSpotRepository()
     private val reservationRepo = ReservationRepository()
@@ -35,7 +37,9 @@ class NewReservationViewModel : ViewModel() {
         val userVehicles: List<Vehicle> = emptyList(),
         val spotsLoading: Boolean = false,
         val isLoading: Boolean = false,
-        val error: String? = null
+        val error: String? = null,
+        val conflictingSpotIds: Set<String> = emptySet(),
+        val allCompatibleSpots: List<ParkingSpot> = emptyList()
     )
 
     private val _uiState = MutableStateFlow(NewReservationUiState())
@@ -93,7 +97,12 @@ class NewReservationViewModel : ViewModel() {
             val libreSpots = compatibleSpots.filter { it.id !in conflictingIds }
 
             _uiState.update {
-                it.copy(availableSpots = libreSpots.sortedBy { s -> s.number }, spotsLoading = false)
+                it.copy(
+                    availableSpots = libreSpots.sortedBy { s -> s.number },
+                    conflictingSpotIds = conflictingIds,
+                    allCompatibleSpots = compatibleSpots,
+                    spotsLoading = false
+                )
             }
         }
     }
@@ -145,6 +154,14 @@ class NewReservationViewModel : ViewModel() {
             when (result) {
                 is Resource.Success -> {
                     _uiState.update { it.copy(isLoading = false, error = null) }
+                    // Schedule reminder notification 15 min before
+                    val ctx = getApplication<Application>()
+                    NotificationHelper.scheduleStartReminder(
+                        ctx, reservation.id, date, start, spot.number
+                    )
+                    NotificationHelper.scheduleExpiryReminder(
+                        ctx, reservation.id, date, end, spot.number
+                    )
                     _events.emit(NewReservationEvent.Success)
                 }
                 is Resource.Error -> _uiState.update {

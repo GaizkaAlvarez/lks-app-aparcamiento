@@ -3,8 +3,9 @@ package com.parkinglksnext
 // Modelo de Vehículo compatible con la estructura que tienes en TypeScript
 data class Vehicle(
     val id: String = "",
+    val name: String = "",       // nombre descriptivo (ej: "Mi Tesla")
     val licensePlate: String = "",
-    val type: String = "normal" // "normal", "electric", "motorcycle"
+    val type: String = "comun"   // "comun", "electric", "motorcycle"
 )
 
 // Modelo de Notificaciones de perfil
@@ -21,9 +22,10 @@ data class UserProfile(
     val name: String = "",
     val email: String = "",
     val licensePlate: String = "",
-    val vehicleType: String = "normal",
+    val vehicleType: String = "comun",
     val vehicles: List<Vehicle> = emptyList(),
-    val notificationSettings: NotificationSettings = NotificationSettings()
+    val notificationSettings: NotificationSettings = NotificationSettings(),
+    val profileImageBase64: String = ""
 )
 
 // Modelo de Reserva para Firestore
@@ -33,7 +35,7 @@ data class Reservation(
     val vehicleId: String = "",
     val spotId: String = "",
     val spotNumber: Int = 0,
-    val spotType: String = "normal",
+    val spotType: String = "comun",
     val date: String = "", // Formato "yyyy-MM-dd"
     val startTime: String = "",
     val endTime: String = "",
@@ -45,6 +47,6 @@ data class Reservation(
 data class ParkingSpot(
     val id: String = "",
     val number: Int = 0,
-    val type: String = "normal",
+    val type: String = "comun",
     val available: Boolean = true
 )

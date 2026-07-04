@@ -7,6 +7,7 @@ import com.parkinglksnext.NotificationSettings
 import com.parkinglksnext.UserProfile
 import com.parkinglksnext.Vehicle
 import com.parkinglksnext.repository.AuthRepository
+import com.parkinglksnext.repository.ReservationRepository
 import com.parkinglksnext.repository.UserRepository
 import com.parkinglksnext.util.Resource
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -25,6 +26,7 @@ class ProfileViewModel : ViewModel() {
 
     private val userRepo = UserRepository()
     private val authRepo = AuthRepository()
+    private val reservationRepo = ReservationRepository()
 
     data class ProfileUiState(
         val userProfile: UserProfile? = null,
@@ -99,7 +101,7 @@ class ProfileViewModel : ViewModel() {
                 name = "$firstName $lastName",
                 vehicles = vehicles,
                 licensePlate = vehicles.firstOrNull()?.licensePlate ?: "",
-                vehicleType = vehicles.firstOrNull()?.type ?: "combustion",
+                vehicleType = vehicles.firstOrNull()?.type ?: "comun",
                 notificationSettings = notificationSettings
             )
 
@@ -113,6 +115,51 @@ class ProfileViewModel : ViewModel() {
                     it.copy(isSaving = false, error = result.message)
                 }
                 is Resource.Loading -> {}
+            }
+        }
+    }
+
+    /**
+     * Save profile photo as base64 string directly in Firestore.
+     * Called from MainActivity after converting the image URI.
+     */
+    fun saveProfilePhotoBase64(base64Image: String) {
+        val uid = authRepo.getCurrentUser()?.uid ?: return
+
+        viewModelScope.launch {
+            _uiState.update { it.copy(isSaving = true, error = null) }
+
+            val currentProfile = _uiState.value.userProfile ?: UserProfile()
+            val updatedProfile = currentProfile.copy(profileImageBase64 = base64Image)
+            val result = userRepo.saveUserProfile(uid, updatedProfile)
+
+            when (result) {
+                is Resource.Success -> {
+                    _uiState.update { it.copy(isSaving = false) }
+                }
+                is Resource.Error -> _uiState.update {
+                    it.copy(isSaving = false, error = result.message)
+                }
+                is Resource.Loading -> {}
+            }
+        }
+    }
+
+    /**
+     * Cancel all active reservations for a specific vehicle.
+     * Called when the user deletes a vehicle from their profile.
+     */
+    fun cancelReservationsForVehicle(vehicleId: String) {
+        val uid = authRepo.getCurrentUser()?.uid ?: return
+        viewModelScope.launch {
+            reservationRepo.getActiveReservations(uid).collect { resource ->
+                if (resource is Resource.Success) {
+                    resource.data
+                        .filter { it.vehicleId == vehicleId && it.status == "active" }
+                        .forEach { reservation ->
+                            reservationRepo.cancelReservation(reservation.id)
+                        }
+                }
             }
         }
     }

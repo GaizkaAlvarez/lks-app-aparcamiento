@@ -1,7 +1,6 @@
 package com.parkinglksnext
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -14,12 +13,13 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.parkinglksnext.ui.theme.*
 import com.parkinglksnext.viewmodel.AuthViewModel
 
 @Composable
@@ -41,6 +41,7 @@ fun ForgotPasswordScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(ParklyBackground)
             .padding(horizontal = 24.dp, vertical = 24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -52,24 +53,29 @@ fun ForgotPasswordScreen(
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                 contentDescription = "Volver",
-                tint = MaterialTheme.colorScheme.primary,
+                tint = ParklyOrange,
                 modifier = Modifier.clickable { onNavigateBack() }
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(
-                text = "Volver al inicio",
-                color = MaterialTheme.colorScheme.primary,
+                text = "Volver",
+                color = ParklyOrange,
                 fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.clickable { onNavigateBack() }
             )
         }
 
-        // Logo centrado
-        Image(
-            painter = painterResource(id = R.drawable.logo_lks),
-            contentDescription = "Logo LKS",
-            modifier = Modifier.width(140.dp).padding(bottom = 40.dp)
-        )
+        // Logo / Brand
+        Box(
+            modifier = Modifier
+                .size(56.dp)
+                .clip(RoundedCornerShape(16.dp))
+                .background(ParklyOrange),
+            contentAlignment = Alignment.Center
+        ) {
+            Text("P", color = Color.White, fontWeight = FontWeight.ExtraBold, fontSize = 28.sp)
+        }
+        Spacer(modifier = Modifier.height(32.dp))
 
         if (uiState.isPasswordResetSent) {
             // ─── Success state (matches Figma) ──────────────────
@@ -78,14 +84,15 @@ fun ForgotPasswordScreen(
             Box(
                 modifier = Modifier
                     .size(72.dp)
-                    .background(Color(0xFFE6F4EA), CircleShape),
+                    .clip(CircleShape)
+                    .background(ParklyGreenLight),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
                     imageVector = Icons.Default.Check,
                     contentDescription = "Éxito",
-                    tint = Color(0xFF137333),
-                    modifier = Modifier.size(40.dp)
+                    tint = ParklyGreen,
+                    modifier = Modifier.size(38.dp)
                 )
             }
 
@@ -95,15 +102,15 @@ fun ForgotPasswordScreen(
                 text = "¡Correo Enviado!",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF0F2537)
+                color = ParklyTextPrimary
             )
 
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
                 text = "Revisa tu bandeja de entrada y sigue las instrucciones para restablecer tu contraseña.",
-                fontSize = 15.sp,
-                color = Color.Gray,
+                fontSize = 14.sp,
+                color = ParklyTextSecondary,
                 modifier = Modifier.padding(horizontal = 16.dp),
                 textAlign = androidx.compose.ui.text.style.TextAlign.Center
             )
@@ -112,9 +119,10 @@ fun ForgotPasswordScreen(
 
             Button(
                 onClick = { onNavigateBack() },
-                modifier = Modifier.fillMaxWidth().height(55.dp),
-                shape = RoundedCornerShape(8.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+                modifier = Modifier.fillMaxWidth().height(54.dp),
+                shape = RoundedCornerShape(14.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = ParklyOrange),
+                elevation = ButtonDefaults.buttonElevation(defaultElevation = 2.dp)
             ) {
                 Text("Volver al Inicio", color = Color.White, fontSize = 16.sp, fontWeight = FontWeight.Bold)
             }
@@ -124,11 +132,11 @@ fun ForgotPasswordScreen(
                 modifier = Modifier.fillMaxWidth().padding(bottom = 24.dp),
                 horizontalAlignment = Alignment.Start
             ) {
-                Text(text = "¿Olvidaste tu contraseña?", fontSize = 26.sp, fontWeight = FontWeight.Bold, color = Color.Black)
+                Text(text = "¿Olvidaste tu contraseña?", fontSize = 24.sp, fontWeight = FontWeight.ExtraBold, color = ParklyTextPrimary)
                 Text(
-                    text = "Te enviaremos un enlace para restablecer tu contraseña",
-                    fontSize = 15.sp,
-                    color = Color.Gray,
+                    text = "Te enviaremos un enlace para restablecerla",
+                    fontSize = 14.sp,
+                    color = ParklyTextSecondary,
                     modifier = Modifier.padding(top = 8.dp)
                 )
             }
@@ -136,40 +144,43 @@ fun ForgotPasswordScreen(
             OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
-                label = { Text("Email") },
-                placeholder = { Text("tu@email.com") },
-                leadingIcon = { Icon(Icons.Outlined.Email, contentDescription = null) },
-                modifier = Modifier.fillMaxWidth().padding(bottom = 32.dp),
+                placeholder = { Text("tu@email.com", color = ParklyTextSecondary) },
+                leadingIcon = { Icon(Icons.Outlined.Email, contentDescription = null, tint = ParklyTextSecondary) },
+                modifier = Modifier.fillMaxWidth().padding(bottom = 24.dp),
                 shape = RoundedCornerShape(12.dp),
-                enabled = !uiState.isLoading
+                enabled = !uiState.isLoading,
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = ParklyOrange,
+                    unfocusedBorderColor = Color(0xFFE2E4ED),
+                    focusedContainerColor = ParklySurface,
+                    unfocusedContainerColor = ParklySurface
+                ),
+                singleLine = true
             )
 
             if (uiState.error != null) {
-                Text(
-                    text = uiState.error ?: "",
-                    color = MaterialTheme.colorScheme.error,
-                    fontSize = 14.sp,
-                    modifier = Modifier.padding(bottom = 12.dp)
-                )
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(10.dp))
+                        .background(ParklyRedLight)
+                        .padding(horizontal = 16.dp, vertical = 10.dp)
+                ) {
+                    Text(text = uiState.error ?: "", color = ParklyRed, fontSize = 13.sp)
+                }
+                Spacer(modifier = Modifier.height(12.dp))
             }
 
             Button(
-                onClick = {
-                    if (email.isNotBlank()) {
-                        viewModel.resetPassword(email)
-                    }
-                },
-                modifier = Modifier.fillMaxWidth().height(55.dp),
-                shape = RoundedCornerShape(8.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
-                enabled = !uiState.isLoading && email.isNotBlank()
+                onClick = { if (email.isNotBlank()) viewModel.resetPassword(email) },
+                modifier = Modifier.fillMaxWidth().height(54.dp),
+                shape = RoundedCornerShape(14.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = ParklyOrange),
+                enabled = !uiState.isLoading && email.isNotBlank(),
+                elevation = ButtonDefaults.buttonElevation(defaultElevation = 2.dp)
             ) {
                 if (uiState.isLoading) {
-                    CircularProgressIndicator(
-                        color = Color.White,
-                        modifier = Modifier.size(24.dp),
-                        strokeWidth = 2.dp
-                    )
+                    CircularProgressIndicator(color = Color.White, modifier = Modifier.size(22.dp), strokeWidth = 2.dp)
                 } else {
                     Text("Enviar Enlace", color = Color.White, fontSize = 16.sp, fontWeight = FontWeight.Bold)
                 }

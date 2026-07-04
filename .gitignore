@@ -13,3 +13,9 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Backend secrets
+backend/.env
+backend/service-account.json
+backend/__pycache__/
+backend/*.pyc

@@ -1,0 +1,265 @@
+07-03 21:27:08.184 18405 18447 I TestRunner: started: gemini_tool_calling_finds_spots(com.parkinglksnext.integration.AiServiceTest)
+07-03 21:27:08.208 18405 18457 W DynamiteModule: Local module descriptor class for com.google.android.gms.providerinstaller.dynamite not found.
+07-03 21:27:08.209  6801  7343 W ProviderHelper: Unknown dynamite feature providerinstaller.dynamite
+07-03 21:27:08.210 18405 18457 I DynamiteModule: Considering local module com.google.android.gms.providerinstaller.dynamite:0 and remote module com.google.android.gms.providerinstaller.dynamite:0
+07-03 21:27:08.210 18405 18457 W ProviderInstaller: Failed to load providerinstaller module: No acceptable module com.google.android.gms.providerinstaller.dynamite found. Local version is 0 and remote version is 0.
+07-03 21:27:08.211 18405 18457 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/org.apache.http.legacy.jar
+07-03 21:27:08.211 18405 18457 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/com.android.location.provider.jar
+07-03 21:27:08.211 18405 18457 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/com.android.media.remotedisplay.jar
+07-03 21:27:08.211 18405 18457 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+07-03 21:27:08.211 18405 18457 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+07-03 21:27:08.212 18405 18457 D nativeloader: Configuring clns-13 for other apk /data/app/~~ZzoY8ee6rbqjXIEt8cXo0g==/com.google.android.gms-WVz6q3ituQC1EzZh9nVVCA==/base.apk. target_sdk_version=37, uses_libraries=, library_path=/data/app/~~ZzoY8ee6rbqjXIEt8cXo0g==/com.google.android.gms-WVz6q3ituQC1EzZh9nVVCA==/lib/x86_64:/data/app/~~ZzoY8ee6rbqjXIEt8cXo0g==/com.google.android.gms-WVz6q3ituQC1EzZh9nVVCA==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.google.android.gms
+07-03 21:27:08.213 18405 18457 W ProviderInstaller: Failed to report request stats: com.google.android.gms.common.security.ProviderInstallerImpl.reportRequestStats [class android.content.Context, long, long]
+07-03 21:27:08.221 18405 18460 I gpkn    : Unable to retrieve flag snapshot for com.google.android.gms.providerinstaller#com.parkinglksnext, using defaults.
+07-03 21:27:08.224 18405 18457 D nativeloader: Load /data/app/~~ZzoY8ee6rbqjXIEt8cXo0g==/com.google.android.gms-WVz6q3ituQC1EzZh9nVVCA==/base.apk!/lib/x86_64/libconscrypt_gmscore_jni.so using class loader ns clns-13 (caller=/data/app/~~ZzoY8ee6rbqjXIEt8cXo0g==/com.google.android.gms-WVz6q3ituQC1EzZh9nVVCA==/base.apk): ok
+07-03 21:27:08.225 18405 18457 V NativeCrypto: Registering com/google/android/gms/org/conscrypt/NativeCrypto's 337 native methods...
+07-03 21:27:08.227 18405 18459 E GoogleApiManager: Failed to get service from broker.
+07-03 21:27:08.227 18405 18459 E GoogleApiManager: java.lang.SecurityException: Unknown calling package name 'com.google.android.gms'.
+07-03 21:27:08.227 18405 18459 E GoogleApiManager: 	at android.os.Parcel.createExceptionOrNull(Parcel.java:3367)
+07-03 21:27:08.227 18405 18459 E GoogleApiManager: 	at android.os.Parcel.createException(Parcel.java:3351)
+07-03 21:27:08.227 18405 18459 E GoogleApiManager: 	at android.os.Parcel.readException(Parcel.java:3334)
+07-03 21:27:08.227 18405 18459 E GoogleApiManager: 	at android.os.Parcel.readException(Parcel.java:3278)
+07-03 21:27:08.227 18405 18459 E GoogleApiManager: 	at bksw.a(:com.google.android.gms@262434038@26.24.34 (260800-938041327):36)
+07-03 21:27:08.227 18405 18459 E GoogleApiManager: 	at bkqs.y(:com.google.android.gms@262434038@26.24.34 (260800-938041327):143)
+07-03 21:27:08.227 18405 18459 E GoogleApiManager: 	at bjwu.run(:com.google.android.gms@262434038@26.24.34 (260800-938041327):42)
+07-03 21:27:08.227 18405 18459 E GoogleApiManager: 	at android.os.Handler.handleCallback(Handler.java:1082)
+07-03 21:27:08.227 18405 18459 E GoogleApiManager: 	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+07-03 21:27:08.227 18405 18459 E GoogleApiManager: 	at android.os.Handler.dispatchMessage(Handler.java:126)
+07-03 21:27:08.227 18405 18459 E GoogleApiManager: 	at dcyu.mF(:com.google.android.gms@262434038@26.24.34 (260800-938041327):1)
+07-03 21:27:08.227 18405 18459 E GoogleApiManager: 	at dcyu.dispatchMessage(:com.google.android.gms@262434038@26.24.34 (260800-938041327):5)
+07-03 21:27:08.227 18405 18459 E GoogleApiManager: 	at android.os.Looper.loopOnce(Looper.java:295)
+07-03 21:27:08.227 18405 18459 E GoogleApiManager: 	at android.os.Looper.loop(Looper.java:398)
+07-03 21:27:08.227 18405 18459 E GoogleApiManager: 	at android.os.HandlerThread.run(HandlerThread.java:140)
+07-03 21:27:08.227 18405 18459 W GoogleApiManager: Not showing notification since connectionResult is not user-facing: ConnectionResult{statusCode=DEVELOPER_ERROR, resolution=null, message=null, clientMethodKey=null}
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: Failed to register com.google.android.gms.providerinstaller#com.parkinglksnext
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: gpky: 17: 17: API: Phenotype.API is not available on this device. Connection failed with: ConnectionResult{statusCode=DEVELOPER_ERROR, resolution=null, message=null, clientMethodKey=null}
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at gpla.a(:com.google.android.gms@262434038@26.24.34 (260800-938041327):13)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at hpux.d(:com.google.android.gms@262434038@26.24.34 (260800-938041327):3)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at hpuz.run(:com.google.android.gms@262434038@26.24.34 (260800-938041327):139)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at hpxh.execute(:com.google.android.gms@262434038@26.24.34 (260800-938041327):1)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at hpvh.f(:com.google.android.gms@262434038@26.24.34 (260800-938041327):1)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at hpvh.m(:com.google.android.gms@262434038@26.24.34 (260800-938041327):101)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at hpvh.q(:com.google.android.gms@262434038@26.24.34 (260800-938041327):16)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at giub.hD(:com.google.android.gms@262434038@26.24.34 (260800-938041327):35)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at fuvt.run(:com.google.android.gms@262434038@26.24.34 (260800-938041327):12)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at hpxh.execute(:com.google.android.gms@262434038@26.24.34 (260800-938041327):1)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at fuvu.b(:com.google.android.gms@262434038@26.24.34 (260800-938041327):18)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at fuwj.b(:com.google.android.gms@262434038@26.24.34 (260800-938041327):34)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at fuwl.c(:com.google.android.gms@262434038@26.24.34 (260800-938041327):23)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at bjub.e(:com.google.android.gms@262434038@26.24.34 (260800-938041327):9)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at bjws.q(:com.google.android.gms@262434038@26.24.34 (260800-938041327):48)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at bjws.d(:com.google.android.gms@262434038@26.24.34 (260800-938041327):10)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at bjws.g(:com.google.android.gms@262434038@26.24.34 (260800-938041327):191)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at bjws.onConnectionFailed(:com.google.android.gms@262434038@26.24.34 (260800-938041327):2)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at bjwu.run(:com.google.android.gms@262434038@26.24.34 (260800-938041327):70)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at android.os.Handler.handleCallback(Handler.java:1082)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at android.os.Handler.dispatchMessage(Handler.java:126)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at dcyu.mF(:com.google.android.gms@262434038@26.24.34 (260800-938041327):1)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at dcyu.dispatchMessage(:com.google.android.gms@262434038@26.24.34 (260800-938041327):5)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at android.os.Looper.loopOnce(Looper.java:295)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at android.os.Looper.loop(Looper.java:398)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at android.os.HandlerThread.run(HandlerThread.java:140)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: Caused by: bjsg: 17: API: Phenotype.API is not available on this device. Connection failed with: ConnectionResult{statusCode=DEVELOPER_ERROR, resolution=null, message=null, clientMethodKey=null}
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at bkqe.a(:com.google.android.gms@262434038@26.24.34 (260800-938041327):15)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at bjue.a(:com.google.android.gms@262434038@26.24.34 (260800-938041327):1)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	at bjub.e(:com.google.android.gms@262434038@26.24.34 (260800-938041327):5)
+07-03 21:27:08.228 18405 18458 W FlagRegistrar: 	... 13 more
+07-03 21:27:08.229 18405 18457 I .parkinglksnext: hiddenapi: Accessing hidden method Ljava/security/spec/ECParameterSpec;->getCurveName()Ljava/lang/String; (runtime_flags=0, domain=core-platform, api=unsupported) from Lcom/google/android/gms/org/conscrypt/Platform; (domain=app, TargetSdkVersion=36) using reflection: allowed
+07-03 21:27:08.229 18405 18460 W FlagStore: Unable to update local snapshot for com.google.android.gms.providerinstaller#com.parkinglksnext, may result in stale flags.
+07-03 21:27:08.229 18405 18460 W FlagStore: java.util.concurrent.ExecutionException: gpky: 17: 17: API: Phenotype.API is not available on this device. Connection failed with: ConnectionResult{statusCode=DEVELOPER_ERROR, resolution=null, message=null, clientMethodKey=null}
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at hpvh.j(:com.google.android.gms@262434038@26.24.34 (260800-938041327):21)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at hpvq.t(:com.google.android.gms@262434038@26.24.34 (260800-938041327):24)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at hpvh.get(:com.google.android.gms@262434038@26.24.34 (260800-938041327):1)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at hpzw.a(:com.google.android.gms@262434038@26.24.34 (260800-938041327):2)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at hpym.s(:com.google.android.gms@262434038@26.24.34 (260800-938041327):10)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at gpqi.d(:com.google.android.gms@262434038@26.24.34 (260800-938041327):1)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at gppm.run(:com.google.android.gms@262434038@26.24.34 (260800-938041327):5)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:323)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1100)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at java.lang.Thread.run(Thread.java:1569)
+07-03 21:27:08.229 18405 18460 W FlagStore: Caused by: gpky: 17: 17: API: Phenotype.API is not available on this device. Connection failed with: ConnectionResult{statusCode=DEVELOPER_ERROR, resolution=null, message=null, clientMethodKey=null}
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at gpla.a(:com.google.android.gms@262434038@26.24.34 (260800-938041327):13)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at hpux.d(:com.google.android.gms@262434038@26.24.34 (260800-938041327):3)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at hpuz.run(:com.google.android.gms@262434038@26.24.34 (260800-938041327):139)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at hpxh.execute(:com.google.android.gms@262434038@26.24.34 (260800-938041327):1)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at hpvh.f(:com.google.android.gms@262434038@26.24.34 (260800-938041327):1)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at hpvh.m(:com.google.android.gms@262434038@26.24.34 (260800-938041327):101)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at hpvh.q(:com.google.android.gms@262434038@26.24.34 (260800-938041327):16)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at giub.hD(:com.google.android.gms@262434038@26.24.34 (260800-938041327):35)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at fuvt.run(:com.google.android.gms@262434038@26.24.34 (260800-938041327):12)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at hpxh.execute(:com.google.android.gms@262434038@26.24.34 (260800-938041327):1)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at fuvu.b(:com.google.android.gms@262434038@26.24.34 (260800-938041327):18)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at fuwj.b(:com.google.android.gms@262434038@26.24.34 (260800-938041327):34)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at fuwq.B(:com.google.android.gms@262434038@26.24.34 (260800-938041327):17)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at fuvl.run(:com.google.android.gms@262434038@26.24.34 (260800-938041327):60)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at hpxh.execute(:com.google.android.gms@262434038@26.24.34 (260800-938041327):1)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at fuvm.b(:com.google.android.gms@262434038@26.24.34 (260800-938041327):8)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at fuwj.b(:com.google.android.gms@262434038@26.24.34 (260800-938041327):34)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at fuwl.c(:com.google.android.gms@262434038@26.24.34 (260800-938041327):23)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at bjub.e(:com.google.android.gms@262434038@26.24.34 (260800-938041327):9)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at bjws.q(:com.google.android.gms@262434038@26.24.34 (260800-938041327):48)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at bjws.d(:com.google.android.gms@262434038@26.24.34 (260800-938041327):10)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at bjws.g(:com.google.android.gms@262434038@26.24.34 (260800-938041327):191)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at bjws.onConnectionFailed(:com.google.android.gms@262434038@26.24.34 (260800-938041327):2)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at bjwu.run(:com.google.android.gms@262434038@26.24.34 (260800-938041327):70)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at android.os.Handler.handleCallback(Handler.java:1082)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at android.os.Handler.dispatchMessage(Handler.java:126)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at dcyu.mF(:com.google.android.gms@262434038@26.24.34 (260800-938041327):1)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at dcyu.dispatchMessage(:com.google.android.gms@262434038@26.24.34 (260800-938041327):5)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at android.os.Looper.loopOnce(Looper.java:295)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at android.os.Looper.loop(Looper.java:398)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at android.os.HandlerThread.run(HandlerThread.java:140)
+07-03 21:27:08.229 18405 18460 W FlagStore: Caused by: bjsg: 17: API: Phenotype.API is not available on this device. Connection failed with: ConnectionResult{statusCode=DEVELOPER_ERROR, resolution=null, message=null, clientMethodKey=null}
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at bkqe.a(:com.google.android.gms@262434038@26.24.34 (260800-938041327):15)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at bjue.a(:com.google.android.gms@262434038@26.24.34 (260800-938041327):1)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	at bjub.e(:com.google.android.gms@262434038@26.24.34 (260800-938041327):5)
+07-03 21:27:08.229 18405 18460 W FlagStore: 	... 13 more
+07-03 21:27:08.234 18405 18431 D GeminiService: Gemini request iteration 0
+07-03 21:27:08.236   683   924 D ConnectivityService: requestNetwork for uid/pid:10233/18405 activeRequest: null callbackRequest: 1345 [NetworkRequest [ REQUEST id=1346, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10233 RequestorUid: 10233 RequestorPkg: com.parkinglksnext UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false declaredMethods: AVAIL|LOST
+07-03 21:27:08.237   683   846 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=1346, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10233 RequestorUid: 10233 RequestorPkg: com.parkinglksnext UnderlyingNetworks: Null] ]
+07-03 21:27:08.237   683   846 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=1346, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10233 RequestorUid: 10233 RequestorPkg: com.parkinglksnext UnderlyingNetworks: Null] ]
+07-03 21:27:08.237   683   846 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=1346, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10233 RequestorUid: 10233 RequestorPkg: com.parkinglksnext UnderlyingNetworks: Null] ]
+07-03 21:27:08.237   683   852 D ConnectivityService: NetReassign [1346 : null → 101] [c 0] [a 0] [i 1]
+07-03 21:27:08.237   683   846 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=1346, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10233 RequestorUid: 10233 RequestorPkg: com.parkinglksnext UnderlyingNetworks: Null] ]
+07-03 21:27:08.239 18405 18457 I ProviderInstaller: Installed default security provider GmsCore_OpenSSL
+07-03 21:27:08.257   683   924 D ConnectivityService: requestNetwork for uid/pid:10233/18405 activeRequest: null callbackRequest: 1347 [NetworkRequest [ REQUEST id=1348, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10233 RequestorUid: 10233 RequestorPkg: com.parkinglksnext UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false declaredMethods: AVAIL|BLK
+07-03 21:27:08.258   683   852 D ConnectivityService: NetReassign [1348 : null → 101] [c 0] [a 1] [i 0]
+07-03 21:27:08.258   683   846 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=1348, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10233 RequestorUid: 10233 RequestorPkg: com.parkinglksnext UnderlyingNetworks: Null] ]
+07-03 21:27:08.258   683   846 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=1348, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10233 RequestorUid: 10233 RequestorPkg: com.parkinglksnext UnderlyingNetworks: Null] ]
+07-03 21:27:08.258   683   846 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=1348, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10233 RequestorUid: 10233 RequestorPkg: com.parkinglksnext UnderlyingNetworks: Null] ]
+07-03 21:27:08.258   683   846 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=1348, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10233 RequestorUid: 10233 RequestorPkg: com.parkinglksnext UnderlyingNetworks: Null] ]
+07-03 21:27:08.901   683  2018 W ApplicationInfo: Large ApplicationInfo parcel: size=19880 package=com.google.android.googlequicksearchbox sharedLibs=3 resDirs=2 overlayPaths=2
+07-03 21:27:08.901  8443 18349 I AiAiEcho: AppIndexer Package:[com.parkinglksnext] UserProfile:[0] Enabled:[true].
+07-03 21:27:08.901  8443 18349 I AiAiEcho: AppFetcherImplV2 updateApps package:[com.parkinglksnext], userId:[0], reason:[package is updated.].
+07-03 21:27:08.902   950   950 D ControlsListingControllerImpl: ServiceConfig reloaded, count: 0
+07-03 21:27:08.903  1070  1070 D CarrierSvcBindHelper: onPackageModified: com.parkinglksnext
+07-03 21:27:08.903  7280  7288 I PermissionControllerServiceImpl: Updating user sensitive for uid 10233
+07-03 21:27:08.903  1070  1261 I SatelliteAppTracker: onPackageModified : com.parkinglksnext
+07-03 21:27:08.903  1070  1070 D CarrierSvcBindHelper: No carrier app for: 0
+07-03 21:27:08.903  1070  1261 D SatelliteAppTracker: packageName: com.parkinglksnext, value: null
+07-03 21:27:08.906   683   788 I RoleService: Granting default roles...
+07-03 21:27:08.906 18405 18478 I .parkinglksnext: hiddenapi: Accessing hidden field Ljava/net/Socket;->impl:Ljava/net/SocketImpl; (runtime_flags=0, domain=core-platform, api=unsupported) from Lcom/google/android/gms/org/conscrypt/Platform; (domain=app, TargetSdkVersion=36) using reflection: allowed
+07-03 21:27:08.909   683   683 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+07-03 21:27:08.909   683   683 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+07-03 21:27:08.909   683   683 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+07-03 21:27:08.910   683   683 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+07-03 21:27:08.910   683   683 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+07-03 21:27:08.910   683   683 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+07-03 21:27:08.910  1070  1375 D ImsResolver: maybeAddedImsService, packageName: com.parkinglksnext
+07-03 21:27:08.910  1070  1375 V ImsResolver: searchForImsServices: package=com.parkinglksnext, users=[UserHandle{0}]
+07-03 21:27:08.911  1070  1375 V ImsResolver: searchForImsServices: package=com.parkinglksnext, users=[UserHandle{0}]
+07-03 21:27:08.912   683  7272 W SignedPackage: Package doesn't have required signing certificate: com.google.android.retaildemo
+07-03 21:27:08.912  1070  1070 D SatelliteController: packageStateChanged: package:com.parkinglksnext defaultSmsPackageName: com.google.android.apps.messaging satelliteGatewayServicePackageName:
+07-03 21:27:08.913   683  7272 E RoleControllerServiceImpl: Default/fallback role holder package doesn't qualify for the role, package: com.google.android.gms.supervision, role: android.app.role.SYSTEM_SUPERVISION, user: 0
+07-03 21:27:08.913  5939  6115 D AlphabeticIndexCompat: computeSectionName: cs: ParkingLKSNext sectionName: P
+07-03 21:27:08.914   683  7272 I Role    : com.google.android.gms not qualified for android.app.role.SYSTEM_CALL_STREAMING due to missing RequiredComponent{mFlags='0', mIntentFilterData=IntentFilterData{mAction='android.telecom.CallStreamingService', mCategories='[]', mDataScheme='null', mDataType='null'}, mMetaData=[], mPermission='android.permission.BIND_CALL_STREAMING_SERVICE', mQueryFlags=0} Requirement{mFeatureFlag=null, mMinTargetSdkVersion=1}
+07-03 21:27:08.914   683  7272 E RoleControllerServiceImpl: Default/fallback role holder package doesn't qualify for the role, package: com.google.android.gms, role: android.app.role.SYSTEM_CALL_STREAMING, user: 0
+07-03 21:27:08.914  5939  6110 D AllAppsStore: setApps: apps.length=20
+07-03 21:27:08.914   683  7272 W SignedPackage: Package doesn't have required signing certificate: com.google.android.apps.work.clouddpc
+07-03 21:27:08.914  5939  6110 D AllAppsStore: notifyUpdate: notifying listeners
+07-03 21:27:08.915  5939  5939 D AllAppsStore: setApps: apps.length=20
+07-03 21:27:08.915  5939  5939 D AllAppsStore: notifyUpdate: notifying listeners
+07-03 21:27:08.915  5939  5939 D ActivityAllAppsContainerView: onAppsUpdated; number of apps: 20
+07-03 21:27:08.915  5939  5939 D ActivityAllAppsContainerView: rebindAdapters: force: false
+07-03 21:27:08.916  5939  5939 D ActivityAllAppsContainerView: rebindAdapters: Not needed.
+07-03 21:27:08.916  5939  5939 D StatsLog: LAUNCHER_ALLAPPS_COUNT
+07-03 21:27:08.916  5939  5939 D AlphabeticalAppsList: Clearing FastScrollerSections.
+07-03 21:27:08.916  5939  5939 D AlphabeticalAppsList: Adding apps with sections. HasPrivateApps: false
+07-03 21:27:08.916 18405 18431 I .parkinglksnext: hiddenapi: Accessing hidden method Ljava/security/spec/ECParameterSpec;->setCurveName(Ljava/lang/String;)V (runtime_flags=0, domain=core-platform, api=unsupported) from Lcom/google/android/gms/org/conscrypt/Platform; (domain=app, TargetSdkVersion=36) using reflection: allowed
+07-03 21:27:08.917  1070  1394 D SatelliteAccessController: Current default SMS app:ComponentInfo{com.google.android.apps.messaging/com.google.android.apps.messaging.shared.receiver.SmsDeliverReceiver}
+07-03 21:27:08.917  1070  1394 D SatelliteController: getSelectedSatelliteSubId: subId=-1
+07-03 21:27:08.917  5939  5939 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: C with appInfoTitle: Calendar
+07-03 21:27:08.917  1070  1394 D SatelliteController: getConfigForSubId: subId= -1, config= PersistableBundle[{satellite_esos_supported_bool=false, satellite_connection_hysteresis_sec_int=180, satellite_supported_disaster_plmn_string_array=[], regional_satellite_earfcn_bundle=PersistableBundle[{}], satellite_entitlement_supported_bool=false, satellite_supported_emergency_plmn_string_array=[], satellite_configs_per_plmn_bundle=PersistableBundle[{}], satellite_sos_max_datagram_size_bytes_int=255, satellite_supported_msg_apps_string_array=[com.google.android.apps.messaging], satellite_connected_notification_throttle_millis_int=604800000, satellite_display_name_string=, satellite_roaming_p2p_sms_inactivity_timeout_sec_int=180, satellite_roaming_turn_off_session_for_emergency_call_bool=true, emergency_messaging_supported_bool=false, carrier_roaming_satellite_emergency_messaging_provider_per_country_bundle=PersistableBundle[{}], satellite_data_support_mode_int=0, carrier_roaming_ntn_connect_type_int=0, satellite_attach_supported_bool=false, carrier_roaming_satellite_emergency_messaging_redirection_destination_string=, satellite_nidd_apn_name_string=, carrier_supported_satellite_services_per_provider_bundle=PersistableBundle[{}], satellite_roaming_esos_inactivity_timeout_sec_int=300, carrier_supported_satellite_notification_hysteresis_sec_int=180, carrier_config_applied_bool=false, carrier_roaming_ntn_emergency_call_to_satellite_handover_type_int=2, carrier_roaming_satellite_default_services_int_array=[3, 6], imsserviceentitlement.entitlement_server_url_string=, emergency_call_to_satellite_t911_handover_timeout_millis_int=30000, satellite_roaming_p2p_sms_supported_bool=false, carrier_config_version_string=, satellite_roaming_screen_off_inactivity_timeout_sec_int=30}]
+07-03 21:27:08.917  1070  1394 D SatelliteAccessController: supportedMsgApps:com.google.android.apps.messaging
+07-03 21:27:08.917  5939  5939 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: D with appInfoTitle: Drive
+07-03 21:27:08.917  5939  5939 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: F with appInfoTitle: Files
+07-03 21:27:08.918  5939  5939 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: G with appInfoTitle: Gmail
+07-03 21:27:08.918  5939  5939 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: M with appInfoTitle: Maps
+07-03 21:27:08.918  5939  5939 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: P with appInfoTitle: ParkingLKSNext
+07-03 21:27:08.918  5939  5939 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: S with appInfoTitle: Safety
+07-03 21:27:08.918  5939  5939 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: T with appInfoTitle: TMoble
+07-03 21:27:08.918  5939  5939 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: Y with appInfoTitle: YouTube
+07-03 21:27:08.918  5939  5939 D AlphabeticalAppsList: Adding FastScrollSection duplicate to scroll to the bottom.
+07-03 21:27:08.919  5939  5939 D AlphabeticalAppsList: Clearing FastScrollerSections.
+07-03 21:27:08.920  5939  5939 D AlphabeticalAppsList: Adding apps with sections. HasPrivateApps: false
+07-03 21:27:08.920  5939  5939 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: C with appInfoTitle: Calendar
+07-03 21:27:08.920  5939  5939 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: D with appInfoTitle: Drive
+07-03 21:27:08.921  5939  5939 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: F with appInfoTitle: Files
+07-03 21:27:08.921  5939  5939 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: G with appInfoTitle: Gmail
+07-03 21:27:08.921  5939  5939 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: M with appInfoTitle: Maps
+07-03 21:27:08.921  5939  5939 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: P with appInfoTitle: ParkingLKSNext
+07-03 21:27:08.921   683  7272 I Role    : com.google.android.gms not qualified for android.app.role.SYSTEM_DEPENDENCY_INSTALLER due to missing RequiredComponent{mFlags='0', mIntentFilterData=IntentFilterData{mAction='android.content.pm.action.INSTALL_DEPENDENCY', mCategories='[]', mDataScheme='null', mDataType='null'}, mMetaData=[], mPermission='android.permission.BIND_DEPENDENCY_INSTALLER', mQueryFlags=0} Requirement{mFeatureFlag=null, mMinTargetSdkVersion=1}
+07-03 21:27:08.921   683  7272 E RoleControllerServiceImpl: Default/fallback role holder package doesn't qualify for the role, package: com.google.android.gms, role: android.app.role.SYSTEM_DEPENDENCY_INSTALLER, user: 0
+07-03 21:27:08.921  5939  5939 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: S with appInfoTitle: Safety
+07-03 21:27:08.921  5939  5939 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: T with appInfoTitle: TMoble
+07-03 21:27:08.922  5939  5939 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: Y with appInfoTitle: YouTube
+07-03 21:27:08.922  5939  5939 D AlphabeticalAppsList: Adding FastScrollSection duplicate to scroll to the bottom.
+07-03 21:27:08.923  5939  5939 D b/387844520: getOutlineOffsetX: measured width = 198, mNormalizedIconSize = 182, last updated width = 198
+07-03 21:27:08.931   683  7272 E RoleControllerServiceImpl: Default/fallback role holder package doesn't qualify for the role, package: com.google.android.gms, role: android.app.role.WALLET, user: 0
+07-03 21:27:08.934   683  7272 W SignedPackage: Cannot get ApplicationInfo for package: com.google.android.devicelockcontroller
+07-03 21:27:08.950   527   527 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+07-03 21:27:08.951   527   567 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+07-03 21:27:08.951   527   567 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+07-03 21:27:09.027 18405 18431 D GeminiService: Gemini response code: 429
+07-03 21:27:09.027 18405 18431 E GeminiService: Gemini error body: {
+07-03 21:27:09.027 18405 18431 E GeminiService:   "error": {
+07-03 21:27:09.027 18405 18431 E GeminiService:     "code": 429,
+07-03 21:27:09.027 18405 18431 E GeminiService:     "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\nPlease retry in 50.995696117s.",
+07-03 21:27:09.027 18405 18431 E GeminiService:     "status": "RESOURCE_EXHAUSTED",
+07-03 21:27:09.027 18405 18431 E GeminiService:     "details": [
+07-03 21:27:09.027 18405 18431 E GeminiService:       {
+07-03 21:27:09.027 18405 18431 E GeminiService:         "@type": "type.googleapis.com/google.rpc.Help",
+07-03 21:27:09.027 18405 18431 E GeminiService:         "links": [
+07-03 21:27:09.027 18405 18431 E GeminiService:           {
+07-03 21:27:09.027 18405 18431 E GeminiService:             "description": "Learn more about Gemini API quotas",
+07-03 21:27:09.027 18405 18431 E GeminiService:             "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+07-03 21:27:09.027 18405 18431 E GeminiService:           }
+07-03 21:27:09.027 18405 18431 E GeminiService:         ]
+07-03 21:27:09.027 18405 18431 E GeminiService:       },
+07-03 21:27:09.027 18405 18431 E GeminiService:       {
+07-03 21:27:09.027 18405 18431 E GeminiService:         "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+07-03 21:27:09.027 18405 18431 E GeminiService:         "violations": [
+07-03 21:27:09.027 18405 18431 E GeminiService:           {
+07-03 21:27:09.027 18405 18431 E GeminiService:             "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count",
+07-03 21:27:09.027 18405 18431 E GeminiService:             "quotaId": "GenerateContentInputTokensPerModelPerMinute-FreeTier",
+07-03 21:27:09.027 18405 18431 E GeminiService:             "quotaDimensions": {
+07-03 21:27:09.027 18405 18431 E GeminiService:               "model": "gemini-2.0-flash",
+07-03 21:27:09.027 18405 18431 E GeminiService:               "location": "global"
+07-03 21:27:09.027 18405 18431 E GeminiService:             }
+07-03 21:27:09.027 18405 18431 E GeminiService:           },
+07-03 21:27:09.027 18405 18431 E GeminiService:           {
+07-03 21:27:09.027 18405 18431 E GeminiService:             "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+07-03 21:27:09.027 18405 18431 E GeminiService:             "quotaId": "GenerateRequestsPerMinutePerProjectPerModel-FreeTier",
+07-03 21:27:09.027 18405 18431 E GeminiService:             "quotaDimensions": {
+07-03 21:27:09.027 18405 18431 E GeminiService:               "location": "global",
+07-03 21:27:09.027 18405 18431 E GeminiService:               "model": "gemini-2.0-flash"
+07-03 21:27:09.027 18405 18431 E GeminiService:             }
+07-03 21:27:09.027 18405 18431 E GeminiService:           },
+07-03 21:27:09.027 18405 18431 E GeminiService:           {
+07-03 21:27:09.027 18405 18431 E GeminiService:             "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+07-03 21:27:09.027 18405 18431 E GeminiService:             "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+07-03 21:27:09.027 18405 18431 E GeminiService:             "quotaDimensions": {
+07-03 21:27:09.027 18405 18431 E GeminiService:               "location": "global",
+07-03 21:27:09.027 18405 18431 E GeminiService:               "model": "gemini-2.0-flash"
+07-03 21:27:09.027 18405 18431 E GeminiService:             }
+07-03 21:27:09.027 18405 18431 E GeminiService:           }
+07-03 21:27:09.027 18405 18431 E GeminiService:         ]
+07-03 21:27:09.027 18405 18431 E GeminiService:       },
+07-03 21:27:09.027 18405 18431 E GeminiService:       {
+07-03 21:27:09.027 18405 18431 E GeminiService:         "@type": "type.googleapis.com/google.rpc.RetryInfo",
+07-03 21:27:09.027 18405 18431 E GeminiService:         "retryDelay": "50s"
+07-03 21:27:09.027 18405 18431 E GeminiService:       }
+07-03 21:27:09.027 18405 18431 E GeminiService:     ]
+07-03 21:27:09.027 18405 18431 E GeminiService:   }
+07-03 21:27:09.027 18405 18431 E GeminiService: }
+07-03 21:27:09.028 18405 18431 E GeminiService: Gemini API error: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit.
+07-03 21:27:09.028 18405 18431 E GeminiService: * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+07-03 21:27:09.028 18405 18431 E GeminiService: * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+07-03 21:27:09.028 18405 18431 E GeminiService: * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+07-03 21:27:09.028 18405 18431 E GeminiService: Please retry in 50.995696117s.
+07-03 21:27:09.029 18405 18447 I TestRunner: finished: gemini_tool_calling_finds_spots(com.parkinglksnext.integration.AiServiceTest)

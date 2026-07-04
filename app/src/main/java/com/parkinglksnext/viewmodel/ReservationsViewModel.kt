@@ -16,6 +16,8 @@ import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.LocalTime
 
 @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
 class ReservationsViewModel : ViewModel() {
@@ -24,7 +26,8 @@ class ReservationsViewModel : ViewModel() {
     private val authRepo = AuthRepository()
 
     data class ReservationsUiState(
-        val activeReservations: List<Reservation> = emptyList(),
+        val currentReservations: List<Reservation> = emptyList(),
+        val futureReservations: List<Reservation> = emptyList(),
         val spotReservations: List<Reservation> = emptyList(),
         val isLoading: Boolean = false,
         val error: String? = null
@@ -48,8 +51,16 @@ class ReservationsViewModel : ViewModel() {
             }.collect { resource ->
                 when (resource) {
                     is Resource.Loading -> _uiState.update { it.copy(isLoading = true) }
-                    is Resource.Success -> _uiState.update {
-                        it.copy(activeReservations = resource.data, isLoading = false, error = null)
+                    is Resource.Success -> {
+                        val (current, future) = categorizeActiveReservations(resource.data)
+                        _uiState.update {
+                            it.copy(
+                                currentReservations = current,
+                                futureReservations = future,
+                                isLoading = false,
+                                error = null
+                            )
+                        }
                     }
                     is Resource.Error -> _uiState.update {
                         it.copy(isLoading = false, error = resource.message)
@@ -57,6 +68,53 @@ class ReservationsViewModel : ViewModel() {
                 }
             }
         }
+    }
+
+    /**
+     * Split active reservations into current and future.
+     * Past/expired active reservations are excluded — they only appear in History.
+     */
+    private fun categorizeActiveReservations(
+        reservations: List<Reservation>
+    ): Pair<List<Reservation>, List<Reservation>> {
+        val today = LocalDate.now()
+        val nowMinutes = LocalTime.now().hour * 60 + LocalTime.now().minute
+
+        val current = mutableListOf<Reservation>()
+        val future = mutableListOf<Reservation>()
+
+        for (r in reservations) {
+            if (r.status != "active") continue
+
+            val resDate = try {
+                LocalDate.parse(r.date)
+            } catch (_: Exception) {
+                continue
+            }
+
+            val startMin = r.startTime.toMinutes()
+            val endMin = r.endTime.toMinutes()
+
+            when {
+                // Past: skip entirely (only shown in history)
+                resDate < today -> { /* omit */ }
+                resDate == today && endMin <= nowMinutes -> { /* omit */ }
+                // Current: today and active now
+                resDate == today && startMin <= nowMinutes && endMin > nowMinutes -> current.add(r)
+                // Future: today not started yet, or future date
+                resDate > today || (resDate == today && startMin > nowMinutes) -> future.add(r)
+            }
+        }
+
+        return Pair(
+            current.sortedBy { "${it.date}T${it.startTime}" },
+            future.sortedBy { "${it.date}T${it.startTime}" }
+        )
+    }
+
+    private fun String.toMinutes(): Int {
+        val parts = this.split(":")
+        return (parts.getOrNull(0)?.toIntOrNull() ?: 0) * 60 + (parts.getOrNull(1)?.toIntOrNull() ?: 0)
     }
 
     fun cancelReservation(id: String) {
@@ -72,8 +130,9 @@ class ReservationsViewModel : ViewModel() {
 
     fun updateReservation(id: String, startTime: String, endTime: String) {
         viewModelScope.launch {
-            // Find reservation data for conflict check
-            val reservation = _uiState.value.activeReservations.find { it.id == id }
+            // Find reservation data for conflict check (search in both lists)
+            val reservation = _uiState.value.currentReservations.find { it.id == id }
+                ?: _uiState.value.futureReservations.find { it.id == id }
 
             // Check for conflicting reservations (excluding the one being edited)
             if (reservation != null) {

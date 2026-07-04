@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.parkinglksnext.models.ModelsTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-07-03T19:17:36.716Z" hostname="Gaizka" time="0.015">
+  <properties/>
+  <testcase name="parkingSpot_defaults" classname="com.parkinglksnext.models.ModelsTest" time="0.006"/>
+  <testcase name="userProfile_defaults" classname="com.parkinglksnext.models.ModelsTest" time="0.006"/>
+  <testcase name="reservation_defaults" classname="com.parkinglksnext.models.ModelsTest" time="0.001"/>
+  <testcase name="notificationSettings" classname="com.parkinglksnext.models.ModelsTest" time="0.0"/>
+  <testcase name="parkingSpot_types" classname="com.parkinglksnext.models.ModelsTest" time="0.0"/>
+  <testcase name="vehicle_holds_data" classname="com.parkinglksnext.models.ModelsTest" time="0.0"/>
+  <testcase name="vehicle_default_values_correct" classname="com.parkinglksnext.models.ModelsTest" time="0.001"/>
+  <testcase name="reservation_holds_data" classname="com.parkinglksnext.models.ModelsTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
