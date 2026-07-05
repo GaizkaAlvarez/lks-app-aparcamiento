@@ -1,0 +1,2 @@
+07-03 21:27:17.845 18405 18447 I TestRunner: started: reservations_initial_state_empty(com.parkinglksnext.viewmodel.ViewModelIntegrationTest)
+07-03 21:27:17.847 18405 18447 I TestRunner: finished: reservations_initial_state_empty(com.parkinglksnext.viewmodel.ViewModelIntegrationTest)

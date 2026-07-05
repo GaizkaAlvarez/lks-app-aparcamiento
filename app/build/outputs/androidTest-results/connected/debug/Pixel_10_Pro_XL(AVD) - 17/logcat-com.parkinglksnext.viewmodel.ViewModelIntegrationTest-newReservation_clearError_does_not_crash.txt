@@ -1,0 +1,2 @@
+07-03 21:27:17.857 18405 18447 I TestRunner: started: newReservation_clearError_does_not_crash(com.parkinglksnext.viewmodel.ViewModelIntegrationTest)
+07-03 21:27:17.858 18405 18447 I TestRunner: finished: newReservation_clearError_does_not_crash(com.parkinglksnext.viewmodel.ViewModelIntegrationTest)

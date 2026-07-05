@@ -1,0 +1,2 @@
+07-03 21:27:17.826 18405 18447 I TestRunner: started: newReservation_resetState_clears_all(com.parkinglksnext.viewmodel.ViewModelIntegrationTest)
+07-03 21:27:17.829 18405 18447 I TestRunner: finished: newReservation_resetState_clears_all(com.parkinglksnext.viewmodel.ViewModelIntegrationTest)

@@ -1,0 +1,60 @@
+07-03 21:27:17.621 18405 18447 I TestRunner: started: gemini_single_recommendation(com.parkinglksnext.integration.AiServiceTest)
+07-03 21:27:17.623 18405 18495 D GeminiService: Gemini request iteration 0
+07-03 21:27:17.717 18405 18495 D GeminiService: Gemini response code: 429
+07-03 21:27:17.717 18405 18495 E GeminiService: Gemini error body: {
+07-03 21:27:17.717 18405 18495 E GeminiService:   "error": {
+07-03 21:27:17.717 18405 18495 E GeminiService:     "code": 429,
+07-03 21:27:17.717 18405 18495 E GeminiService:     "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\nPlease retry in 42.304696336s.",
+07-03 21:27:17.717 18405 18495 E GeminiService:     "status": "RESOURCE_EXHAUSTED",
+07-03 21:27:17.717 18405 18495 E GeminiService:     "details": [
+07-03 21:27:17.717 18405 18495 E GeminiService:       {
+07-03 21:27:17.717 18405 18495 E GeminiService:         "@type": "type.googleapis.com/google.rpc.Help",
+07-03 21:27:17.717 18405 18495 E GeminiService:         "links": [
+07-03 21:27:17.717 18405 18495 E GeminiService:           {
+07-03 21:27:17.717 18405 18495 E GeminiService:             "description": "Learn more about Gemini API quotas",
+07-03 21:27:17.717 18405 18495 E GeminiService:             "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+07-03 21:27:17.717 18405 18495 E GeminiService:           }
+07-03 21:27:17.717 18405 18495 E GeminiService:         ]
+07-03 21:27:17.717 18405 18495 E GeminiService:       },
+07-03 21:27:17.717 18405 18495 E GeminiService:       {
+07-03 21:27:17.717 18405 18495 E GeminiService:         "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+07-03 21:27:17.717 18405 18495 E GeminiService:         "violations": [
+07-03 21:27:17.717 18405 18495 E GeminiService:           {
+07-03 21:27:17.717 18405 18495 E GeminiService:             "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+07-03 21:27:17.717 18405 18495 E GeminiService:             "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+07-03 21:27:17.717 18405 18495 E GeminiService:             "quotaDimensions": {
+07-03 21:27:17.717 18405 18495 E GeminiService:               "location": "global",
+07-03 21:27:17.717 18405 18495 E GeminiService:               "model": "gemini-2.0-flash"
+07-03 21:27:17.717 18405 18495 E GeminiService:             }
+07-03 21:27:17.717 18405 18495 E GeminiService:           },
+07-03 21:27:17.717 18405 18495 E GeminiService:           {
+07-03 21:27:17.717 18405 18495 E GeminiService:             "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+07-03 21:27:17.717 18405 18495 E GeminiService:             "quotaId": "GenerateRequestsPerMinutePerProjectPerModel-FreeTier",
+07-03 21:27:17.717 18405 18495 E GeminiService:             "quotaDimensions": {
+07-03 21:27:17.717 18405 18495 E GeminiService:               "location": "global",
+07-03 21:27:17.717 18405 18495 E GeminiService:               "model": "gemini-2.0-flash"
+07-03 21:27:17.717 18405 18495 E GeminiService:             }
+07-03 21:27:17.717 18405 18495 E GeminiService:           },
+07-03 21:27:17.717 18405 18495 E GeminiService:           {
+07-03 21:27:17.717 18405 18495 E GeminiService:             "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count",
+07-03 21:27:17.717 18405 18495 E GeminiService:             "quotaId": "GenerateContentInputTokensPerModelPerMinute-FreeTier",
+07-03 21:27:17.717 18405 18495 E GeminiService:             "quotaDimensions": {
+07-03 21:27:17.717 18405 18495 E GeminiService:               "location": "global",
+07-03 21:27:17.717 18405 18495 E GeminiService:               "model": "gemini-2.0-flash"
+07-03 21:27:17.717 18405 18495 E GeminiService:             }
+07-03 21:27:17.717 18405 18495 E GeminiService:           }
+07-03 21:27:17.717 18405 18495 E GeminiService:         ]
+07-03 21:27:17.717 18405 18495 E GeminiService:       },
+07-03 21:27:17.717 18405 18495 E GeminiService:       {
+07-03 21:27:17.717 18405 18495 E GeminiService:         "@type": "type.googleapis.com/google.rpc.RetryInfo",
+07-03 21:27:17.717 18405 18495 E GeminiService:         "retryDelay": "42s"
+07-03 21:27:17.717 18405 18495 E GeminiService:       }
+07-03 21:27:17.717 18405 18495 E GeminiService:     ]
+07-03 21:27:17.717 18405 18495 E GeminiService:   }
+07-03 21:27:17.717 18405 18495 E GeminiService: }
+07-03 21:27:17.717 18405 18495 E GeminiService: Gemini API error: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit.
+07-03 21:27:17.717 18405 18495 E GeminiService: * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+07-03 21:27:17.717 18405 18495 E GeminiService: * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+07-03 21:27:17.717 18405 18495 E GeminiService: * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+07-03 21:27:17.717 18405 18495 E GeminiService: Please retry in 42.304696336s.
+07-03 21:27:17.717 18405 18447 I TestRunner: finished: gemini_single_recommendation(com.parkinglksnext.integration.AiServiceTest)

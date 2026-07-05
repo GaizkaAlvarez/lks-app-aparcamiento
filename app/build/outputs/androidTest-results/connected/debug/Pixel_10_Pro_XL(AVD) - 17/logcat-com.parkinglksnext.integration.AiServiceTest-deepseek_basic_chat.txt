@@ -1,0 +1,37 @@
+07-03 21:27:09.125 18405 18447 I TestRunner: started: deepseek_basic_chat(com.parkinglksnext.integration.AiServiceTest)
+07-03 21:27:09.134 18405 18431 D DeepSeekService: DeepSeek request iteration 0
+07-03 21:27:09.405  7041 18344 I FraudProtectUtils: Not in testing population, skipping local test bank apps. [CONTEXT service_id=469 ]
+07-03 21:27:09.405  7041 18344 I FraudProtectUtils: (REDACTED) Latest bank app list size: %d, %s isBankApp: false
+07-03 21:27:09.405  7041 18344 W ComponentChangedIO: No package name in intent data or package is not a bank app [CONTEXT service_id=469 ]
+07-03 21:27:09.962   683   846 E WifiDataStall: Ignore this poll. newStats: null txLinkSpeedMbps: 1 rxLinkSpeedMbps: 2 rssi: -50 connectionCapabilities: com.android.server.wifi.WifiNative$ConnectionCapabilities@8a9c908
+07-03 21:27:09.965  7537  8064 D WM-WorkConstraintsTrack: NetworkRequestConstraintController onCapabilitiesChanged callback
+07-03 21:27:09.966   683   852 D ConnectivityService: NetReassign [no changes] [c 0] [a 1] [i 0]
+07-03 21:27:09.966  6801  9509 I NearbyMediums: Wifi changed new SSID: "AndroidWifi"
+07-03 21:27:09.966  6801  9509 I NearbyMediums: WifiLanConnectivityInfo is not changed, skip notify.
+07-03 21:27:10.466  6801  9509 I NearbySharing: Network state changed: NetworkState(isRestricted=false, isOnline=true, isCongested=false, isMetered=false, isWifiConnected=true)
+07-03 21:27:11.477   683   850 E Nl80211Native: getChannelsMhzForBand: Wiphy index not recorded for band 8
+07-03 21:27:11.477   683   850 E Nl80211Native: getChannelsMhzForBand: Wiphy index not recorded for band 16
+07-03 21:27:11.478   683   850 D Nl80211Native: Ignoring unsupported scan type 2
+07-03 21:27:11.478   683   850 I Nl80211Proxy: Sending Nl80211 message: GenericNetlinkMsg{ nlHeader{StructNlMsgHdr{ nlmsg_len{56}, nlmsg_type{30()}, nlmsg_flags{5(NLM_F_REQUEST|NLM_F_ACK)}, nlmsg_seq{213}, nlmsg_pid{0} }}, genNlHeader{StructGenNlMsgHdr{ command{33}, version{1}, reserved{0} }}, attributes{[StructNlAttr{ nla_len{8}, nla_type{-32723}, nla_value{04000000}, }, StructNlAttr{ nla_len{8}, nla_type{3}, nla_value{0F000000}, }, StructNlAttr{ nla_len{12}, nla_type{-32724}, nla_value{080000008F090000}, }, StructNlAttr{ nla_len{8}, nla_type{158}, nla_value{00000000}, }]} }
+07-03 21:27:11.478   683   850 I Nl80211Proxy: Received NLMSG_ERROR with error 0 for message GenericNetlinkMsg{ nlHeader{StructNlMsgHdr{ nlmsg_len{56}, nlmsg_type{30()}, nlmsg_flags{5(NLM_F_REQUEST|NLM_F_ACK)}, nlmsg_seq{213}, nlmsg_pid{0} }}, genNlHeader{StructGenNlMsgHdr{ command{33}, version{1}, reserved{0} }}, attributes{[StructNlAttr{ nla_len{8}, nla_type{-32723}, nla_value{04000000}, }, StructNlAttr{ nla_len{8}, nla_type{3}, nla_value{0F000000}, }, StructNlAttr{ nla_len{12}, nla_type{-32724}, nla_value{080000008F090000}, }, StructNlAttr{ nla_len{8}, nla_type{158}, nla_value{00000000}, }]} }
+07-03 21:27:11.521   683   846 D WifiNative: Scan result ready event
+07-03 21:27:11.522   683   850 I Nl80211Proxy: Sending Nl80211 message: GenericNetlinkMsg{ nlHeader{StructNlMsgHdr{ nlmsg_len{20}, nlmsg_type{30()}, nlmsg_flags{769(NLM_F_REQUEST|NLM_F_DUMP)}, nlmsg_seq{214}, nlmsg_pid{0} }}, genNlHeader{StructGenNlMsgHdr{ command{5}, version{1}, reserved{0} }}, attributes{[]} }
+07-03 21:27:11.522   683   850 I Nl80211Proxy: Received NLMSG_DONE for message GenericNetlinkMsg{ nlHeader{StructNlMsgHdr{ nlmsg_len{20}, nlmsg_type{30()}, nlmsg_flags{769(NLM_F_REQUEST|NLM_F_DUMP)}, nlmsg_seq{214}, nlmsg_pid{0} }}, genNlHeader{StructGenNlMsgHdr{ command{5}, version{1}, reserved{0} }}, attributes{[]} }
+07-03 21:27:11.522   683   850 W Nl80211Utils: Malformed NEW_INTERFACE response: missing attributes
+07-03 21:27:11.522   683   850 I Nl80211Proxy: Sending Nl80211 message: GenericNetlinkMsg{ nlHeader{StructNlMsgHdr{ nlmsg_len{28}, nlmsg_type{30()}, nlmsg_flags{769(NLM_F_REQUEST|NLM_F_DUMP)}, nlmsg_seq{215}, nlmsg_pid{0} }}, genNlHeader{StructGenNlMsgHdr{ command{32}, version{1}, reserved{0} }}, attributes{[StructNlAttr{ nla_len{8}, nla_type{3}, nla_value{0F000000}, }]} }
+07-03 21:27:11.522   683   850 I Nl80211Proxy: Received NLMSG_DONE for message GenericNetlinkMsg{ nlHeader{StructNlMsgHdr{ nlmsg_len{28}, nlmsg_type{30()}, nlmsg_flags{769(NLM_F_REQUEST|NLM_F_DUMP)}, nlmsg_seq{215}, nlmsg_pid{0} }}, genNlHeader{StructGenNlMsgHdr{ command{32}, version{1}, reserved{0} }}, attributes{[StructNlAttr{ nla_len{8}, nla_type{3}, nla_value{0F000000}, }]} }
+07-03 21:27:11.522  6801  7343 I WifiScanner: onFullResults
+07-03 21:27:11.522  6801  7313 I WifiScanner: onFullResults
+07-03 21:27:11.523   683   846 I HalDevMgr: bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]
+07-03 21:27:12.745  1114  1114 I HidDeviceService: unregisterAppUid(): uid=10145
+07-03 21:27:12.745  1114  1114 W HidDeviceService: unregisterAppUid(): caller UID doesn't match user UID
+07-03 21:27:12.964   683   846 E WifiDataStall: Ignore this poll. newStats: null txLinkSpeedMbps: 2 rxLinkSpeedMbps: 2 rssi: -50 connectionCapabilities: com.android.server.wifi.WifiNative$ConnectionCapabilities@8a9c908
+07-03 21:27:12.966  1035  1172 D IpClient/wlan0: interfaceLinkStateChanged: ifindex 15 up
+07-03 21:27:12.966  7537  8064 D WM-WorkConstraintsTrack: NetworkRequestConstraintController onCapabilitiesChanged callback
+07-03 21:27:12.967  6801  9508 I NearbyMediums: Wifi changed new SSID: "AndroidWifi"
+07-03 21:27:12.967  6801  9508 I NearbyMediums: WifiLanConnectivityInfo is not changed, skip notify.
+07-03 21:27:12.967   683   852 D ConnectivityService: NetReassign [no changes] [c 1] [a 0] [i 0]
+07-03 21:27:12.969  1035  1172 D IpClient/wlan0: interfaceLinkStateChanged: ifindex 15 up
+07-03 21:27:13.069 18405 18494 D ProfileInstaller: Installing profile for com.parkinglksnext
+07-03 21:27:13.354 18405 18431 D DeepSeekService: DeepSeek response code: 200
+07-03 21:27:13.355 18405 18447 I TestRunner: finished: deepseek_basic_chat(com.parkinglksnext.integration.AiServiceTest)

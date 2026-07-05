@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.parkinglksnext.ExampleInstrumentedTest" tests="26" failures="0" errors="0" skipped="0" time="10.111" timestamp="2026-07-03T19:27:18" hostname="localhost">
+  <properties>
+    <property name="device" value="Pixel_10_Pro_XL(AVD) - 17" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="useAppContext" classname="com.parkinglksnext.ExampleInstrumentedTest" time="0.014" />
+  <testcase name="editReservation_parameterized_route" classname="com.parkinglksnext.e2e.RouteTest" time="0.002" />
+  <testcase name="routes_have_correct_values" classname="com.parkinglksnext.e2e.RouteTest" time="0.001" />
+  <testcase name="routes_are_unique" classname="com.parkinglksnext.e2e.RouteTest" time="0.002" />
+  <testcase name="gemini_tool_calling_finds_spots" classname="com.parkinglksnext.integration.AiServiceTest" time="0.781" />
+  <testcase name="gemini_basic_chat" classname="com.parkinglksnext.integration.AiServiceTest" time="0.102" />
+  <testcase name="deepseek_basic_chat" classname="com.parkinglksnext.integration.AiServiceTest" time="4.219" />
+  <testcase name="conversation_with_history" classname="com.parkinglksnext.integration.AiServiceTest" time="0.102" />
+  <testcase name="deepseek_tool_calling" classname="com.parkinglksnext.integration.AiServiceTest" time="4.172" />
+  <testcase name="gemini_single_recommendation" classname="com.parkinglksnext.integration.AiServiceTest" time="0.103" />
+  <testcase name="gemini_responds_in_spanish" classname="com.parkinglksnext.integration.AiServiceTest" time="0.102" />
+  <testcase name="newReservation_selectSpot_updates_state" classname="com.parkinglksnext.viewmodel.ViewModelIntegrationTest" time="0.001" />
+  <testcase name="profile_initial_state_null" classname="com.parkinglksnext.viewmodel.ViewModelIntegrationTest" time="0.002" />
+  <testcase name="vehicleTypeLabel_combustion" classname="com.parkinglksnext.viewmodel.ViewModelIntegrationTest" time="0.002" />
+  <testcase name="vehicleTypeLabel_motorcycle" classname="com.parkinglksnext.viewmodel.ViewModelIntegrationTest" time="0.001" />
+  <testcase name="newReservation_setEndTime_updates_state" classname="com.parkinglksnext.viewmodel.ViewModelIntegrationTest" time="0.002" />
+  <testcase name="newReservation_resetState_clears_all" classname="com.parkinglksnext.viewmodel.ViewModelIntegrationTest" time="0.002" />
+  <testcase name="newReservation_initial_state_is_step1" classname="com.parkinglksnext.viewmodel.ViewModelIntegrationTest" time="0.002" />
+  <testcase name="newReservation_setDate_updates_state" classname="com.parkinglksnext.viewmodel.ViewModelIntegrationTest" time="0.002" />
+  <testcase name="newReservation_setStartTime_updates_state" classname="com.parkinglksnext.viewmodel.ViewModelIntegrationTest" time="0.002" />
+  <testcase name="profile_clearError_does_not_crash" classname="com.parkinglksnext.viewmodel.ViewModelIntegrationTest" time="0.001" />
+  <testcase name="reservations_initial_state_empty" classname="com.parkinglksnext.viewmodel.ViewModelIntegrationTest" time="0.001" />
+  <testcase name="newReservation_setVehicle_updates_state" classname="com.parkinglksnext.viewmodel.ViewModelIntegrationTest" time="0.001" />
+  <testcase name="vehicleTypeLabel_electric" classname="com.parkinglksnext.viewmodel.ViewModelIntegrationTest" time="0.002" />
+  <testcase name="newReservation_clearError_does_not_crash" classname="com.parkinglksnext.viewmodel.ViewModelIntegrationTest" time="0.001" />
+  <testcase name="reservations_clearError_does_not_crash" classname="com.parkinglksnext.viewmodel.ViewModelIntegrationTest" time="0.003" />
+</testsuite>

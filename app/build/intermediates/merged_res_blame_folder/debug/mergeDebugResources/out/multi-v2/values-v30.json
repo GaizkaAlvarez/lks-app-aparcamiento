@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.parkinglksnext.app-mergeDebugResources-79:/values-v30/values-v30.xml",
+            "map": [
+                {
+                    "source": "/home/gaizka/.gradle/caches/8.13/transforms/02d519fbcd433bcc513fa708c8c81e75/transformed/material3-release/res/values-v30/values-v30.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "72",
+                        "endOffsets": "123"
+                    }
+                }
+            ]
+        }
+    ]
+}

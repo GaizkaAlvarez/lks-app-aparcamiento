@@ -1,0 +1,198 @@
+package com.parkinglksnext.viewmodel
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.google.firebase.auth.GoogleAuthProvider
+import com.parkinglksnext.UserProfile
+import com.parkinglksnext.repository.AuthRepository
+import com.parkinglksnext.repository.UserRepository
+import com.parkinglksnext.util.Resource
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+
+@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+class AuthViewModel : ViewModel() {
+
+    private val authRepo = AuthRepository()
+    private val userRepo = UserRepository()
+
+    data class AuthUiState(
+        val isAuthenticated: Boolean = false,
+        val userProfile: UserProfile? = null,
+        val isLoading: Boolean = false,
+        val error: String? = null,
+        val isPasswordResetSent: Boolean = false,
+        val registerSuccess: Boolean = false
+    )
+
+    private val _uiState = MutableStateFlow(AuthUiState())
+    val uiState: StateFlow<AuthUiState> = _uiState.asStateFlow()
+
+    private val _events = MutableSharedFlow<AuthEvent>(extraBufferCapacity = 1)
+    val events: SharedFlow<AuthEvent> = _events.asSharedFlow()
+
+    init {
+        viewModelScope.launch {
+            authRepo.authStateFlow.flatMapLatest { firebaseUser ->
+                if (firebaseUser != null) {
+                    userRepo.getUserProfile(firebaseUser.uid)
+                } else {
+                    _uiState.update { AuthUiState() }
+                    emptyFlow()
+                }
+            }.collect { resource ->
+                when (resource) {
+                    is Resource.Loading -> _uiState.update { it.copy(isLoading = true) }
+                    is Resource.Success -> _uiState.update {
+                        it.copy(isAuthenticated = true, userProfile = resource.data, isLoading = false, error = null)
+                    }
+                    is Resource.Error -> {
+                        // Profile not found — create one for the authenticated user (e.g., Google Sign-In)
+                        if (resource.message == "Perfil no encontrado") {
+                            val user = authRepo.getCurrentUser()
+                            if (user != null) {
+                                val newProfile = UserProfile(
+                                    firstName = user.displayName?.split(" ")?.firstOrNull() ?: "",
+                                    lastName = user.displayName?.split(" ")?.drop(1)?.joinToString(" ") ?: "",
+                                    name = user.displayName ?: "",
+                                    email = user.email ?: ""
+                                )
+                                viewModelScope.launch {
+                                    val saved = userRepo.saveUserProfile(user.uid, newProfile)
+                                    if (saved is Resource.Error) {
+                                        _uiState.update {
+                                            it.copy(isAuthenticated = false, isLoading = false, error = saved.message)
+                                        }
+                                        authRepo.signOut()
+                                    }
+                                }
+                            } else {
+                                viewModelScope.launch { authRepo.signOut() }
+                            }
+                        } else {
+                            _uiState.update {
+                                it.copy(isAuthenticated = true, isLoading = false, error = resource.message)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    fun login(email: String, password: String) {
+        viewModelScope.launch {
+            _uiState.update { it.copy(isLoading = true, error = null) }
+            val result = authRepo.login(email, password)
+            when (result) {
+                is Resource.Error -> {
+                    _uiState.update { it.copy(isLoading = false, error = result.message) }
+                    _events.emit(AuthEvent.ShowSnackbar(result.message))
+                }
+                is Resource.Success -> { /* authStateFlow will set isAuthenticated */ }
+                is Resource.Loading -> { /* unreachable */ }
+            }
+        }
+    }
+
+    /**
+     * Sign in with Google ID token obtained from GoogleSignInClient.
+     */
+    fun signInWithGoogle(idToken: String) {
+        viewModelScope.launch {
+            _uiState.update { it.copy(isLoading = true, error = null) }
+            val credential = GoogleAuthProvider.getCredential(idToken, null)
+            val result = authRepo.signInWithCredential(credential)
+            when (result) {
+                is Resource.Success -> { /* authStateFlow handles profile + navigation */ }
+                is Resource.Error -> {
+                    _uiState.update { it.copy(isLoading = false, error = result.message) }
+                    _events.emit(AuthEvent.ShowSnackbar(result.message))
+                }
+                is Resource.Loading -> {}
+            }
+        }
+    }
+
+    /**
+     * Sign in with Apple. Firebase handles the OAuth browser flow on Android.
+     */
+    fun signInWithApple() {
+        // Apple Sign-In requires Activity-level integration via FirebaseAuth.startActivityForSignInWithProvider().
+        // The ViewModel cannot initiate this flow directly. The current implementation is stubbed.
+        _uiState.update { it.copy(isLoading = false, error = "Sign in with Apple is not yet available on Android.") }
+        viewModelScope.launch {
+            _events.emit(AuthEvent.ShowSnackbar("Sign in with Apple is not yet available on Android."))
+        }
+    }
+
+    fun register(email: String, password: String, profile: UserProfile) {
+        viewModelScope.launch {
+            _uiState.update { it.copy(isLoading = true, error = null) }
+            val result = authRepo.register(email, password)
+            when (result) {
+                is Resource.Success -> {
+                    // Save profile to Firestore
+                    val saveResult = userRepo.saveUserProfile(result.data.uid, profile)
+                    when (saveResult) {
+                        is Resource.Success -> _uiState.update {
+                            it.copy(isLoading = false, registerSuccess = true)
+                        }
+                        is Resource.Error -> {
+                            _uiState.update { it.copy(isLoading = false, error = saveResult.message) }
+                            _events.emit(AuthEvent.ShowSnackbar(saveResult.message))
+                        }
+                        is Resource.Loading -> {}
+                    }
+                }
+                is Resource.Error -> {
+                    _uiState.update { it.copy(isLoading = false, error = result.message) }
+                    _events.emit(AuthEvent.ShowSnackbar(result.message))
+                }
+                is Resource.Loading -> {}
+            }
+        }
+    }
+
+    fun resetPassword(email: String) {
+        viewModelScope.launch {
+            _uiState.update { it.copy(isLoading = true, error = null, isPasswordResetSent = false) }
+            val result = authRepo.sendPasswordReset(email)
+            when (result) {
+                is Resource.Success -> _uiState.update {
+                    it.copy(isLoading = false, isPasswordResetSent = true)
+                }
+                is Resource.Error -> {
+                    _uiState.update { it.copy(isLoading = false, error = result.message) }
+                    _events.emit(AuthEvent.ShowSnackbar(result.message))
+                }
+                is Resource.Loading -> {}
+            }
+        }
+    }
+
+    fun logout() {
+        authRepo.signOut()
+        _uiState.update { AuthUiState() }
+    }
+
+    fun clearPasswordResetSent() {
+        _uiState.update { it.copy(isPasswordResetSent = false) }
+    }
+
+    fun clearError() {
+        _uiState.update { it.copy(error = null) }
+    }
+}
+
+sealed class AuthEvent {
+    data class ShowSnackbar(val message: String) : AuthEvent()
+}

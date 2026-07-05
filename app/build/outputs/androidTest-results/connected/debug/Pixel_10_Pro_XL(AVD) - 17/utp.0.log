@@ -1,0 +1,65 @@
+INFO: Constructing runner from config.
+INFO: Configuring Android Instrumentation driver: android_instrumentation_runtime {
+  instrumentation_info {
+    app_package: "com.parkinglksnext"
+    test_package: "com.parkinglksnext.test"
+    test_runner_class: "androidx.test.runner.AndroidJUnitRunner"
+  }
+  instrumentation_args {
+    args_map {
+      key: "additionalTestOutputDir"
+      value: "/sdcard/Android/media/com.parkinglksnext/additional_test_output"
+    }
+  }
+}
+am_instrument_timeout: 31536000
+
+INFO: Configuring AndroidTestApkInstallerPlugin: apks_to_install {
+  apk_paths: "/home/gaizka/Documents/lks-app-aparcamiento/app/build/outputs/apk/debug/app-debug.apk"
+  install_options {
+  }
+  uninstall_after_test: true
+}
+apks_to_install {
+  apk_paths: "/home/gaizka/Documents/lks-app-aparcamiento/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk"
+  install_options {
+  }
+  uninstall_after_test: true
+}
+instrumentation_target_package_id: "com.parkinglksnext"
+
+INFO: No installables found in test fixture. Nothing to install.
+INFO: Installing [/home/gaizka/Documents/lks-app-aparcamiento/app/build/outputs/apk/debug/app-debug.apk] on device emulator-5554.
+INFO: Installing [/home/gaizka/Documents/lks-app-aparcamiento/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk] on device emulator-5554.
+INFO: Start logcat streaming.
+INFO: Running Android Instrumentation driver.
+INFO: Copying files from device to host: /sdcard/Android/media/com.parkinglksnext/additional_test_output to /home/gaizka/Documents/lks-app-aparcamiento/app/build/outputs/connected_android_test_additional_output/debugAndroidTest/connected/Pixel_10_Pro_XL(AVD) - 17
+INFO: Stop logcat streaming.
+INFO: Uninstalling com.parkinglksnext for device emulator-5554.
+INFO: Uninstalling com.parkinglksnext.test for device emulator-5554.
+INFO: Execute com.parkinglksnext.ExampleInstrumentedTest.useAppContext: PASSED
+INFO: Execute com.parkinglksnext.e2e.RouteTest.editReservation_parameterized_route: PASSED
+INFO: Execute com.parkinglksnext.e2e.RouteTest.routes_have_correct_values: PASSED
+INFO: Execute com.parkinglksnext.e2e.RouteTest.routes_are_unique: PASSED
+INFO: Execute com.parkinglksnext.integration.AiServiceTest.gemini_tool_calling_finds_spots: PASSED
+INFO: Execute com.parkinglksnext.integration.AiServiceTest.gemini_basic_chat: PASSED
+INFO: Execute com.parkinglksnext.integration.AiServiceTest.deepseek_basic_chat: PASSED
+INFO: Execute com.parkinglksnext.integration.AiServiceTest.conversation_with_history: PASSED
+INFO: Execute com.parkinglksnext.integration.AiServiceTest.deepseek_tool_calling: PASSED
+INFO: Execute com.parkinglksnext.integration.AiServiceTest.gemini_single_recommendation: PASSED
+INFO: Execute com.parkinglksnext.integration.AiServiceTest.gemini_responds_in_spanish: PASSED
+INFO: Execute com.parkinglksnext.viewmodel.ViewModelIntegrationTest.newReservation_selectSpot_updates_state: PASSED
+INFO: Execute com.parkinglksnext.viewmodel.ViewModelIntegrationTest.profile_initial_state_null: PASSED
+INFO: Execute com.parkinglksnext.viewmodel.ViewModelIntegrationTest.vehicleTypeLabel_combustion: PASSED
+INFO: Execute com.parkinglksnext.viewmodel.ViewModelIntegrationTest.vehicleTypeLabel_motorcycle: PASSED
+INFO: Execute com.parkinglksnext.viewmodel.ViewModelIntegrationTest.newReservation_setEndTime_updates_state: PASSED
+INFO: Execute com.parkinglksnext.viewmodel.ViewModelIntegrationTest.newReservation_resetState_clears_all: PASSED
+INFO: Execute com.parkinglksnext.viewmodel.ViewModelIntegrationTest.newReservation_initial_state_is_step1: PASSED
+INFO: Execute com.parkinglksnext.viewmodel.ViewModelIntegrationTest.newReservation_setDate_updates_state: PASSED
+INFO: Execute com.parkinglksnext.viewmodel.ViewModelIntegrationTest.newReservation_setStartTime_updates_state: PASSED
+INFO: Execute com.parkinglksnext.viewmodel.ViewModelIntegrationTest.profile_clearError_does_not_crash: PASSED
+INFO: Execute com.parkinglksnext.viewmodel.ViewModelIntegrationTest.reservations_initial_state_empty: PASSED
+INFO: Execute com.parkinglksnext.viewmodel.ViewModelIntegrationTest.newReservation_setVehicle_updates_state: PASSED
+INFO: Execute com.parkinglksnext.viewmodel.ViewModelIntegrationTest.vehicleTypeLabel_electric: PASSED
+INFO: Execute com.parkinglksnext.viewmodel.ViewModelIntegrationTest.newReservation_clearError_does_not_crash: PASSED
+INFO: Execute com.parkinglksnext.viewmodel.ViewModelIntegrationTest.reservations_clearError_does_not_crash: PASSED

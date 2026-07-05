@@ -1,0 +1,2 @@
+07-03 21:27:17.820 18405 18447 I TestRunner: started: profile_initial_state_null(com.parkinglksnext.viewmodel.ViewModelIntegrationTest)
+07-03 21:27:17.821 18405 18447 I TestRunner: finished: profile_initial_state_null(com.parkinglksnext.viewmodel.ViewModelIntegrationTest)
