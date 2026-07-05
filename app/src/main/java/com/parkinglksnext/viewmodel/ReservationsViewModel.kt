@@ -1,10 +1,13 @@
 package com.parkinglksnext.viewmodel
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.parkinglksnext.ParkingWidgetProvider
 import com.parkinglksnext.Reservation
 import com.parkinglksnext.repository.AuthRepository
 import com.parkinglksnext.repository.ReservationRepository
+import com.parkinglksnext.util.NotificationHelper
 import com.parkinglksnext.util.Resource
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,7 +23,7 @@ import java.time.LocalDate
 import java.time.LocalTime
 
 @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
-class ReservationsViewModel : ViewModel() {
+class ReservationsViewModel(application: Application) : AndroidViewModel(application) {
 
     private val reservationRepo = ReservationRepository()
     private val authRepo = AuthRepository()
@@ -121,7 +124,12 @@ class ReservationsViewModel : ViewModel() {
         viewModelScope.launch {
             val result = reservationRepo.cancelReservation(id)
             when (result) {
-                is Resource.Success -> _events.emit(ReservationEvent.CancelSuccess)
+                is Resource.Success -> {
+                    _events.emit(ReservationEvent.CancelSuccess)
+                    ParkingWidgetProvider.notifyDataChanged(getApplication())
+                    val ctx = getApplication<Application>()
+                    NotificationHelper.cancelReminders(ctx, id)
+                }
                 is Resource.Error -> _uiState.update { it.copy(error = result.message) }
                 is Resource.Loading -> {}
             }
@@ -133,6 +141,14 @@ class ReservationsViewModel : ViewModel() {
             // Find reservation data for conflict check (search in both lists)
             val reservation = _uiState.value.currentReservations.find { it.id == id }
                 ?: _uiState.value.futureReservations.find { it.id == id }
+
+            // Validate max 8 hours
+            val startMin = startTime.split(":").let { it[0].toInt() * 60 + it[1].toInt() }
+            val endMin = endTime.split(":").let { it[0].toInt() * 60 + it[1].toInt() }
+            if (endMin - startMin > 480) {
+                _uiState.update { it.copy(error = "La duración máxima es de 8 horas.") }
+                return@launch
+            }
 
             // Check for conflicting reservations (excluding the one being edited)
             if (reservation != null) {
@@ -157,7 +173,10 @@ class ReservationsViewModel : ViewModel() {
             )
             val result = reservationRepo.updateReservation(id, updates)
             when (result) {
-                is Resource.Success -> _events.emit(ReservationEvent.UpdateSuccess)
+                is Resource.Success -> {
+                    _events.emit(ReservationEvent.UpdateSuccess)
+                    ParkingWidgetProvider.notifyDataChanged(getApplication())
+                }
                 is Resource.Error -> _uiState.update { it.copy(error = result.message) }
                 is Resource.Loading -> {}
             }

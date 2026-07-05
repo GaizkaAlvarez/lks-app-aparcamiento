@@ -10,7 +10,7 @@ class ModelsTest {
         val v = Vehicle()
         assertThat(v.id).isEmpty()
         assertThat(v.licensePlate).isEmpty()
-        assertThat(v.type).isEqualTo("normal")
+        assertThat(v.type).isEqualTo("comun")
     }
 
     @Test fun vehicle_holds_data() {
@@ -46,14 +46,33 @@ class ModelsTest {
     }
 
     @Test fun parkingSpot_types() {
-        assertThat(ParkingSpot(type = "combustion").type).isEqualTo("combustion")
+        assertThat(ParkingSpot(type = "comun").type).isEqualTo("comun")
         assertThat(ParkingSpot(type = "electric").type).isEqualTo("electric")
         assertThat(ParkingSpot(type = "motorcycle").type).isEqualTo("motorcycle")
+    }
+
+    @Test fun parkingSpot_default_type() {
+        assertThat(ParkingSpot().type).isEqualTo("comun")
+    }
+
+    @Test fun reservation_has_vehiclePlate() {
+        val r = Reservation(vehiclePlate = "1234ABC")
+        assertThat(r.vehiclePlate).isEqualTo("1234ABC")
+    }
+
+    @Test fun reservation_vehiclePlate_default_empty() {
+        assertThat(Reservation().vehiclePlate).isEmpty()
     }
 
     @Test fun notificationSettings() {
         val ns = NotificationSettings(startReminder = false, expiringReminder = false)
         assertThat(ns.startReminder).isFalse()
         assertThat(ns.expiringReminder).isFalse()
+    }
+
+    @Test fun notificationSettings_default_minutes() {
+        val ns = NotificationSettings()
+        assertThat(ns.startReminderMinutes).isEqualTo(15)
+        assertThat(ns.expiringReminderMinutes).isEqualTo(15)
     }
 }

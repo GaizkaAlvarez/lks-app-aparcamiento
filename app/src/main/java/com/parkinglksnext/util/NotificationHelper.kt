@@ -44,39 +44,43 @@ object NotificationHelper {
     }
 
     /**
-     * Schedule a reminder notification 15 minutes before the reservation start time.
+     * Schedule a reminder notification before the reservation start time.
+     * @param minutesBefore minutes before start to fire (default 15).
      */
     fun scheduleStartReminder(
         context: Context,
         reservationId: String,
-        date: String,        // yyyy-MM-dd
-        startTime: String,   // HH:mm
-        spotNumber: Int
+        date: String,
+        startTime: String,
+        spotNumber: Int,
+        minutesBefore: Int = 15
     ) {
-        val triggerTime = parseToZonedDateTime(date, startTime).minusMinutes(15)
+        val triggerTime = parseToZonedDateTime(date, startTime).minusMinutes(minutesBefore.toLong())
         val now = ZonedDateTime.now()
 
-        if (triggerTime.isBefore(now)) return  // don't schedule past reminders
+        if (triggerTime.isBefore(now)) return
 
         val delayMs = java.time.Duration.between(now, triggerTime).toMillis()
 
         val title = "Tu reserva empieza pronto"
-        val body = "La plaza $spotNumber te espera en 15 minutos. ¡No llegues tarde!"
+        val body = "La plaza $spotNumber te espera en $minutesBefore minutos. ¡No llegues tarde!"
 
         scheduleWorker(context, reservationId, delayMs, title, body)
     }
 
     /**
-     * Schedule an expiry reminder 15 minutes before the reservation end time.
+     * Schedule an expiry reminder before the reservation end time.
+     * @param minutesBefore minutes before end to fire (default 15).
      */
     fun scheduleExpiryReminder(
         context: Context,
         reservationId: String,
         date: String,
         endTime: String,
-        spotNumber: Int
+        spotNumber: Int,
+        minutesBefore: Int = 15
     ) {
-        val triggerTime = parseToZonedDateTime(date, endTime).minusMinutes(15)
+        val triggerTime = parseToZonedDateTime(date, endTime).minusMinutes(minutesBefore.toLong())
         val now = ZonedDateTime.now()
 
         if (triggerTime.isBefore(now)) return
@@ -84,7 +88,7 @@ object NotificationHelper {
         val delayMs = java.time.Duration.between(now, triggerTime).toMillis()
 
         val title = "Tu reserva está por terminar"
-        val body = "La plaza $spotNumber expira en 15 minutos. ¿Necesitas más tiempo?"
+        val body = "La plaza $spotNumber expira en $minutesBefore minutos. ¿Necesitas más tiempo?"
 
         scheduleWorker(context, "${reservationId}_expiry", delayMs, title, body)
     }
@@ -151,21 +155,15 @@ object NotificationHelper {
         WorkManager.getInstance(context).cancelAllWorkByTag("${reservationId}_expiry")
     }
 
-    /**
-     * Worker that shows the notification when triggered.
-     */
     class ReminderWorker(
         context: Context,
         params: WorkerParameters
     ) : Worker(context, params) {
-
         override fun doWork(): Result {
             val title = inputData.getString("title") ?: "Recordatorio"
             val body = inputData.getString("body") ?: ""
             val reservationId = inputData.getString("reservationId") ?: ""
-
             showImmediate(applicationContext, title, body, reservationId.hashCode())
-
             return Result.success()
         }
     }

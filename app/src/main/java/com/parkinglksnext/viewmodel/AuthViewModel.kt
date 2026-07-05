@@ -3,7 +3,6 @@ package com.parkinglksnext.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.OAuthProvider
 import com.parkinglksnext.UserProfile
 import com.parkinglksnext.repository.AuthRepository
 import com.parkinglksnext.repository.UserRepository
@@ -127,21 +126,11 @@ class AuthViewModel : ViewModel() {
      * Sign in with Apple. Firebase handles the OAuth browser flow on Android.
      */
     fun signInWithApple() {
+        // Apple Sign-In requires Activity-level integration via FirebaseAuth.startActivityForSignInWithProvider().
+        // The ViewModel cannot initiate this flow directly. The current implementation is stubbed.
+        _uiState.update { it.copy(isLoading = false, error = "Sign in with Apple is not yet available on Android.") }
         viewModelScope.launch {
-            _uiState.update { it.copy(isLoading = true, error = null) }
-            val provider = OAuthProvider.newBuilder("apple.com")
-                .addCustomParameter("locale", "es")
-                .build()
-            // Firebase uses pending auth result from the browser redirect
-            try {
-                val result = authRepo.signInWithCredential(provider as com.google.firebase.auth.AuthCredential)
-                // This path depends on Firebase handling the OAuth browser flow
-                // If it redirects, the authStateFlow will pick up the result
-            } catch (_: Exception) {
-                // Fallback: let Firebase handle via authStateFlow
-            }
-            // Initiate the OAuth flow — Firebase will open a browser
-            // authRepo handles the credential internally via getSignInCredentialFromIntent
+            _events.emit(AuthEvent.ShowSnackbar("Sign in with Apple is not yet available on Android."))
         }
     }
 

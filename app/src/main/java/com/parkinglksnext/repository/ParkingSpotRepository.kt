@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 
 /**
  * Repository for parking spots (read-only, seeded data).
- * Collection: parkingSpots/{spotId} — 35 documents (1-21 combustion, 22-28 electric, 29-35 motorcycle)
+ * Collection: parkingSpots/{spotId} — 35 documents (1-21 comun, 22-28 electric, 29-35 motorcycle)
  *
  * Starts a real-time Firestore snapshot listener on construction so _spots stays in sync.
  */
@@ -62,8 +62,8 @@ class ParkingSpotRepository {
      * Returns available parking spots compatible with the given vehicle type.
      *
      * Compatibility rules:
-     * - "combustion" → combustion spots only (1-21)
-     * - "electric"   → electric OR combustion spots (1-28)
+     * - "comun" → comun spots only (1-21)
+     * - "electric"   → electric OR comun spots (1-28)
      * - "motorcycle" → motorcycle spots only (29-35)
      */
     fun getAvailableSpotsForVehicle(vehicleType: String): List<ParkingSpot> {
@@ -88,7 +88,7 @@ class ParkingSpotRepository {
 
     /**
      * Initialize parking spots seed data on first launch.
-     * Creates 25 spots: 1-21 combustion, 22-24 electric, 25 motorcycle.
+     * Creates 35 spots: 1-21 comun, 22-28 electric, 29-35 motorcycle.
      */
     fun seedParkingSpotsIfEmpty(): Flow<Resource<Unit>> = callbackFlow {
         collection.get().addOnCompleteListener { task ->

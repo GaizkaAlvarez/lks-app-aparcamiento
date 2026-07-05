@@ -21,8 +21,7 @@ import com.parkinglksnext.viewmodel.HistoryViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HistoryScreen(
-    viewModel: HistoryViewModel,
-    onOpenMenu: () -> Unit = {}
+    viewModel: HistoryViewModel
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -201,7 +200,11 @@ private fun HistoryCard(
                         fontWeight = FontWeight.ExtraBold,
                         color = ParklyTextPrimary
                     )
-                    Text(spotTypeEmoji, fontSize = 22.sp)
+                    Text(spotTypeEmoji, fontSize = 28.sp)
+                    if (reservation.vehiclePlate.isNotBlank()) {
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(reservation.vehiclePlate, fontSize = 12.sp, color = ParklyTextSecondary, fontWeight = FontWeight.SemiBold)
+                    }
                 }
 
                 Spacer(modifier = Modifier.width(14.dp))
@@ -216,11 +219,6 @@ private fun HistoryCard(
                     Text(
                         text = "${reservation.startTime} – ${reservation.endTime}",
                         fontSize = 13.sp,
-                        color = ParklyTextSecondary
-                    )
-                    Text(
-                        text = "Level 1",
-                        fontSize = 12.sp,
                         color = ParklyTextSecondary
                     )
                 }

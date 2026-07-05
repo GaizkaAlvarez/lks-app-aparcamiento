@@ -30,6 +30,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.parkinglksnext.ui.theme.*
 import com.parkinglksnext.viewmodel.ProfileViewModel
 import com.parkinglksnext.viewmodel.ReservationsViewModel
+import java.time.LocalDate
+import java.time.LocalTime
 
 @Composable
 fun HomeScreen(
@@ -68,8 +70,8 @@ fun HomeScreen(
                     painter = painterResource(id = R.drawable.logo_lks),
                     contentDescription = "LKS Logo",
                     modifier = Modifier
-                        .size(38.dp)
-                        .clip(RoundedCornerShape(10.dp)),
+                        .size(52.dp)
+                        .clip(RoundedCornerShape(14.dp)),
                     contentScale = ContentScale.Fit
                 )
                 Spacer(modifier = Modifier.width(10.dp))
@@ -83,7 +85,7 @@ fun HomeScreen(
             if (firstName.isNotBlank()) {
                 Text(
                     text = "Hola, $firstName 👋",
-                    fontSize = 13.sp,
+                    fontSize = 18.sp,
                     color = ParklyTextSecondary,
                     fontWeight = FontWeight.Medium
                 )
@@ -324,7 +326,11 @@ private fun HomeUpcomingCard(
                         fontWeight = FontWeight.ExtraBold,
                         color = ParklyTextPrimary
                     )
-                    Text(spotTypeEmoji, fontSize = 22.sp)
+                    Text(spotTypeEmoji, fontSize = 28.sp)
+                    if (reservation.vehiclePlate.isNotBlank()) {
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(reservation.vehiclePlate, fontSize = 12.sp, color = ParklyTextSecondary, fontWeight = FontWeight.SemiBold)
+                    }
                 }
                 Spacer(modifier = Modifier.width(16.dp))
                 Column {
@@ -339,22 +345,29 @@ private fun HomeUpcomingCard(
                         fontSize = 13.sp,
                         color = ParklyTextSecondary
                     )
-                    Text(
-                        text = "Level 1 • Main Garage",
-                        fontSize = 12.sp,
-                        color = ParklyTextSecondary
-                    )
                 }
             }
+            // Determine if reservation is current (in progress) or future
+            val now = LocalTime.now()
+            val today = LocalDate.now()
+            val isCurrent = try {
+                val d = LocalDate.parse(reservation.date)
+                val startMin = reservation.startTime.split(":").let { it[0].toInt() * 60 + it[1].toInt() }
+                val endMin = reservation.endTime.split(":").let { it[0].toInt() * 60 + it[1].toInt() }
+                d == today && startMin <= now.hour * 60 + now.minute && endMin > now.hour * 60 + now.minute
+            } catch (_: Exception) { false }
+            val badgeText = if (isCurrent) "En Curso" else "Próxima"
+            val badgeBg = if (isCurrent) ParklyOrangeLight else ParklyGreenLight
+            val badgeColor = if (isCurrent) ParklyOrange else ParklyGreen
             Box(
                 modifier = Modifier
                     .clip(RoundedCornerShape(8.dp))
-                    .background(ParklyGreenLight)
+                    .background(badgeBg)
                     .padding(horizontal = 10.dp, vertical = 6.dp)
             ) {
                 Text(
-                    text = "Próxima",
-                    color = ParklyGreen,
+                    text = badgeText,
+                    color = badgeColor,
                     fontSize = 12.sp,
                     fontWeight = FontWeight.SemiBold
                 )

@@ -177,6 +177,7 @@ private fun ParklyReservationCard(
     onEdit: () -> Unit,
     onCancel: () -> Unit
 ) {
+    var showCancelDialog by remember { mutableStateOf(false) }
     val spotTypeEmoji = when (reservation.spotType) {
         "electric"   -> "⚡"
         "motorcycle" -> "🏍"
@@ -185,6 +186,24 @@ private fun ParklyReservationCard(
     val badgeText  = if (isActive) "En Curso" else "Próxima"
     val badgeBg    = if (isActive) ParklyOrangeLight else ParklyGreenLight
     val badgeColor = if (isActive) ParklyOrange else ParklyGreen
+
+    if (showCancelDialog) {
+        AlertDialog(
+            onDismissRequest = { showCancelDialog = false },
+            title = { Text("Cancelar reserva") },
+            text = { Text("¿Seguro que quieres cancelar la reserva de la plaza ${reservation.spotNumber}?") },
+            confirmButton = {
+                TextButton(onClick = { showCancelDialog = false; onCancel() }) {
+                    Text("Sí, cancelar", color = ParklyRed)
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showCancelDialog = false }) {
+                    Text("Volver", color = ParklyTextSecondary)
+                }
+            }
+        )
+    }
 
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -196,7 +215,8 @@ private fun ParklyReservationCard(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             // Spot badge — larger emoji, no orange background
             Column(
@@ -209,43 +229,36 @@ private fun ParklyReservationCard(
                     fontWeight = FontWeight.ExtraBold,
                     color = ParklyTextPrimary
                 )
-                Text(spotTypeEmoji, fontSize = 22.sp)
+                Text(spotTypeEmoji, fontSize = 28.sp)
+                if (reservation.vehiclePlate.isNotBlank()) {
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(reservation.vehiclePlate, fontSize = 12.sp, color = ParklyTextSecondary, fontWeight = FontWeight.SemiBold)
+                }
             }
 
             Spacer(modifier = Modifier.width(14.dp))
 
             Column(modifier = Modifier.weight(1f)) {
-                Row(
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = reservation.date,
-                        fontWeight = FontWeight.SemiBold,
-                        fontSize = 14.sp,
-                        color = ParklyTextPrimary
-                    )
-                    Box(
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(6.dp))
-                            .background(badgeBg)
-                            .padding(horizontal = 8.dp, vertical = 3.dp)
-                    ) {
-                        Text(badgeText, color = badgeColor, fontSize = 11.sp, fontWeight = FontWeight.SemiBold)
-                    }
-                }
-                Spacer(modifier = Modifier.height(3.dp))
+                Text(
+                    text = reservation.date,
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 14.sp,
+                    color = ParklyTextPrimary
+                )
                 Text(
                     text = "${reservation.startTime} – ${reservation.endTime}",
                     fontSize = 13.sp,
                     color = ParklyTextSecondary
                 )
-                Text(
-                    text = "Level 1",
-                    fontSize = 12.sp,
-                    color = ParklyTextSecondary
-                )
+            }
+
+            Box(
+                modifier = Modifier
+                    .clip(RoundedCornerShape(6.dp))
+                    .background(badgeBg)
+                    .padding(horizontal = 8.dp, vertical = 3.dp)
+            ) {
+                Text(badgeText, color = badgeColor, fontSize = 11.sp, fontWeight = FontWeight.SemiBold)
             }
         }
 
@@ -268,7 +281,7 @@ private fun ParklyReservationCard(
             }
             Spacer(modifier = Modifier.width(4.dp))
             TextButton(
-                onClick = onCancel,
+                onClick = { showCancelDialog = true },
                 contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp)
             ) {
                 Icon(Icons.Default.Close, contentDescription = null, modifier = Modifier.size(14.dp), tint = ParklyRed)

@@ -1,6 +1,5 @@
 package com.parkinglksnext
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -8,12 +7,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import com.parkinglksnext.ui.theme.*
 import androidx.compose.ui.text.font.FontWeight
@@ -27,30 +24,21 @@ import java.time.LocalTime
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EditReservationScreen(
-    idReserva: String = "res-demo",
+    idReserva: String = "",
     viewModel: ReservationsViewModel,
     onNavigateBack: () -> Unit = {}
 ) {
-    LaunchedEffect(idReserva) {
-        Log.d("EditReservation", "Cargando datos para la reserva: $idReserva")
-    }
-
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    // Find the reservation by ID (search in both current and future)
     val reservation = remember(uiState.currentReservations, uiState.futureReservations, idReserva) {
         uiState.currentReservations.find { it.id == idReserva }
             ?: uiState.futureReservations.find { it.id == idReserva }
     }
 
-    // Load spot reservations when the reservation is found
     LaunchedEffect(reservation) {
-        reservation?.let {
-            viewModel.loadSpotReservations(it.spotId, it.date)
-        }
+        reservation?.let { viewModel.loadSpotReservations(it.spotId, it.date) }
     }
 
-    // Collect one-shot update events (no infinite loop)
     LaunchedEffect(Unit) {
         viewModel.events.collect { event ->
             when (event) {
@@ -60,65 +48,49 @@ fun EditReservationScreen(
         }
     }
 
-    // Determine if editing today's reservation
-    val esHoy = try {
-        LocalDate.parse(reservation?.date) == LocalDate.now()
-    } catch (_: Exception) { false }
+    val esHoy = try { LocalDate.parse(reservation?.date) == LocalDate.now() } catch (_: Exception) { false }
+    val ahora = LocalTime.now()
 
-    val ahora = remember { LocalTime.now() }
-    val ahoraMinutos = ahora.hour * 60 + ahora.minute
+    // Parse saved times
+    val savedStart = reservation?.startTime ?: "08:00"
+    val savedEnd = reservation?.endTime ?: "09:00"
+    val savedStartH = savedStart.split(":").getOrNull(0)?.toIntOrNull() ?: 8
+    val savedStartM = savedStart.split(":").getOrNull(1)?.toIntOrNull() ?: 0
 
-    // Minimum valid start hour for today
-    val horaMinimaInicio = if (esHoy) {
-        val horaActualRedondeada = if (ahora.minute > 0) ahora.hour + 1 else ahora.hour
-        maxOf(horaActualRedondeada, 6)
-    } else {
-        6
+    // Min start time (same logic as NewReservation)
+    val minStartTotalMinutes = if (esHoy) {
+        val currentSlot = (ahora.hour * 60 + ahora.minute) / 15
+        val nextSlot = currentSlot + 1
+        maxOf(nextSlot * 15, 6 * 60)
+    } else 6 * 60
+    val minStartH = minStartTotalMinutes / 60
+    val minStartM = minStartTotalMinutes % 60
+
+    var startHour by remember { mutableIntStateOf(savedStartH) }
+    var startMinute by remember { mutableIntStateOf(savedStartM) }
+    val startTime = remember(startHour, startMinute) { LocalTime.of(startHour, startMinute) }
+    var endTime by remember {
+        val parsed = try { LocalTime.parse(savedEnd) } catch (_: Exception) { LocalTime.of(9, 0) }
+        mutableStateOf(parsed)
     }
 
-    val rangoHorasInicio = remember(horaMinimaInicio) {
-        (horaMinimaInicio..22).map { stringOfHora(it) }
-    }
-    val rangoHorasFin = remember { (6..22).map { stringOfEndHora(it) } }
-
-    // Initialize from reservation data
-    var horaInicio by remember(reservation) { mutableStateOf(reservation?.startTime ?: "08:00") }
-    var horaFin by remember(reservation) { mutableStateOf(reservation?.endTime ?: "14:55") }
-
-    // If today and saved start time is invalid, reset to first available
-    LaunchedEffect(horaMinimaInicio, reservation) {
-        val savedStart = reservation?.startTime ?: "08:00"
-        val savedStartHour = savedStart.split(":").getOrNull(0)?.toIntOrNull() ?: 8
-        if (esHoy && savedStartHour < horaMinimaInicio) {
-            val nuevaHora = rangoHorasInicio.first()
-            horaInicio = nuevaHora
-        }
-    }
-
-    var expandidoInicio by remember { mutableStateOf(false) }
-    var expandidoFin by remember { mutableStateOf(false) }
-
-    val startMin = horaInicio.split(":").let { it[0].toInt() * 60 + it[1].toInt() }
-    val endMin = horaFin.split(":").let { it[0].toInt() * 60 + it[1].toInt() }
-    val duracion = endMin - startMin
-    val duracionHoras = duracion / 60
-    val duracionMinutos = duracion % 60
-    val isValidDuration = duracion > 0 && duracion <= 540  // max 9h = 540 min
-    val horaPasada = esHoy && rangoHorasInicio.isEmpty()
-    val edicionValida = isValidDuration && !horaPasada
+    val horaPasada = esHoy && minStartTotalMinutes >= 23 * 60
+    val startTotalMinutes = startHour * 60 + startMinute
+    val startValid = !esHoy || (startTotalMinutes >= minStartTotalMinutes / 15 * 15)
+    val duracionMin = (endTime.hour * 60 + endTime.minute) - (startHour * 60 + startMinute)
+    val isValidDuration = duracionMin > 0 && duracionMin <= 480
+    val edicionValida = isValidDuration && startValid && !horaPasada
 
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
                 title = { Text("Editar Reserva", fontSize = 20.sp, fontWeight = FontWeight.Bold) },
                 navigationIcon = {
-                    IconButton(onClick = { onNavigateBack() }) {
+                    IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Atrás")
                     }
                 },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.background
-                )
+                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = ParklySurface)
             )
         }
     ) { innerPadding ->
@@ -131,143 +103,61 @@ fun EditReservationScreen(
         ) {
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Reservation info card
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(
-                        brush = Brush.linearGradient(
-                            colors = listOf(ParklyOrange, Color(0xFFFF8C00))
-                        ),
-                        shape = RoundedCornerShape(16.dp)
-                    )
-                    .padding(20.dp)
-            ) {
-                Column {
-                    Text(
-                        text = "Plaza ${reservation?.spotNumber ?: "—"}",
-                        color = Color.White,
-                        fontSize = 22.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(
-                        text = reservation?.date ?: "—",
-                        color = Color.White.copy(alpha = 0.9f),
-                        fontSize = 14.sp
-                    )
-                }
-            }
-
-            Spacer(modifier = Modifier.height(28.dp))
-
-            // Time editing card
+            // Reservation info
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(containerColor = ParklySurface),
-                border = CardDefaults.outlinedCardBorder()
+                colors = CardDefaults.cardColors(containerColor = ParklyOrangeLight),
+                border = androidx.compose.foundation.BorderStroke(1.dp, ParklyOrange)
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
-                    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(bottom = 16.dp)) {
-                        Icon(Icons.Default.Schedule, contentDescription = null, tint = ParklyOrange)
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text("Modificar Horario", fontWeight = FontWeight.Bold, color = ParklyTextPrimary, fontSize = 16.sp)
-                    }
-
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(12.dp)
-                    ) {
-                        Column(modifier = Modifier.weight(1f)) {
-                            Text("Hora de Inicio", fontSize = 13.sp, color = Color.Gray, modifier = Modifier.padding(bottom = 6.dp))
-                            ExposedDropdownMenuBox(
-                                expanded = expandidoInicio,
-                                onExpandedChange = { expandidoInicio = !expandidoInicio }
-                            ) {
-                                OutlinedTextField(
-                                    value = horaInicio,
-                                    onValueChange = {},
-                                    readOnly = true,
-                                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandidoInicio) },
-                                    modifier = Modifier.menuAnchor(MenuAnchorType.PrimaryNotEditable, enabled = true).fillMaxWidth(),
-                                    shape = RoundedCornerShape(8.dp)
-                                )
-                                ExposedDropdownMenu(expanded = expandidoInicio, onDismissRequest = { expandidoInicio = false }) {
-                                    rangoHorasInicio.forEach { hora ->
-                                        DropdownMenuItem(
-                                            text = { Text(hora) },
-                                            onClick = {
-                                                horaInicio = hora
-                                                expandidoInicio = false
-                                            }
-                                        )
-                                    }
-                                }
-                            }
-                        }
-
-                        Column(modifier = Modifier.weight(1f)) {
-                            Text("Hora de Fin", fontSize = 13.sp, color = Color.Gray, modifier = Modifier.padding(bottom = 6.dp))
-                            ExposedDropdownMenuBox(
-                                expanded = expandidoFin,
-                                onExpandedChange = { expandidoFin = !expandidoFin }
-                            ) {
-                                OutlinedTextField(
-                                    value = horaFin,
-                                    onValueChange = {},
-                                    readOnly = true,
-                                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandidoFin) },
-                                    modifier = Modifier.menuAnchor(MenuAnchorType.PrimaryNotEditable, enabled = true).fillMaxWidth(),
-                                    shape = RoundedCornerShape(8.dp),
-                                    isError = !isValidDuration
-                                )
-                                ExposedDropdownMenu(expanded = expandidoFin, onDismissRequest = { expandidoFin = false }) {
-                                    rangoHorasFin.forEach { hora ->
-                                        DropdownMenuItem(
-                                            text = { Text(hora) },
-                                            onClick = {
-                                                horaFin = hora
-                                                expandidoFin = false
-                                            }
-                                        )
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    // Duration / validation message
-                    Spacer(modifier = Modifier.height(16.dp))
-                    val (msgColor, msgText) = when {
-                        horaPasada -> Pair(Color(0xFFC5221F), "Ya no puedes modificar esta reserva. La franja horaria de hoy ha pasado.")
-                        !isValidDuration && duracion <= 0 -> Pair(Color(0xFFC5221F), "La hora de fin debe ser posterior a la de inicio")
-                        !isValidDuration -> Pair(Color(0xFFC5221F), "La duración máxima es de 9 horas")
-                        else -> Pair(Color(0xFF137333), "Duración: ${duracionHoras}h ${duracionMinutos}min")
-                    }
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .background(
-                                color = if (edicionValida) Color(0xFFE6F4EA) else Color(0xFFFCE8E6),
-                                shape = RoundedCornerShape(8.dp)
-                            )
-                            .padding(12.dp)
-                    ) {
-                        Text(
-                            text = msgText,
-                            color = msgColor,
-                            fontSize = 13.sp,
-                            fontWeight = FontWeight.Medium
-                        )
-                    }
+                    Text(
+                        "Plaza ${reservation?.spotNumber ?: "—"}",
+                        fontWeight = FontWeight.Bold, fontSize = 18.sp, color = ParklyOrange
+                    )
+                    Text(
+                        reservation?.date ?: "—",
+                        color = ParklyTextSecondary, fontSize = 13.sp
+                    )
                 }
             }
 
-            // ── Reservas activas en esta plaza ───────────────────
+            Spacer(modifier = Modifier.height(20.dp))
+
+            // Start time picker
+            Text("Hora de Inicio", fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 8.dp))
+            ParkingTimePicker(
+                minHour = minStartH.coerceAtMost(22),
+                minMinute = minStartM,
+                initialHour = savedStartH,
+                initialMinute = savedStartM,
+                onTimeChanged = { hour, minute ->
+                    if (hour >= 0) startHour = hour
+                    if (minute >= 0) startMinute = minute
+                }
+            )
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            // Duration slider
+            ParkingDurationSlider(
+                startTime = startTime,
+                onEndTimeSelected = { newEnd -> endTime = newEnd }
+            )
+
+            // Validation
+            if (horaPasada) {
+                Text("Ya no puedes modificar esta reserva.", color = MaterialTheme.colorScheme.error, fontSize = 12.sp, modifier = Modifier.padding(top = 8.dp))
+            } else if (!startValid) {
+                Text("Selecciona una hora futura.", color = MaterialTheme.colorScheme.error, fontSize = 12.sp, modifier = Modifier.padding(top = 8.dp))
+            } else if (duracionMin > 480) {
+                Text("La duración máxima es de 8 horas.", color = MaterialTheme.colorScheme.error, fontSize = 12.sp, modifier = Modifier.padding(top = 8.dp))
+            }
+
+            // Other reservations on this spot
             val otrasReservas = uiState.spotReservations.filter { it.id != idReserva }
             if (otrasReservas.isNotEmpty()) {
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(12.dp))
                 Card(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
@@ -275,67 +165,48 @@ fun EditReservationScreen(
                     border = CardDefaults.outlinedCardBorder()
                 ) {
                     Column(modifier = Modifier.padding(14.dp)) {
-                        Text(
-                            "Reservas en esta plaza para ese día:",
-                            fontWeight = FontWeight.SemiBold,
-                            fontSize = 14.sp,
-                            color = Color(0xFF8D6E00)
-                        )
-                        Spacer(modifier = Modifier.height(6.dp))
+                        Text("Reservas en esta plaza:", fontWeight = FontWeight.SemiBold, fontSize = 14.sp, color = Color(0xFF8D6E00))
+                        Spacer(modifier = Modifier.height(4.dp))
                         otrasReservas.forEach { r ->
-                            Text(
-                                "• ${r.startTime} – ${r.endTime}",
-                                fontSize = 14.sp,
-                                color = Color(0xFF8D6E00),
-                                fontWeight = FontWeight.Medium
-                            )
+                            Text("• ${r.startTime} – ${r.endTime}", fontSize = 14.sp, color = Color(0xFF8D6E00), fontWeight = FontWeight.Medium)
                         }
                     }
                 }
             }
 
-            // Error display
+            // Error
             if (uiState.error != null) {
                 Spacer(modifier = Modifier.height(12.dp))
-                Text(
-                    text = uiState.error ?: "",
-                    color = MaterialTheme.colorScheme.error,
-                    fontSize = 14.sp
-                )
+                Text(uiState.error ?: "", color = MaterialTheme.colorScheme.error, fontSize = 14.sp)
             }
 
-            Spacer(modifier = Modifier.weight(1f))
+            Spacer(modifier = Modifier.height(24.dp))
 
-            // Action buttons
+            // Buttons
             Row(
-                modifier = Modifier.fillMaxWidth().padding(vertical = 24.dp),
+                modifier = Modifier.fillMaxWidth().padding(bottom = 24.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 OutlinedButton(
-                    onClick = { onNavigateBack() },
+                    onClick = onNavigateBack,
                     modifier = Modifier.weight(1f).height(52.dp),
                     shape = RoundedCornerShape(12.dp)
-                ) {
-                    Text("Cancelar", color = Color.Gray, fontWeight = FontWeight.Bold)
-                }
+                ) { Text("Cancelar", color = Color.Gray, fontWeight = FontWeight.Bold) }
 
                 Button(
                     onClick = {
                         if (edicionValida) {
-                            viewModel.updateReservation(idReserva, horaInicio, horaFin)
+                            val start = String.format("%02d:%02d", startHour, startMinute)
+                            val end = String.format("%02d:%02d", endTime.hour, endTime.minute)
+                            viewModel.updateReservation(idReserva, start, end)
                         }
                     },
                     enabled = edicionValida,
                     modifier = Modifier.weight(1f).height(52.dp),
                     shape = RoundedCornerShape(12.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = ParklyOrange)
-                ) {
-                    Text("Guardar", color = Color.White, fontWeight = FontWeight.Bold)
-                }
+                ) { Text("Guardar", color = Color.White, fontWeight = FontWeight.Bold) }
             }
         }
     }
 }
-
-private fun stringOfHora(hora: Int): String = if (hora < 10) "0$hora:00" else "$hora:00"
-private fun stringOfEndHora(hora: Int): String = if (hora < 10) "0$hora:55" else "$hora:55"

@@ -74,14 +74,14 @@ class ViewModelIntegrationTest {
     // ── ReservationsViewModel ────────────────────────────────────
 
     @Test fun reservations_initial_state_empty() {
-        val vm = ReservationsViewModel()
+        val vm = ReservationsViewModel(application)
         assertThat(vm.uiState.value.currentReservations).isEmpty()
         assertThat(vm.uiState.value.futureReservations).isEmpty()
         assertThat(vm.uiState.value.isLoading).isFalse()
     }
 
     @Test fun reservations_clearError_does_not_crash() {
-        val vm = ReservationsViewModel()
+        val vm = ReservationsViewModel(application)
         vm.clearError()
     }
 

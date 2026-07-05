@@ -26,12 +26,3 @@ val ParklyGrayLight  = Color(0xFFF3F4F6)
 val SpotAvailable = Color(0xFF22C55E)
 val SpotTaken     = Color(0xFF9CA3AF)
 val SpotSelected  = Color(0xFFFF6B2B)
-
-// ── Legacy aliases (keeps existing code compiling) ────────
-val LksOrange        = ParklyOrange
-val LksWhite         = Color(0xFFFFFFFF)
-val LksBackground    = ParklyBackground
-val LksSurface       = ParklySurface
-val LksTextPrimary   = ParklyTextPrimary
-val LksTextSecondary = ParklyTextSecondary
-val LksError         = ParklyRed

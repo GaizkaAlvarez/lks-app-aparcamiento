@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.parkinglksnext.ParkingSpot
+import com.parkinglksnext.ParkingWidgetProvider
 import com.parkinglksnext.Reservation
 import com.parkinglksnext.Vehicle
 import com.parkinglksnext.repository.AuthRepository
@@ -127,6 +128,7 @@ class NewReservationViewModel(application: Application) : AndroidViewModel(appli
         val reservation = Reservation(
             userId = uid,
             vehicleId = vehicle.id,
+            vehiclePlate = vehicle.licensePlate,
             spotId = spot.id,
             spotNumber = spot.number,
             spotType = spot.type,
@@ -154,8 +156,8 @@ class NewReservationViewModel(application: Application) : AndroidViewModel(appli
             when (result) {
                 is Resource.Success -> {
                     _uiState.update { it.copy(isLoading = false, error = null) }
-                    // Schedule reminder notification 15 min before
                     val ctx = getApplication<Application>()
+                    ParkingWidgetProvider.notifyDataChanged(ctx)
                     NotificationHelper.scheduleStartReminder(
                         ctx, reservation.id, date, start, spot.number
                     )

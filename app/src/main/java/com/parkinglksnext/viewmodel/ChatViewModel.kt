@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.parkinglksnext.ParkingWidgetProvider
 import com.parkinglksnext.Reservation
 import com.parkinglksnext.network.AiServiceFactory
 import com.parkinglksnext.network.MessageEntry
@@ -59,34 +60,78 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
 
     init {
         viewModelScope.launch {
-            fetchInitialRecommendation()
+            // Wait for auth UID to be available (new users may need a moment)
+            var uid: String? = null
+            for (attempt in 1..5) {
+                uid = authRepo.getCurrentUser()?.uid
+                if (uid != null) break
+                kotlinx.coroutines.delay(800L * attempt)
+            }
+            if (uid == null) {
+                _uiState.update {
+                    it.copy(
+                        isLoading = false,
+                        messages = listOf(ChatMessage(
+                            text = "👋 ¡Hola! Soy tu asistente de aparcamiento. " +
+                                    "Cuéntame qué necesitas y te ayudo.\n\n" +
+                                    "Por ejemplo: \"Necesito aparcar mi coche mañana de 9 a 14\"",
+                            isUser = false
+                        ))
+                    )
+                }
+                return@launch
+            }
+
+            // Reactively observe the user profile.
+            // When vehicles are added/removed the recommendation refreshes automatically.
+            userRepo.getUserProfile(uid).collect { resource ->
+                when (resource) {
+                    is Resource.Success -> {
+                        val profile = resource.data
+                        val vehicles = profile.vehicles
+
+                        // Skip if the user already started a conversation (don't interrupt)
+                        if (_uiState.value.messages.any { it.isUser }) return@collect
+
+                        if (vehicles.isEmpty()) {
+                            _uiState.update {
+                                it.copy(
+                                    isLoading = false,
+                                    messages = listOf(ChatMessage(
+                                        text = "👋 ¡Hola! Soy tu asistente de aparcamiento.\n\n" +
+                                                "No tienes vehículos registrados. Añade uno en tu perfil para que pueda " +
+                                                "buscarte plaza, o dime qué tipo de vehículo tienes y te ayudo.",
+                                        isUser = false
+                                    ))
+                                )
+                            }
+                        } else {
+                            computeInitialRecommendation(uid, profile)
+                        }
+                    }
+                    is Resource.Error -> {
+                        // "Perfil no encontrado" — profile not yet created (e.g. fresh Google sign-in).
+                        // Wait silently; the snapshot listener will fire again once the profile is saved.
+                    }
+                    is Resource.Loading -> {
+                        if (_uiState.value.messages.isEmpty()) {
+                            _uiState.update { it.copy(isLoading = true) }
+                        }
+                    }
+                }
+            }
         }
     }
 
     // ── Initial deterministic recommendation (no AI) ────────────
 
-    private suspend fun fetchInitialRecommendation() {
-        // Retry loop — new users may not have auth/profile propagated yet
-        var uid: String? = null
-        for (attempt in 1..5) {
-            uid = authRepo.getCurrentUser()?.uid
-            if (uid != null) break
-            kotlinx.coroutines.delay(800L * attempt)
-        }
-        if (uid == null) {
-            _uiState.update {
-                it.copy(
-                    isLoading = false,
-                    messages = listOf(ChatMessage(
-                        text = "👋 ¡Hola! Soy tu asistente de aparcamiento. " +
-                                "Cuéntame qué necesitas y te ayudo.\n\n" +
-                                "Por ejemplo: \"Necesito aparcar mi coche mañana de 9 a 14\"",
-                        isUser = false
-                    ))
-                )
-            }
-            return
-        }
+    /**
+     * Compute the initial parking recommendation for a known profile.
+     * Called reactively from init whenever the profile changes (e.g. vehicles added).
+     */
+    private suspend fun computeInitialRecommendation(uid: String, profile: com.parkinglksnext.UserProfile) {
+        val vehicles = profile.vehicles
+        if (vehicles.isEmpty()) return
 
         _uiState.update {
             it.copy(
@@ -96,29 +141,6 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
         }
 
         try {
-            // Retry profile load — new users may not have Firestore profile yet
-            var profile = getUserProfile(uid)
-            if (profile == null) {
-                kotlinx.coroutines.delay(1000)
-                profile = getUserProfile(uid)
-            }
-            val vehicles = profile?.vehicles ?: emptyList()
-
-            if (vehicles.isEmpty()) {
-                _uiState.update {
-                    it.copy(
-                        isLoading = false,
-                        messages = listOf(ChatMessage(
-                            text = "👋 ¡Hola! Soy tu asistente de aparcamiento.\n\n" +
-                                    "No tienes vehículos registrados. Añade uno en tu perfil para que pueda " +
-                                    "buscarte plaza, o dime qué tipo de vehículo tienes y te ayudo.",
-                            isUser = false
-                        ))
-                    )
-                }
-                return
-            }
-
             val vehicle = vehicles.first()
             val vehicleType = vehicle.type
 
@@ -139,12 +161,19 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
                 Triple(tomorrow.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), "08:00", "09:55")
             }
 
-            val compatibleSpots = spotRepo.getAvailableSpotsForVehicle(vehicleType)
+            // Wait for Firestore spots to load (async snapshot listener)
+            var compatibleSpots = spotRepo.getAvailableSpotsForVehicle(vehicleType)
+            if (compatibleSpots.isEmpty()) {
+                kotlinx.coroutines.delay(1500)
+                compatibleSpots = spotRepo.getAvailableSpotsForVehicle(vehicleType)
+            }
             val conflictingIds = reservationRepo.getConflictingSpotIds(date, startTime, endTime)
             val freeSpots = compatibleSpots.filter { it.id !in conflictingIds }.sortedBy { it.number }
 
             val typeName = when (vehicleType) {
-                "electric" -> "eléctrico"; "motorcycle" -> "moto"; else -> "común"
+                "electric" -> "eléctrico"
+                "motorcycle" -> "moto"
+                else -> "común"
             }
 
             if (freeSpots.isEmpty()) {
@@ -179,7 +208,7 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
                 }
             }
         } catch (e: Exception) {
-            Log.e(TAG, "Error fetching initial recommendation", e)
+            Log.e(TAG, "Error computing initial recommendation", e)
             _uiState.update {
                 it.copy(
                     isLoading = false,
@@ -279,9 +308,9 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             try {
                 val vehicleType = ctx?.vehicleType ?: spot.type
-                val vehicleId = findCompatibleVehicle(uid, vehicleType)
+                val vehicleInfo = findCompatibleVehicle(uid, vehicleType)
 
-                if (vehicleId == null) {
+                if (vehicleInfo == null) {
                     addErrorMessage("No tienes un vehículo compatible con esta plaza. Añade uno en tu perfil.")
                     return@launch
                 }
@@ -311,9 +340,11 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
                     return@launch
                 }
 
+                val (vehicleId, vehiclePlate) = vehicleInfo
                 val reservation = Reservation(
                     userId = uid,
                     vehicleId = vehicleId,
+                    vehiclePlate = vehiclePlate,
                     spotId = spot.id,
                     spotNumber = spot.number,
                     spotType = spot.type,
@@ -328,8 +359,8 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
 
                 when (result) {
                     is Resource.Success -> {
-                        // Schedule reminder notification 15 min before
                         val ctx = getApplication<Application>()
+                        ParkingWidgetProvider.notifyDataChanged(ctx)
                         NotificationHelper.scheduleStartReminder(
                             ctx, reservation.id, date, startTime, spot.number
                         )
@@ -378,23 +409,15 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
 
     // ── Helpers ─────────────────────────────────────────────────
 
-    private suspend fun getUserProfile(uid: String) = try {
-        var profile: com.parkinglksnext.UserProfile? = null
-        userRepo.getUserProfile(uid).first { it is Resource.Success || it is Resource.Error }
-            .let { resource -> if (resource is Resource.Success) profile = resource.data }
-        profile
-    } catch (_: Exception) { null }
-
-    private fun showStaticMessage(text: String, isError: Boolean = false) {
-        _uiState.update {
-            it.copy(isLoading = false, messages = listOf(ChatMessage(text = text, isUser = false, isError = isError)))
-        }
-    }
-
-    private suspend fun findCompatibleVehicle(userId: String, vehicleType: String): String? {
+    private suspend fun findCompatibleVehicle(userId: String, vehicleType: String): Pair<String, String>? {
         return try {
-            val profile = getUserProfile(userId) ?: return null
-            val vehicles = profile.vehicles
+            val profile = try {
+                var result: com.parkinglksnext.UserProfile? = null
+                userRepo.getUserProfile(userId).first { it is Resource.Success || it is Resource.Error }
+                    .let { resource -> if (resource is Resource.Success) result = resource.data }
+                result
+            } catch (_: Exception) { null }
+            val vehicles = profile?.vehicles ?: return null
             if (vehicles.isEmpty()) return null
             val match = vehicles.firstOrNull { v -> v.type.equals(vehicleType, ignoreCase = true) }
             val fallback = if (vehicleType in listOf("comun", "combustion")) {
@@ -402,7 +425,8 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
                     v.type.equals("electric", ignoreCase = true) || v.type.equals("comun", ignoreCase = true) || v.type.equals("combustion", ignoreCase = true)
                 }
             } else vehicles.firstOrNull()
-            match?.id ?: fallback?.id
+            val vehicle = match ?: fallback ?: return null
+            Pair(vehicle.id, vehicle.licensePlate)
         } catch (_: Exception) { null }
     }
 

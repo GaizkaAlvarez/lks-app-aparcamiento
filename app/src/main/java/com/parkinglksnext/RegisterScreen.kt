@@ -3,6 +3,7 @@ package com.parkinglksnext
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -83,15 +84,14 @@ fun RegisterScreen(
         }
 
         // --- LOGO ---
-        Box(
+        Image(
+            painter = painterResource(id = R.drawable.logo_lks),
+            contentDescription = "LKS Logo",
             modifier = Modifier
                 .size(56.dp)
-                .clip(RoundedCornerShape(16.dp))
-                .background(ParklyOrange),
-            contentAlignment = Alignment.Center
-        ) {
-            Text("P", color = Color.White, fontWeight = FontWeight.ExtraBold, fontSize = 28.sp)
-        }
+                .clip(RoundedCornerShape(16.dp)),
+            contentScale = ContentScale.Fit
+        )
         Spacer(modifier = Modifier.height(16.dp))
 
         // --- TÍTULO Y SUBTÍTULO ---

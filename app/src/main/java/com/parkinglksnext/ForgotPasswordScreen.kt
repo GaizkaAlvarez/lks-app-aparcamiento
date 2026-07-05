@@ -1,5 +1,6 @@
 package com.parkinglksnext
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -15,6 +16,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -65,16 +68,15 @@ fun ForgotPasswordScreen(
             )
         }
 
-        // Logo / Brand
-        Box(
+        // Logo
+        Image(
+            painter = painterResource(id = R.drawable.logo_lks),
+            contentDescription = "LKS Logo",
             modifier = Modifier
                 .size(56.dp)
-                .clip(RoundedCornerShape(16.dp))
-                .background(ParklyOrange),
-            contentAlignment = Alignment.Center
-        ) {
-            Text("P", color = Color.White, fontWeight = FontWeight.ExtraBold, fontSize = 28.sp)
-        }
+                .clip(RoundedCornerShape(16.dp)),
+            contentScale = ContentScale.Fit
+        )
         Spacer(modifier = Modifier.height(32.dp))
 
         if (uiState.isPasswordResetSent) {

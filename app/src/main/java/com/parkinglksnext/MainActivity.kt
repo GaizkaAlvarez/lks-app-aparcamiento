@@ -108,6 +108,15 @@ fun AppRoot() {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route ?: startDestination
 
+    // Clear errors on navigation
+    LaunchedEffect(currentRoute) {
+        authViewModel.clearError()
+        reservationsViewModel.clearError()
+        newReservationViewModel.clearError()
+        profileViewModel.clearError()
+        chatViewModel.clearError()
+    }
+
     // Bottom nav tabs
     val bottomNavRoutes = setOf(
         Routes.Home.route,

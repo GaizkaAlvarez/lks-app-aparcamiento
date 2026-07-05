@@ -41,26 +41,6 @@ class ReservationRepository {
     }
 
     /**
-     * Real-time history — stays as callbackFlow.
-     */
-    fun getReservationHistory(userId: String): Flow<Resource<List<Reservation>>> = callbackFlow {
-        val listener = collection
-            .whereEqualTo("userId", userId)
-            .whereIn("status", listOf("completed", "cancelled"))
-            .addSnapshotListener { snapshot, error ->
-                if (error != null) {
-                    trySend(Resource.Error(error.localizedMessage ?: "Error al cargar historial"))
-                    return@addSnapshotListener
-                }
-                val reservations = snapshot?.documents?.mapNotNull { doc ->
-                    doc.toObject(Reservation::class.java)?.copy(id = doc.id)
-                }?.sortedByDescending { it.createdAt } ?: emptyList()
-                trySend(Resource.Success(reservations))
-            }
-        awaitClose { listener.remove() }
-    }
-
-    /**
      * Real-time ALL reservations (active + completed + cancelled) for the history screen.
      */
     fun getAllReservations(userId: String): Flow<Resource<List<Reservation>>> = callbackFlow {

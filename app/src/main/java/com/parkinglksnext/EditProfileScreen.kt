@@ -73,11 +73,15 @@ fun EditProfileScreen(
     var startReminder by remember(profile?.id) {
         mutableStateOf(profile?.notificationSettings?.startReminder ?: true)
     }
-    var startReminderMinutes by remember { mutableIntStateOf(15) }
+    var startReminderMinutes by remember(profile?.id) {
+        mutableIntStateOf(profile?.notificationSettings?.startReminderMinutes ?: 15)
+    }
     var expiringReminder by remember(profile?.id) {
         mutableStateOf(profile?.notificationSettings?.expiringReminder ?: true)
     }
-    var expiringReminderMinutes by remember { mutableIntStateOf(15) }
+    var expiringReminderMinutes by remember(profile?.id) {
+        mutableIntStateOf(profile?.notificationSettings?.expiringReminderMinutes ?: 15)
+    }
 
     // ── Vehicles ───────────────────────────────────────────────
     val listaVehiculos = remember(profile?.id) {
@@ -192,12 +196,27 @@ fun EditProfileScreen(
                 }
             }
 
-            Text(
-                "Cambiar foto",
-                fontSize = 13.sp,
-                color = MaterialTheme.colorScheme.primary,
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(16.dp),
                 modifier = Modifier.padding(top = 8.dp, bottom = 24.dp)
-            )
+            ) {
+                Text(
+                    "Cambiar foto",
+                    fontSize = 13.sp,
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.clickable { onPhotoClick() }
+                )
+                if (photoBitmap != null) {
+                    Text(
+                        "Quitar foto",
+                        fontSize = 13.sp,
+                        color = Color(0xFFC5221F),
+                        modifier = Modifier.clickable {
+                            viewModel.saveProfilePhotoBase64("")
+                        }
+                    )
+                }
+            }
 
             // ─── SECCIÓN 1: INFORMACIÓN PERSONAL ──────────────────
             Text(
@@ -442,12 +461,13 @@ fun EditProfileScreen(
                     }
                     if (startReminder) {
                         Spacer(modifier = Modifier.height(8.dp))
-                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            listOf(5, 10, 15, 20).forEach { mins ->
+                        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            listOf(5, 10).forEach { mins ->
                                 FilterChip(
                                     selected = startReminderMinutes == mins,
                                     onClick = { startReminderMinutes = mins },
-                                    label = { Text("${mins} min", fontSize = 12.sp) },
+                                    label = { Text("${mins} min", fontSize = 12.sp, textAlign = androidx.compose.ui.text.style.TextAlign.Center) },
+                                    modifier = Modifier.weight(1f),
                                     colors = FilterChipDefaults.filterChipColors(
                                         selectedContainerColor = ParklyOrangeLight,
                                         selectedLabelColor = ParklyOrange
@@ -470,12 +490,13 @@ fun EditProfileScreen(
                     }
                     if (expiringReminder) {
                         Spacer(modifier = Modifier.height(8.dp))
-                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            listOf(5, 10, 15, 20).forEach { mins ->
+                        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            listOf(5, 10).forEach { mins ->
                                 FilterChip(
                                     selected = expiringReminderMinutes == mins,
                                     onClick = { expiringReminderMinutes = mins },
                                     label = { Text("${mins} min", fontSize = 12.sp) },
+                                    modifier = Modifier.weight(1f),
                                     colors = FilterChipDefaults.filterChipColors(
                                         selectedContainerColor = ParklyOrangeLight,
                                         selectedLabelColor = ParklyOrange
@@ -580,7 +601,12 @@ fun EditProfileScreen(
                         viewModel.updateProfile(
                             firstName = nombre, lastName = apellidos,
                             vehicles = vehicles,
-                            notificationSettings = NotificationSettings(startReminder = startReminder, expiringReminder = expiringReminder),
+                            notificationSettings = NotificationSettings(
+                                startReminder = startReminder,
+                                startReminderMinutes = startReminderMinutes,
+                                expiringReminder = expiringReminder,
+                                expiringReminderMinutes = expiringReminderMinutes
+                            ),
                             oldPassword = oldPassword, newPassword = newPassword
                         )
                     },

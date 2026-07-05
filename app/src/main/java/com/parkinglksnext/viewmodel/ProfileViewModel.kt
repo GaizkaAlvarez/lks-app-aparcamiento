@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -152,14 +153,14 @@ class ProfileViewModel : ViewModel() {
     fun cancelReservationsForVehicle(vehicleId: String) {
         val uid = authRepo.getCurrentUser()?.uid ?: return
         viewModelScope.launch {
-            reservationRepo.getActiveReservations(uid).collect { resource ->
-                if (resource is Resource.Success) {
-                    resource.data
-                        .filter { it.vehicleId == vehicleId && it.status == "active" }
-                        .forEach { reservation ->
-                            reservationRepo.cancelReservation(reservation.id)
-                        }
-                }
+            // Use first() instead of collect() to avoid a perpetual snapshot listener leak.
+            val resource = reservationRepo.getActiveReservations(uid).first()
+            if (resource is Resource.Success) {
+                resource.data
+                    .filter { it.vehicleId == vehicleId && it.status == "active" }
+                    .forEach { reservation ->
+                        reservationRepo.cancelReservation(reservation.id)
+                    }
             }
         }
     }

@@ -138,7 +138,10 @@ fun LoginScreen(
         )
 
         TextButton(
-            onClick = onNavigateToForgotPassword,
+            onClick = {
+                viewModel.clearError()
+                onNavigateToForgotPassword()
+            },
             modifier = Modifier.align(Alignment.End).padding(top = 4.dp)
         ) {
             Text(

@@ -34,7 +34,6 @@ import com.parkinglksnext.viewmodel.ProfileViewModel
 fun ProfileScreen(
     viewModel: ProfileViewModel,
     onNavigateToEditProfile: () -> Unit = {},
-    onOpenMenu: () -> Unit = {},
     onLogout: () -> Unit = {}
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -213,11 +212,6 @@ fun ProfileScreen(
             }
         }
     }
-}
-
-@Composable
-fun FilaDetallePerfil(icon: ImageVector, titulo: String, valor: String) {
-    ProfileInfoRow(icon = icon, titulo = titulo, valor = valor)
 }
 
 @Composable

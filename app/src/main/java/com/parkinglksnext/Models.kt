@@ -11,7 +11,9 @@ data class Vehicle(
 // Modelo de Notificaciones de perfil
 data class NotificationSettings(
     val startReminder: Boolean = true,
-    val expiringReminder: Boolean = true
+    val startReminderMinutes: Int = 10,
+    val expiringReminder: Boolean = true,
+    val expiringReminderMinutes: Int = 10
 )
 
 // Modelo de Usuario para Firestore
@@ -33,6 +35,7 @@ data class Reservation(
     val id: String = "",
     val userId: String = "",
     val vehicleId: String = "",
+    val vehiclePlate: String = "",
     val spotId: String = "",
     val spotNumber: Int = 0,
     val spotType: String = "comun",

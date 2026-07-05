@@ -66,7 +66,16 @@ fun NewReservationScreen(
         }
     }
 
-    // Collect one-shot success event (no boolean toggle loop)
+    // Snackbar for errors
+    val snackbarHostState = remember { SnackbarHostState() }
+    LaunchedEffect(uiState.error) {
+        uiState.error?.let {
+            snackbarHostState.showSnackbar(it)
+            viewModel.clearError()
+        }
+    }
+
+    // Collect one-shot success event
     LaunchedEffect(Unit) {
         viewModel.events.collect { event ->
             when (event) {
@@ -75,15 +84,6 @@ fun NewReservationScreen(
                     onNavigateToDashboard()
                 }
             }
-        }
-    }
-
-    // Snackbar for errors
-    val snackbarHostState = remember { SnackbarHostState() }
-    LaunchedEffect(uiState.error) {
-        uiState.error?.let {
-            snackbarHostState.showSnackbar(it)
-            viewModel.clearError()
         }
     }
 
@@ -160,45 +160,54 @@ private fun Step1Content(
     }
     val esHoy = selectedDate == today
 
-    // Start time state
-    var startHour by remember { mutableIntStateOf(8) }
-    var startMinute by remember { mutableIntStateOf(0) }
-
-    // End time state
-    val startTime = remember(startHour, startMinute) {
-        LocalTime.of(startHour, startMinute)
-    }
-    var endTime by remember { mutableStateOf(LocalTime.of(9, 0)) }
-
-    // Calculate minimum start time (current time + 5 min buffer, rounded up to next :00/:15/:30/:45)
+    // Calculate minimum start time
     val ahora = remember { LocalTime.now() }
     val minStartTotalMinutes = if (esHoy) {
         val nowMinutes = ahora.hour * 60 + ahora.minute
-        val withBuffer = nowMinutes + 5                      // 5 min gap between reservations
-        val nextSlot = (withBuffer + 14) / 15                // round up to next 15-min slot
-        maxOf(nextSlot * 15, 6 * 60)                         // parking opens at 06:00
+        val withBuffer = nowMinutes
+        val nextSlot = (withBuffer + 14) / 15
+        maxOf(nextSlot * 15, 6 * 60)
     } else 6 * 60
     val minStartH = minStartTotalMinutes / 60
     val minStartM = minStartTotalMinutes % 60
     val horaPasada = esHoy && minStartTotalMinutes >= 23 * 60
+
+    // Start time — resets when date changes (esHoy toggles)
+    val savedStartH = uiState.startTime?.split(":")?.getOrNull(0)?.toIntOrNull()
+    val savedStartM = uiState.startTime?.split(":")?.getOrNull(1)?.toIntOrNull()
+    var startHour by remember(esHoy) {
+        mutableIntStateOf(savedStartH ?: if (esHoy) minStartH else 8)
+    }
+    var startMinute by remember(esHoy) {
+        mutableIntStateOf(savedStartM ?: if (esHoy) minStartM else 0)
+    }
+
+    val startTime = remember(startHour, startMinute) { LocalTime.of(startHour, startMinute) }
     val startTotalMinutes = startHour * 60 + startMinute
     val startValid = !esHoy || (startTotalMinutes >= minStartTotalMinutes / 15 * 15)
 
-    // Initialize defaults (next available slot)
+    // End time — recalculates when startTime changes
+    var endTime by remember { mutableStateOf(LocalTime.of(9, 0)) }
+    LaunchedEffect(startTime) {
+        val savedEnd = uiState.endTime
+        val initialEnd = if (savedEnd != null) {
+            try { LocalTime.parse(savedEnd) } catch (_: Exception) { startTime.plusMinutes(60) }
+        } else startTime.plusMinutes(60)
+        endTime = initialEnd
+        viewModel.setEndTime(String.format("%02d:%02d", initialEnd.hour, initialEnd.minute))
+    }
+
+
+    // Initialize defaults in ViewModel
     LaunchedEffect(Unit) {
         if (uiState.selectedDate == null) {
             viewModel.setDate(today.format(dateFormatter))
         }
         if (uiState.startTime == null) {
-            val defaultStartH = if (esHoy) minStartH else 8
-            val defaultStartM = if (esHoy) minStartM else 0
-            startHour = defaultStartH
-            startMinute = defaultStartM
-            val formatted = String.format("%02d:%02d", startHour, startMinute)
-            viewModel.setStartTime(formatted)
+            viewModel.setStartTime(String.format("%02d:%02d", startHour, startMinute))
         }
         if (uiState.endTime == null) {
-            viewModel.setEndTime("09:00")
+            viewModel.setEndTime(String.format("%02d:%02d", endTime.hour, endTime.minute))
         }
     }
 
@@ -299,10 +308,8 @@ private fun Step1Content(
         ParkingDurationSlider(
             startTime = startTime,
             onEndTimeSelected = { newEnd ->
-                // Round end time to :10/:25/:40/:55 (5 min before next slot start)
-                val rounded = roundEndTime(newEnd)
-                endTime = rounded
-                val formatted = String.format("%02d:%02d", rounded.hour, rounded.minute)
+                endTime = newEnd
+                val formatted = String.format("%02d:%02d", newEnd.hour, newEnd.minute)
                 viewModel.setEndTime(formatted)
             }
         )
@@ -553,19 +560,19 @@ private fun ParkingLotView(
 
     val parkingRows = listOf(
         ParkingRow("🚗 Común (1-21)", listOf(
-            SpotSlot(1, "combustion"), SpotSlot(2, "combustion"), SpotSlot(3, "combustion"),
-            SpotSlot(4, "combustion"), SpotSlot(5, "combustion"), SpotSlot(6, "combustion"),
-            SpotSlot(7, "combustion")
+            SpotSlot(1, "comun"), SpotSlot(2, "comun"), SpotSlot(3, "comun"),
+            SpotSlot(4, "comun"), SpotSlot(5, "comun"), SpotSlot(6, "comun"),
+            SpotSlot(7, "comun")
         )),
         ParkingRow(null, listOf(
-            SpotSlot(8, "combustion"), SpotSlot(9, "combustion"), SpotSlot(10, "combustion"),
-            SpotSlot(11, "combustion"), SpotSlot(12, "combustion"), SpotSlot(13, "combustion"),
-            SpotSlot(14, "combustion")
+            SpotSlot(8, "comun"), SpotSlot(9, "comun"), SpotSlot(10, "comun"),
+            SpotSlot(11, "comun"), SpotSlot(12, "comun"), SpotSlot(13, "comun"),
+            SpotSlot(14, "comun")
         )),
         ParkingRow(null, listOf(
-            SpotSlot(15, "combustion"), SpotSlot(16, "combustion"), SpotSlot(17, "combustion"),
-            SpotSlot(18, "combustion"), SpotSlot(19, "combustion"), SpotSlot(20, "combustion"),
-            SpotSlot(21, "combustion")
+            SpotSlot(15, "comun"), SpotSlot(16, "comun"), SpotSlot(17, "comun"),
+            SpotSlot(18, "comun"), SpotSlot(19, "comun"), SpotSlot(20, "comun"),
+            SpotSlot(21, "comun")
         )),
         ParkingRow("⚡ Con cargador (22-28)", listOf(
             SpotSlot(22, "electric"), SpotSlot(23, "electric"), SpotSlot(24, "electric"),
@@ -881,31 +888,32 @@ private fun MonthGrid(
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun ParkingTimePicker(
+fun ParkingTimePicker(
     minHour: Int,
     minMinute: Int,
     initialHour: Int,
     initialMinute: Int,
     onTimeChanged: (hour: Int, minute: Int) -> Unit
 ) {
-    val hours = remember(minHour) { (minHour..22).toList() }
+    // Clamp to valid range — minHour could be >22 late at night
+    val safeMinHour = minHour.coerceAtMost(22)
+    val hours = remember(safeMinHour) { (safeMinHour..22).toList() }
     val allMinutes = remember { listOf(0, 15, 30, 45) }
 
-    // For the minimum hour, only show minutes >= minMinute
-    val firstHourMinMinutes = remember(minHour, minMinute) {
+    val firstHourMinMinutes = remember(safeMinHour, minMinute) {
         allMinutes.filter { it >= minMinute }
     }
 
-    var selectedHour by remember { mutableIntStateOf(initialHour.coerceIn(minHour, 22)) }
+    var selectedHour by remember { mutableIntStateOf(initialHour.coerceIn(safeMinHour, 22)) }
     var selectedMinute by remember {
         mutableIntStateOf(
-            if (initialHour == minHour) initialMinute.coerceAtLeast(minMinute)
+            if (initialHour == safeMinHour) initialMinute.coerceAtLeast(minMinute)
             else initialMinute
         )
     }
 
-    val minutes = remember(selectedHour, minHour, minMinute) {
-        if (selectedHour == minHour) firstHourMinMinutes else allMinutes
+    val minutes = remember(selectedHour, safeMinHour, minMinute) {
+        if (selectedHour == safeMinHour) firstHourMinMinutes else allMinutes
     }
 
     // Initialize hour index
@@ -959,7 +967,7 @@ private fun ParkingTimePicker(
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun <T> WheelColumn(
+fun <T> WheelColumn(
     items: List<T>,
     initialIndex: Int,
     labelFormatter: (T) -> String,
@@ -1019,7 +1027,7 @@ private fun <T> WheelColumn(
 // ─── Duration Slider (15-min steps up to 3h, then 1h steps up to 8h) ──
 
 @Composable
-private fun ParkingDurationSlider(
+fun ParkingDurationSlider(
     startTime: LocalTime,
     onEndTimeSelected: (LocalTime) -> Unit
 ) {
@@ -1160,7 +1168,7 @@ private fun ParkingDurationSlider(
     }
 }
 
-private fun formatStepMinutes(minutes: Int): String {
+fun formatStepMinutes(minutes: Int): String {
     val h = minutes / 60
     val m = minutes % 60
     return buildString {
@@ -1196,7 +1204,7 @@ private fun spotTypeLabel(type: String): String = when (type) {
  *   13:45 → 13:40 → 13:30 → 13:40 ✓
  *   14:00 → 13:55 → 13:45 → 13:55 ✓
  */
-private fun roundEndTime(raw: LocalTime): LocalTime {
+fun roundEndTime(raw: LocalTime): LocalTime {
     val totalMinutes = raw.hour * 60 + raw.minute
     val adjusted = totalMinutes - 5
     val roundedDown = (adjusted / 15) * 15
