@@ -72,7 +72,7 @@ class ModelsTest {
 
     @Test fun notificationSettings_default_minutes() {
         val ns = NotificationSettings()
-        assertThat(ns.startReminderMinutes).isEqualTo(15)
-        assertThat(ns.expiringReminderMinutes).isEqualTo(15)
+        assertThat(ns.startReminderMinutes).isEqualTo(10)
+        assertThat(ns.expiringReminderMinutes).isEqualTo(10)
     }
 }
